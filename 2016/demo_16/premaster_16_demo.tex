@@ -1,0 +1,507 @@
+\documentclass[addpoints, answers]{exam} % добавить или удалить answers в скобках, чтобы показать ответы
+% \documentclass[addpoints, answers]{exam} % добавить или удалить answers в скобках, чтобы показать ответы
+
+
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+%\usepackage[OT1]{fontenc}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\Var}{\mathbb{V}\mathrm{ar}}
+\DeclareMathOperator{\Cov}{\mathbb{C}\mathrm{ov}}
+\DeclareMathOperator{\sgn}{\rm sgn}
+\let\P\relax
+\DeclareMathOperator{\P}{\mathbb{P}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\hbeta}{\hat{\beta}}
+
+\usepackage{floatrow}
+%\newfloatcommand{capbtabbox}{table}[][\FBwidth]
+
+\begin{document}
+
+\pagestyle{headandfoot}
+\runningheadrule
+\firstpageheader{НИУ-ВШЭ}{Высшая математика, стр. \thepage\ из \numpages}{демо 2016}
+\firstpageheadrule
+\runningheader{НИУ-ВШЭ}{Высшая математика, стр. \thepage\ из \numpages}{демо 2016}
+\firstpagefooter{}{}{}
+\runningfooter{}{}{}
+\runningfootrule
+
+
+
+
+\hqword{Задача}
+\hpgword{Страница}
+\hpword{Максимум}
+\hsword{Баллы}
+\htword{Итого}
+\pointname{\%}
+%\renewcommand{\solutiontitle}{\noindent\textbf{Решение:}\par\noindent}
+\renewcommand{\solutiontitle}{}
+
+%Таблица с результатами заполняется проверяющим работу. Пожалуйста, не делайте в ней пометок.
+
+%\begin{center}
+%  \gradetable[h][questions]
+%\end{center}
+
+\begin{center}
+\textbf{Демо-версия} % Вариант А
+\end{center}
+
+\begin{questions}
+
+\question[10] Evaluate the following limit:
+
+\[
+\lim_{x \to 0} \sqrt[x]{\cos \sqrt{x}}
+\]
+
+\begin{solution}
+
+\[
+\lim_{x \rightarrow 0} \sqrt[x]{\cos \sqrt{x}} = \lim_{x \rightarrow 0} \left({\cos \sqrt{x}}\right) ^{1/x} =  \lim_{x \rightarrow 0} \exp
+\left( \frac{\ln (\cos \sqrt{x})}{x} \right) = \exp \left( \lim_{x \rightarrow 0}
+\frac{\ln (\cos \sqrt{x})}{x} \right),
+\]
+
+\noindent где последнее равенство использует теорему о предельном переходе для непрерывных функций. Далее используем разложение в ряд Маклорена.
+
+\[
+\frac{\ln (\cos \sqrt{x})}{x} = \frac{\ln (1-
+\frac{x}{2}+\frac{x^2}{24}+o(x^2))}{x} = \frac{-\frac{x}{2}+o(x)}{x}
+\]
+
+\noindent Следовательно,
+
+\[
+\lim_{x \rightarrow 0} \frac{\ln (\cos \sqrt{x})}{x} = -\frac{1}{2},
+\]
+
+\noindent поэтому
+
+\[
+\lim_{x \rightarrow 0} \sqrt[x]{\cos \sqrt{x}} = \exp \left( -\frac{1}{2}\right) = \frac{1}{\sqrt{e}}.
+\]
+\end{solution}
+
+\question[10] Find and classify the discontinuity points of the following function:
+
+\[
+f(x) = {\sgn} \left(\sin \left( \frac{\pi}{x}\right)\right).
+\]
+
+\begin{solution}
+Точки, в которых данная функция может иметь разрыв: $x=0$, поскольку в ней равен нулю знаменатель аргумента функции, и точки $x=1/k, k \in \mathbb{Z}$, поскольку в них $\sin \left( \frac{\pi}{x}\right)$ меняет знак. В точках $x=1/k, k \in \mathbb{Z}$ функция имеет разрывы первого рода, так как существуют не равные между собой односторонние пределы. Например, рассмотрим $k=1$. Существует правосторонняя окрестность точки $x=1$, в которой функция $\sin \left( \frac{\pi}{x} \right)$ положительна. В самом деле, для $x \in (1,2)$ имеет место $\frac{\pi}{2} < \frac{\pi}{x} < \pi$. Для точек из этой окрестности имеем $f(x) = 1$, следовательно, $\lim_{x \rightarrow 1+0} f(x) = 1$. С другой стороны, существует левосторонняя окрестность точки $x=1$, в которой функция $\sin \left( \frac{\pi}{x} \right)$ отрицательна. В самом деле, для $x \in (1/2,1)$ имеет место $\pi < \frac{\pi}{x} < 2 \pi$. Для точек из этой окрестности имеем $f(x) = -1$, следовательно, $\lim_{x \rightarrow 1-0} f(x) = -1$. Аналогичные окрестности могут быть найдены для всех рассматриваемых точек.
+
+
+
+В точке $x=0$ функция имеет разрыв второго рода, поскольку не существует односторонних пределов. Действительно, рассмотрим последовательности $a_n = \frac{2}{1+4 n}, n
+\in \mathbb{N}$ и $b_n = \frac{2}{3+4 n}, n \in \mathbb{N}$, стремящиеся к нулю справа. Тогда $f(a_n) = {\sgn} \left(\sin \left( \frac{\pi}{\frac{2}{1+4 n}}\right)\right) = {\sgn} \left( \sin \left( \frac{\pi}{2} + 2 \pi n \right)\right)=1$ и $f(b_n) = {\sgn} \left(\sin \left( \frac{\pi}{\frac{2}{3+4 n}}\right)\right) = {\sgn} \left( \sin \left( \frac{3 \pi}{2} + 2 \pi n \right)\right)=-1$. Тем самым показано, что правостороннего предела $f(x)$ при $x$ стремящемся к нулю не существует. Аналогично можно показать, что не существует левостороннего предела, например, рассмотрев последовательности $-a_n$ и $-b_n$.
+\end{solution}
+
+\question Density function of a random variable $Y$ is given by
+
+\[
+f(y)=
+\begin{cases}
+    \frac{1}{\theta^2} y e^{-y/ \theta}, \text{ if } y>0 \\
+    0, \text{ otherwise } \\
+\end{cases}
+\]
+
+You have 3 observations on $Y$: $y_1 = 48, y_2 = 50, y_3 = 52$.
+
+\begin{parts}
+\part[4] Using maximum likelihood, find the estimate of $\theta$
+\begin{solution}
+
+  Нахождение оценки:
+
+  \[
+    \begin{array}{l}
+  	\ln(L) = \sum_{i=1}^n (-\ln(\theta^2)+\ln(y_i) - \frac{y_i}{\theta}) \\
+  	\ln(L) = -2n\ln(\theta)+\sum_{i=1}^n \ln(y_i)  - \frac{\sum_{i=1}^n y_i}{\theta} \\
+  	\frac{\partial \ln(L)}{\partial \theta} = - \frac{2n}{\theta} + \frac{\sum_{i=1}^n y_i}{\theta^2} = 0 \\
+  	\widehat{\theta} = \frac{\sum_{i=1}^n y_i}{2n} = \frac{\overline{y}}{2} \\
+    \end{array}
+  \]
+
+  Подставляя наши данные, получаем $\widehat{\theta} = 25$.
+\end{solution}
+
+\part[3] Is the estimator $\hat\theta$ unbiased?
+
+\begin{solution}
+  Несмещенность:
+
+  \[
+    \begin{array}{l}
+  	\E(\widehat{\theta}) = \frac{\E(y_i)}{2}
+    \end{array}
+  \]
+
+  Найдём математическое ожидание $y_i$:
+
+  \[
+    \begin{array}{l}
+  	\E(y_i) = \int_0^{+ \infty} \frac{1}{\theta^2} y^2 e^{-y/ \theta} dy
+    \end{array}
+  \]
+
+  Интегрируя по частям, получаем:
+
+  \[
+    \begin{array}{l}
+  	\E(y_i) = \int_0^{+ \infty} \frac{2y}{\theta} e^{-y/ \theta} dy \\
+  	\E(y_i) = \int_0^{+ \infty} 2 e^{-y/ \theta} dy \\
+  	\E(y_i) = 2 \theta
+    \end{array}
+  \]
+
+  Тогда $\E(\widehat{\theta}) = \frac{\E(y_i)}{2} = \theta$. Оценка несмещенная.
+
+\end{solution}
+
+\part[3] Calculate the variance of $\hat\theta$
+
+
+\begin{solution}
+  Для расчёта дисперсии вычислим $\E(y_i^2)$:
+
+  \[
+  	\E(y_i^2) = \int_0^{+ \infty} \frac{1}{\theta^2} y^3 e^{-y/ \theta} dy
+  \]
+
+  Аналогично предыдущему случаю, интегрируем по частям. Получаем:
+
+  \[
+  	\E(y_i^2) = 6 \theta^2
+  \]
+
+  Тогда
+
+  \[
+  	\Var(y_i) = 6 \theta^2 - 4 \theta^2 = 2 \theta^2
+  \]
+
+  И дисперсия оценки
+
+  \[
+  	\Var(\widehat{\theta}) = \Var(\frac{\overline{y}}{2}) = \frac{1}{4n} \Var(y_i) = \frac{\theta^2}{2n}
+  \]
+
+
+\end{solution}
+
+\end{parts}
+
+
+
+\question Consider a function
+
+\[
+f(x)=\begin{cases}
+    \frac{1}{x^2}, \text{ if } c_1<x<c_2 \\
+    0, \text{ otherwise }
+\end{cases}
+\]
+
+\begin{parts}
+\part[5] Find all $c_1$ and $c_2$ such that the function $f$ is a density function for some random variable $X$
+
+\begin{solution}
+  Чтобы функция была функцией плотности:
+
+  \[
+  \begin{array}{l}
+  \int_{c_1}^{c_2} \frac{1}{x^2}dx = 1 \\
+  -\frac{1}{c_2}+\frac{1}{c_1}=1 \\
+  c_1 = \frac{c_2}{1+c_2}
+  \end{array}
+  \]
+
+\end{solution}
+
+\part[5] Calculate the expected value and variance of the random variable $X$ for $c_2 = 9$
+
+\begin{solution}
+  Математическое ожидание:
+
+  \[
+  \E(X)=\int_{0.9}^9 \frac{1}{x^2} x dx = \int_{0.9}^9\frac{1}{x} dx = \ln(9)-\ln(0.9)
+  \]
+
+  Дисперсия:
+
+  \[
+  \begin{array}{l}
+  \Var(X) = \E(X^2)-\E(X)^2  \\
+  \E(X^2) = \int_{0.9}^9 \frac{1}{x^2} x^2 dx = 9-0.9 = 8.1 \\
+  \Var(X) = 8.1 - (\ln(9)-\ln(0.9))^2
+  \end{array}
+  \]
+
+\end{solution}
+
+
+\end{parts}
+
+\question Let $S$ be the $n\times n$ «shipbuilding timber» matrix, i.e. the square matrix with all elements equal to $1$.
+
+\begin{parts}
+\part[2] Express $S^2$ in terms of $S$
+\begin{solution}
+Перемножаем в лоб:
+\[
+S\cdot S = \begin{pmatrix}
+n & \cdots & n \\
+\vdots & & \vdots \\
+n & \cdots & n
+\end{pmatrix} = n S
+\]
+\end{solution}
+\part[3] For the eigenvalues of $S$
+\begin{solution}
+Допустим, что $Sv=\lambda v$
+
+Домножим обе стороны на $S$. Получим:
+\[
+S^2 v= \lambda Sv
+\]
+
+С другой стороны $S^2 v = n Sv$. Значит:
+
+\[
+n Sv = \lambda Sv
+\]
+
+Отсюда, либо $\lambda=n$, либо $Sv=0$, что означает, что $\lambda=0$.
+\end{solution}
+
+\part[3] For each eigenvalue of $S$ find at least on eigenvector
+\begin{solution}
+Разберёмся с собственными векторами для матрицы $S$. Ищем собственный вектор для $\lambda=0$. Получаем, что
+\[
+(1, 1, 1, \ldots, 1) \cdot v = 0
+\]
+Значит подходит любой ненулевой вектор с суммой компонент, равной нулю. Например, подойдёт
+\[
+v=(1,-1, 0, 0, \ldots, 0)
+\]
+Ищем собственный вектор для $\lambda=n$. Все строки матрицы $S$ одинаковы, поэтому все элементы вектора $Sv$ одинаковы. Значит в $v$ должны быть одинаковые элементы. Например, подойдёт
+\[
+v=(1,1, 1, 1, \ldots, 1)
+\]
+
+\end{solution}
+
+\part[2] Find all the eigenvalues of the matrix $A=aI+bS$, where $I$ is the identity matrix.
+\begin{solution}
+Когда мы домножаем матрицу $S$ на число $b$ собственные числа домножаются на $b$. Если мы прибавляем константу $a$ по диагонали, то собственные числа увеличиваются на $a$. Значит собственные числа матрицы $A$ равны $a+bn$ и $a$.
+
+Кстати, при домножении матрицы $S$ на константу собственные векторы не изменяются, равно как и при прибавлении константы $a$ по диагонали.
+\end{solution}
+
+
+\end{parts}
+
+\question Solve the  differential equation:
+
+\[
+y''' -4y'' +y' =2x^{2} +1.
+\]
+
+\begin{solution}
+Сначала запишем решение однородного дифференциального уравнения:
+
+\[y''' -4y'' +y' =0.\]
+
+Составим к нему характеристическое уравнение:
+
+  \[\lambda ^{3} -4\lambda ^{2} +\lambda =0.\]
+
+  \[\lambda _{1} =0,\lambda _{2} =2,\lambda _{3} =-2.\]
+
+  То есть общее решение дифференциального уравнения может быть записано как
+
+  \[y=C_{1} +C_{2} e^{2x} +C_{3} e^{-2x},\; C_{1} ,C_{2} ,C_{3} \in \RR \]
+
+  Найдем частное решение этого дифференциального уравнения. В данной задаче -- резонансный случай, поскольку $\left(2x^{2} +1\right)e^{0} =2x^{2} +1$. То есть будем искать частное решение в виде $y=(ax^{2} +bx+c)x$. Тогда
+
+  \[y' =3ax^{2} +2bx+c\]
+
+  \[y'' =6ax+2b\]
+
+  \[y''' =6a\]
+
+  Следовательно,
+
+  \[6a-4(6ax+2b)+3ax^{2} +2bx+c=2x^{2} +1\]
+
+  \[3ax^{2} +2bx-24ax+6a-8b+c=2x^{2} +1.\]
+
+  Отсюда
+
+  \[\left\{\begin{array}{l} {6a-8b+c=1} \\ {2b-24a=0} \\ {3a=2} \end{array}\right. \]
+
+  \[\left\{\begin{array}{l} {c=61} \\ {b=8} \\ {a=\frac{2}{3} } \end{array}\right. .\]
+
+  Поэтому общее решение дифференциального уравнения:
+
+  \[y=C_{1} +C_{2} e^{2x} +C_{3} e^{-2x} +\frac{2}{3} x^{3} +8x^{2} +61x,\; C_{1} ,C_{2} ,C_{3} \in \RR \]
+
+\end{solution}
+
+
+\question Let $A$, $B$ and $C$ be square matrix of size $n\times n$. Prove the following statements or provide counterexample:
+
+\begin{parts}
+\part[2] If $B=C^{-1} AC$, then $\det (A)=\det (B)$
+\begin{solution}
+$\det (B)=\det (C^{-1} AC)=\det (C^{-1} )\det (C)\det (A)=\det (C^{-1} C)\det (A)=\det (A)$
+\end{solution}
+
+\part[3] $\det ((A+B)^{2} )=\det (A^{2} +2AB+B^{2} )$
+\begin{solution}
+Неверно, контрпример:
+\[A=\left(\begin{array}{cc} {1} & {1} \\ {0} & {1} \end{array}\right),B=\left(\begin{array}{cc} {0} & {1} \\ {0} & {1} \end{array}\right)\]
+В этом случае $\det ((A+B)^{2} )=-2$, но $\det (A^{2} +2AB+B^{2} )=-3$.
+
+\end{solution}
+
+\part[3] $\det ((A+B)^{2} )=\det (A^{2} +B^{2} )$
+\begin{solution}
+Неверно, контрпример: $A=I$, $B=I$. Тогда $\det ((A+B)^{2} )=16$, $\det (A^{2} +B^{2} )=4$.
+\end{solution}
+
+\part[2] If $A$ is invertible, then $(I+A^{-1} )^{-1} =A(A+I)^{-1} $
+\begin{solution}
+$(I+A^{-1} )^{-1} =(AA^{-1} +A^{-1} )^{-1} =\left((A+I)A^{-1} \right)^{-1} =A(A+I)^{-1} $
+\end{solution}
+
+\end{parts}
+
+\question[10] Solve the differential equation
+\[
+2xyy' - y' \ln y + y^2 + \ln x =0
+\]
+\begin{solution}
+Домножим на $dx$
+\[
+(y^2+\ln x)dx + (2xy - \ln y)dy=0
+\]
+Убеждаемся, что это уравнение в полных дифференциалах:
+\[
+\frac{\partial}{\partial y}(y^2+\ln x)=\frac{\partial}{\partial x}(2xy - \ln y)
+\]
+
+И решаем его по стандартной схеме.
+
+Находим интеграл функции при $dx$ по $x$
+
+\[
+F(x,y)=\int  y^2+\ln x \, dx = xy^2 + x(\ln x - 1) + C(y)
+\]
+
+Теперь приравниваем функцию при $dy$  и $F'_y(x,y)$:
+
+\[
+2xy + C'(y)=2xy - \ln y
+\]
+
+Отсюда находим $C(y)$:
+
+\[
+C(y)=\int -\ln y \, dy = y(1-\ln y) + C, \text{ где } C\in \RR
+\]
+
+Итого:
+
+\[
+xy^2+x(\ln x - 1) + y(1-\ln y)=C, \text{ где } C\in \RR
+\]
+
+
+\end{solution}
+
+
+\end{questions}
+
+
+
+\begin{figure}[b]
+\caption{Таблица значений функции распределения для стандартной нормальной величины}
+  \begin{minipage}[b]{0.35\linewidth}
+    \centering
+    \begin{tikzpicture}
+% define normal distribution function 'normaltwo'
+    \def\normaltwo{\x,{4*1/exp(((\x-3)^2)/2)}}
+
+% input y parameter
+    \def\y{4.4}
+
+% this line calculates f(y)
+    \def\fy{4*1/exp(((\y-3)^2)/2)}
+
+% Shade orange area underneath curve.
+    \fill [fill=gray!30] (2.6,0) -- plot[domain=0:4.4] (\normaltwo) -- ({\y},0) -- cycle;
+
+% Draw and label normal distribution function
+    \draw[domain=0:6] plot (\normaltwo) node[right] {};
+
+% Add dashed line dropping down from normal.
+    \draw[dashed] ({\y},{\fy}) -- ({\y},0) node[below] {$x$};
+
+% Optional: Add axis labels
+%    \draw (-.2,2.5) node[left] {$f_Y(u)$};
+    \draw (3,2) node[below] {$F(x)$};
+
+% Optional: Add axes
+    \draw[->] (0,0) -- (6.2,0) node[right] {};
+%    \draw[->] (0,0) -- (0,5) node[above] {};
+
+\end{tikzpicture}
+%    \rule{6cm}{6cm} %to simulate an actual figure
+\par\vspace{0pt}
+  \end{minipage}%
+  \begin{minipage}[b]{0.60\linewidth}
+    \centering
+\begin{tabular}{rr|rr|rr|rr}
+  \hline
+$x$ & $F(x)$ & $x$ & $F(x)$ & $x$ & $F(x)$ & $x$ & $F(x)$ \\
+  \hline
+0.050 & 0.520 & 0.750 & 0.773 & 1.450 & 0.926 & 2.150 & 0.984 \\
+  0.100 & 0.540 & 0.800 & 0.788 & 1.500 & 0.933 & 2.200 & 0.986 \\
+  0.150 & 0.560 & 0.850 & 0.802 & 1.550 & 0.939 & 2.250 & 0.988 \\
+  0.200 & 0.579 & 0.900 & 0.816 & 1.600 & 0.945 & 2.300 & 0.989 \\
+  0.250 & 0.599 & 0.950 & 0.829 & 1.650 & 0.951 & 2.350 & 0.991 \\
+  0.300 & 0.618 & 1.000 & 0.841 & 1.700 & 0.955 & 2.400 & 0.992 \\
+  0.350 & 0.637 & 1.050 & 0.853 & 1.750 & 0.960 & 2.450 & 0.993 \\
+  0.400 & 0.655 & 1.100 & 0.864 & 1.800 & 0.964 & 2.500 & 0.994 \\
+  0.450 & 0.674 & 1.150 & 0.875 & 1.850 & 0.968 & 2.550 & 0.995 \\
+  0.500 & 0.691 & 1.200 & 0.885 & 1.900 & 0.971 & 2.600 & 0.995 \\
+  0.550 & 0.709 & 1.250 & 0.894 & 1.950 & 0.974 & 2.650 & 0.996 \\
+  0.600 & 0.726 & 1.300 & 0.903 & 2.000 & 0.977 & 2.700 & 0.997 \\
+  0.650 & 0.742 & 1.350 & 0.911 & 2.050 & 0.980 & 2.750 & 0.997 \\
+  0.700 & 0.758 & 1.400 & 0.919 & 2.100 & 0.982 & 2.800 & 0.997 \\
+   \hline
+\end{tabular}
+\par\vspace{0pt}
+\end{minipage}
+\label{fig:test}
+\end{figure}
+
+\begin{flushright}
+Удачи!
+\end{flushright}
+
+\end{document}
