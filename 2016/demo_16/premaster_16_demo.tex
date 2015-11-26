@@ -28,9 +28,9 @@
 
 \pagestyle{headandfoot}
 \runningheadrule
-\firstpageheader{НИУ-ВШЭ}{Высшая математика, стр. \thepage\ из \numpages}{демо 2016}
+\firstpageheader{Higher School of Economics}{Further mathematics, p. \thepage\ of \numpages}{demo 2016}
 \firstpageheadrule
-\runningheader{НИУ-ВШЭ}{Высшая математика, стр. \thepage\ из \numpages}{демо 2016}
+\runningheader{Higher School of Economics}{Further mathematics, p. \thepage\ of \numpages}{demo 2016}
 \firstpagefooter{}{}{}
 \runningfooter{}{}{}
 \runningfootrule
@@ -54,7 +54,7 @@
 %\end{center}
 
 \begin{center}
-\textbf{Демо-версия} % Вариант А
+\textbf{Exam demo-version} % Вариант А
 \end{center}
 
 \begin{questions}
@@ -107,6 +107,332 @@ f(x) = {\sgn} \left(\sin \left( \frac{\pi}{x}\right)\right).
 В точке $x=0$ функция имеет разрыв второго рода, поскольку не существует односторонних пределов. Действительно, рассмотрим последовательности $a_n = \frac{2}{1+4 n}, n
 \in \mathbb{N}$ и $b_n = \frac{2}{3+4 n}, n \in \mathbb{N}$, стремящиеся к нулю справа. Тогда $f(a_n) = {\sgn} \left(\sin \left( \frac{\pi}{\frac{2}{1+4 n}}\right)\right) = {\sgn} \left( \sin \left( \frac{\pi}{2} + 2 \pi n \right)\right)=1$ и $f(b_n) = {\sgn} \left(\sin \left( \frac{\pi}{\frac{2}{3+4 n}}\right)\right) = {\sgn} \left( \sin \left( \frac{3 \pi}{2} + 2 \pi n \right)\right)=-1$. Тем самым показано, что правостороннего предела $f(x)$ при $x$ стремящемся к нулю не существует. Аналогично можно показать, что не существует левостороннего предела, например, рассмотрев последовательности $-a_n$ и $-b_n$.
 \end{solution}
+
+
+
+
+
+\question Let $A$, $B$ and $C$ be square matrix of size $n\times n$. Prove the following statements or provide counterexample:
+
+\begin{parts}
+\part[2] If $B=C^{-1} AC$, then $\det (A)=\det (B)$
+\begin{solution}
+$\det (B)=\det (C^{-1} AC)=\det (C^{-1} )\det (C)\det (A)=\det (C^{-1} C)\det (A)=\det (A)$
+\end{solution}
+
+\part[3] $\det ((A+B)^{2} )=\det (A^{2} +2AB+B^{2} )$
+\begin{solution}
+Неверно, контрпример:
+\[A=\left(\begin{array}{cc} {1} & {1} \\ {0} & {1} \end{array}\right),B=\left(\begin{array}{cc} {0} & {1} \\ {0} & {1} \end{array}\right)\]
+В этом случае $\det ((A+B)^{2} )=-2$, но $\det (A^{2} +2AB+B^{2} )=-3$.
+
+\end{solution}
+
+\part[3] $\det ((A+B)^{2} )=\det (A^{2} +B^{2} )$
+\begin{solution}
+Неверно, контрпример: $A=I$, $B=I$. Тогда $\det ((A+B)^{2} )=16$, $\det (A^{2} +B^{2} )=4$.
+\end{solution}
+
+\part[2] If $A$ is invertible, then $(I+A^{-1} )^{-1} =A(A+I)^{-1} $
+\begin{solution}
+$(I+A^{-1} )^{-1} =(AA^{-1} +A^{-1} )^{-1} =\left((A+I)A^{-1} \right)^{-1} =A(A+I)^{-1} $
+\end{solution}
+
+\end{parts}
+
+
+\question Let $S$ be the $n\times n$ «shipbuilding timber» matrix, i.e. the square matrix with all elements equal to $1$.
+
+\begin{parts}
+\part[2] Express $S^2$ in terms of $S$
+\begin{solution}
+Перемножаем в лоб:
+\[
+S\cdot S = \begin{pmatrix}
+n & \cdots & n \\
+\vdots & & \vdots \\
+n & \cdots & n
+\end{pmatrix} = n S
+\]
+\end{solution}
+\part[3] Find the eigenvalues of $S$
+\begin{solution}
+Допустим, что $Sv=\lambda v$
+
+Домножим обе стороны на $S$. Получим:
+\[
+S^2 v= \lambda Sv
+\]
+
+С другой стороны $S^2 v = n Sv$. Значит:
+
+\[
+n Sv = \lambda Sv
+\]
+
+Отсюда, либо $\lambda=n$, либо $Sv=0$, что означает, что $\lambda=0$.
+\end{solution}
+
+\part[3] For each eigenvalue of $S$ find at least on eigenvector
+\begin{solution}
+Разберёмся с собственными векторами для матрицы $S$. Ищем собственный вектор для $\lambda=0$. Получаем, что
+\[
+(1, 1, 1, \ldots, 1) \cdot v = 0
+\]
+Значит подходит любой ненулевой вектор с суммой компонент, равной нулю. Например, подойдёт
+\[
+v=(1,-1, 0, 0, \ldots, 0)
+\]
+Ищем собственный вектор для $\lambda=n$. Все строки матрицы $S$ одинаковы, поэтому все элементы вектора $Sv$ одинаковы. Значит в $v$ должны быть одинаковые элементы. Например, подойдёт
+\[
+v=(1,1, 1, 1, \ldots, 1)
+\]
+
+\end{solution}
+
+\part[2] Find all the eigenvalues of the matrix $A=aI+bS$, where $I$ is the identity matrix.
+\begin{solution}
+Когда мы домножаем матрицу $S$ на число $b$ собственные числа домножаются на $b$. Если мы прибавляем константу $a$ по диагонали, то собственные числа увеличиваются на $a$. Значит собственные числа матрицы $A$ равны $a+bn$ и $a$.
+
+Кстати, при домножении матрицы $S$ на константу собственные векторы не изменяются, равно как и при прибавлении константы $a$ по диагонали.
+\end{solution}
+
+
+\end{parts}
+
+\question Solve the  differential equation:
+
+\[
+y''' -4y'' +y' =2x^{2} +1.
+\]
+
+\begin{solution}
+Сначала запишем решение однородного дифференциального уравнения:
+
+\[y''' -4y'' +y' =0.\]
+
+Составим к нему характеристическое уравнение:
+
+  \[\lambda ^{3} -4\lambda ^{2} +\lambda =0.\]
+
+  \[\lambda _{1} =0,\lambda _{2} =2,\lambda _{3} =-2.\]
+
+  То есть общее решение дифференциального уравнения может быть записано как
+
+  \[y=C_{1} +C_{2} e^{2x} +C_{3} e^{-2x},\; C_{1} ,C_{2} ,C_{3} \in \RR \]
+
+  Найдем частное решение этого дифференциального уравнения. В данной задаче -- резонансный случай, поскольку $\left(2x^{2} +1\right)e^{0} =2x^{2} +1$. То есть будем искать частное решение в виде $y=(ax^{2} +bx+c)x$. Тогда
+
+  \[y' =3ax^{2} +2bx+c\]
+
+  \[y'' =6ax+2b\]
+
+  \[y''' =6a\]
+
+  Следовательно,
+
+  \[6a-4(6ax+2b)+3ax^{2} +2bx+c=2x^{2} +1\]
+
+  \[3ax^{2} +2bx-24ax+6a-8b+c=2x^{2} +1.\]
+
+  Отсюда
+
+  \[\left\{\begin{array}{l} {6a-8b+c=1} \\ {2b-24a=0} \\ {3a=2} \end{array}\right. \]
+
+  \[\left\{\begin{array}{l} {c=61} \\ {b=8} \\ {a=\frac{2}{3} } \end{array}\right. .\]
+
+  Поэтому общее решение дифференциального уравнения:
+
+  \[y=C_{1} +C_{2} e^{2x} +C_{3} e^{-2x} +\frac{2}{3} x^{3} +8x^{2} +61x,\; C_{1} ,C_{2} ,C_{3} \in \RR \]
+
+\end{solution}
+
+
+
+\question[10] Solve the differential equation
+\[
+2xyy' - y' \ln y + y^2 + \ln x =0
+\]
+\begin{solution}
+Домножим на $dx$
+\[
+(y^2+\ln x)dx + (2xy - \ln y)dy=0
+\]
+Убеждаемся, что это уравнение в полных дифференциалах:
+\[
+\frac{\partial}{\partial y}(y^2+\ln x)=\frac{\partial}{\partial x}(2xy - \ln y)
+\]
+
+И решаем его по стандартной схеме.
+
+Находим интеграл функции при $dx$ по $x$
+
+\[
+F(x,y)=\int  y^2+\ln x \, dx = xy^2 + x(\ln x - 1) + C(y)
+\]
+
+Теперь приравниваем функцию при $dy$  и $F'_y(x,y)$:
+
+\[
+2xy + C'(y)=2xy - \ln y
+\]
+
+Отсюда находим $C(y)$:
+
+\[
+C(y)=\int -\ln y \, dy = y(1-\ln y) + C, \text{ где } C\in \RR
+\]
+
+Итого:
+
+\[
+xy^2+x(\ln x - 1) + y(1-\ln y)=C, \text{ где } C\in \RR
+\]
+
+
+\end{solution}
+
+
+%\vspace{2in}
+
+%\begin{center}
+%The exam continues on the next page
+%\end{center}
+
+%\newpage
+
+\question[10] Find the points of maximum of the function
+\[
+F\left(u,v\right)=\sqrt{u}\left(\sqrt{u}-2\right)-\sqrt{v}\left(\sqrt{v}-2\right),
+\]
+given that  $\sqrt{u}\le 2,\ \sqrt{v}\le 2$
+
+
+\begin{solution}
+  \begin{enumerate}
+  \item  Выполняем замену переменных $x=\sqrt{u},\ y=\sqrt{v}$. Далее путем несложных алгебраических преобразований выражения для целевой функции приводим ее к виду:$G\left(x,y\right)={\left(x-1\right)}^2-{\left(y-1\right)}^2+3$. При этом ограничения принимают вид $x\in \left[0,2\right],\ y\in \left[0,2\right]$
+
+  \item  Определяем наличие экстремумов внутри области поиска, определенной ограничениями.
+
+  \[\frac{\partial G\left(x,y\right)}{\partial x}=2\left(x-1\right),\ \frac{\partial G\left(x,y\right)}{\partial y}=-2\left(y-1\right),\ \frac{{\partial }^2G\left(x,y\right)}{\partial x\partial y}=\left( \begin{array}{cc}
+  2 & 0 \\
+  0 & -2 \end{array}
+  \right)\]
+
+
+Используя критерий Сильвестра, легко проверить, что в точке (1,1) у функции $G(x,y)$ нет экстремумов.
+
+\item  Проанализируем наличие экстремумов на границах области поиска.
+
+Граница$\left\{x=0,\ y\in \left[0,2\right]\right\},\ G\left(0,y\right)=1-{\left(y-1\right)}^2$. В точке (0, 1) достигается \textbf{\underbar{максимум}} равный 1, в конечных точках функция равна 0.
+
+Граница $\left\{y=0,\ x\in \left[0,2\right]\right\},\ G\left(x,0\right)={\left(x-1\right)}^2-1$. В точке (1, 0) достигается минимум равный -- 1, в конечных точках функция равна 0.
+
+Граница $\left\{x=2,\ y\in \left[0,2\right]\right\},\ G\left(0,y\right)=1-{\left(y-1\right)}^2$. В точке (2, 1) достигается \textbf{\underbar{максимум}} равный 1, в конечных точках функция равна 0.
+
+Граница $\left\{y=2,\ x\in \left[0,2\right]\right\},\ G\left(x,2\right)={\left(x-1\right)}^2-1$. В точке (1, 2) достигаетсяминимум равный -- 1, в конечных точках функция равна 0.
+
+\item  Возвращаемся к начальному преобразованию.
+\end{enumerate}
+
+Ответ: Точки максимума: (0, 1) и (4, 1)
+
+Неполная попытка решить задачу не выполняя преобразование "--- не более 8 баллов за верный ответ.
+
+\end{solution}
+
+
+
+
+\question Consider a function
+
+\[
+f(x)=\begin{cases}
+    \frac{1}{x^2}, \text{ if } c_1<x<c_2 \\
+    0, \text{ otherwise }
+\end{cases}
+\]
+
+\begin{parts}
+\part[5] Find all $c_1$ and $c_2$ such that the function $f$ is a density function for some random variable $X$
+
+\begin{solution}
+  Чтобы функция была функцией плотности:
+
+  \[
+  \begin{array}{l}
+  \int_{c_1}^{c_2} \frac{1}{x^2}dx = 1 \\
+  -\frac{1}{c_2}+\frac{1}{c_1}=1 \\
+  c_1 = \frac{c_2}{1+c_2}
+  \end{array}
+  \]
+
+\end{solution}
+
+\part[5] Calculate the expected value and variance of the random variable $X$ for $c_2 = 9$
+
+\begin{solution}
+  Математическое ожидание:
+
+  \[
+  \E(X)=\int_{0.9}^9 \frac{1}{x^2} x dx = \int_{0.9}^9\frac{1}{x} dx = \ln(9)-\ln(0.9)
+  \]
+
+  Дисперсия:
+
+  \[
+  \begin{array}{l}
+  \Var(X) = \E(X^2)-\E(X)^2  \\
+  \E(X^2) = \int_{0.9}^9 \frac{1}{x^2} x^2 dx = 9-0.9 = 8.1 \\
+  \Var(X) = 8.1 - (\ln(9)-\ln(0.9))^2
+  \end{array}
+  \]
+
+\end{solution}
+
+
+\end{parts}
+
+
+\question You have  height measurements of a random sample of 100 persons, $y_1$, \ldots, $y_{100}$. It is known that $\sum_{i=1}^{100} y_i = 15800$ and $\sum_{i=1}^{100} y_i^2 = 2530060$.
+
+\begin{parts}
+\part[3] Calculate unbiased estimate of population mean and population variance of the height
+
+\begin{solution}
+Оценка среднего: $\bar y = 15800/100=158$.
+
+Несмещённая оценка дисперсии
+\[
+\hat\sigma^2 = \frac{\sum (y_i-\bar y )^2}{n-1}=\frac{\sum y_i^2 - n \bar y^2}{n-1}=340
+\]
+\end{solution}
+\part[3] At 4\% significance test the null-hypothesis that the population mean is equal to 155 cm, against two-sided alternative.
+
+\begin{solution}
+Наблюдаемое значение $Z$-статистики
+\[
+Z_{obs}=\frac{158-155}{\sqrt{340}/\sqrt{100}}=1.63
+\]
+
+Критическое значение $Z_{crit}=2.05$.
+
+Вывод: гипотеза $H_0$ не отвергается.
+\end{solution}
+\part[2] Find the p-value
+\begin{solution}
+Находим по таблице, что площадь справа от $1.63$ примерно равна 5\%. Значит P-значение равно $10\%$.
+\end{solution}
+\part[2] Find the 96\% confidence interval for the population mean
+\begin{solution}
+Интервал имеет вид
+\[
+[158 - 2.05 \cdot \sqrt{340/100} ; 158 + 2.05 \cdot \sqrt{340/100} ]
+\]
+Итого: $[154.2;161.8]$
+\end{solution}
+\end{parts}
+
 
 \question Density function of a random variable $Y$ is given by
 
@@ -205,241 +531,12 @@ You have 3 observations on $Y$: $y_1 = 48, y_2 = 50, y_3 = 52$.
 \end{parts}
 
 
-
-\question Consider a function
-
-\[
-f(x)=\begin{cases}
-    \frac{1}{x^2}, \text{ if } c_1<x<c_2 \\
-    0, \text{ otherwise }
-\end{cases}
-\]
-
-\begin{parts}
-\part[5] Find all $c_1$ and $c_2$ such that the function $f$ is a density function for some random variable $X$
-
-\begin{solution}
-  Чтобы функция была функцией плотности:
-
-  \[
-  \begin{array}{l}
-  \int_{c_1}^{c_2} \frac{1}{x^2}dx = 1 \\
-  -\frac{1}{c_2}+\frac{1}{c_1}=1 \\
-  c_1 = \frac{c_2}{1+c_2}
-  \end{array}
-  \]
-
-\end{solution}
-
-\part[5] Calculate the expected value and variance of the random variable $X$ for $c_2 = 9$
-
-\begin{solution}
-  Математическое ожидание:
-
-  \[
-  \E(X)=\int_{0.9}^9 \frac{1}{x^2} x dx = \int_{0.9}^9\frac{1}{x} dx = \ln(9)-\ln(0.9)
-  \]
-
-  Дисперсия:
-
-  \[
-  \begin{array}{l}
-  \Var(X) = \E(X^2)-\E(X)^2  \\
-  \E(X^2) = \int_{0.9}^9 \frac{1}{x^2} x^2 dx = 9-0.9 = 8.1 \\
-  \Var(X) = 8.1 - (\ln(9)-\ln(0.9))^2
-  \end{array}
-  \]
-
-\end{solution}
-
-
-\end{parts}
-
-\question Let $S$ be the $n\times n$ «shipbuilding timber» matrix, i.e. the square matrix with all elements equal to $1$.
-
-\begin{parts}
-\part[2] Express $S^2$ in terms of $S$
-\begin{solution}
-Перемножаем в лоб:
-\[
-S\cdot S = \begin{pmatrix}
-n & \cdots & n \\
-\vdots & & \vdots \\
-n & \cdots & n
-\end{pmatrix} = n S
-\]
-\end{solution}
-\part[3] For the eigenvalues of $S$
-\begin{solution}
-Допустим, что $Sv=\lambda v$
-
-Домножим обе стороны на $S$. Получим:
-\[
-S^2 v= \lambda Sv
-\]
-
-С другой стороны $S^2 v = n Sv$. Значит:
-
-\[
-n Sv = \lambda Sv
-\]
-
-Отсюда, либо $\lambda=n$, либо $Sv=0$, что означает, что $\lambda=0$.
-\end{solution}
-
-\part[3] For each eigenvalue of $S$ find at least on eigenvector
-\begin{solution}
-Разберёмся с собственными векторами для матрицы $S$. Ищем собственный вектор для $\lambda=0$. Получаем, что
-\[
-(1, 1, 1, \ldots, 1) \cdot v = 0
-\]
-Значит подходит любой ненулевой вектор с суммой компонент, равной нулю. Например, подойдёт
-\[
-v=(1,-1, 0, 0, \ldots, 0)
-\]
-Ищем собственный вектор для $\lambda=n$. Все строки матрицы $S$ одинаковы, поэтому все элементы вектора $Sv$ одинаковы. Значит в $v$ должны быть одинаковые элементы. Например, подойдёт
-\[
-v=(1,1, 1, 1, \ldots, 1)
-\]
-
-\end{solution}
-
-\part[2] Find all the eigenvalues of the matrix $A=aI+bS$, where $I$ is the identity matrix.
-\begin{solution}
-Когда мы домножаем матрицу $S$ на число $b$ собственные числа домножаются на $b$. Если мы прибавляем константу $a$ по диагонали, то собственные числа увеличиваются на $a$. Значит собственные числа матрицы $A$ равны $a+bn$ и $a$.
-
-Кстати, при домножении матрицы $S$ на константу собственные векторы не изменяются, равно как и при прибавлении константы $a$ по диагонали.
-\end{solution}
-
-
-\end{parts}
-
-\question Solve the  differential equation:
-
-\[
-y''' -4y'' +y' =2x^{2} +1.
-\]
-
-\begin{solution}
-Сначала запишем решение однородного дифференциального уравнения:
-
-\[y''' -4y'' +y' =0.\]
-
-Составим к нему характеристическое уравнение:
-
-  \[\lambda ^{3} -4\lambda ^{2} +\lambda =0.\]
-
-  \[\lambda _{1} =0,\lambda _{2} =2,\lambda _{3} =-2.\]
-
-  То есть общее решение дифференциального уравнения может быть записано как
-
-  \[y=C_{1} +C_{2} e^{2x} +C_{3} e^{-2x},\; C_{1} ,C_{2} ,C_{3} \in \RR \]
-
-  Найдем частное решение этого дифференциального уравнения. В данной задаче -- резонансный случай, поскольку $\left(2x^{2} +1\right)e^{0} =2x^{2} +1$. То есть будем искать частное решение в виде $y=(ax^{2} +bx+c)x$. Тогда
-
-  \[y' =3ax^{2} +2bx+c\]
-
-  \[y'' =6ax+2b\]
-
-  \[y''' =6a\]
-
-  Следовательно,
-
-  \[6a-4(6ax+2b)+3ax^{2} +2bx+c=2x^{2} +1\]
-
-  \[3ax^{2} +2bx-24ax+6a-8b+c=2x^{2} +1.\]
-
-  Отсюда
-
-  \[\left\{\begin{array}{l} {6a-8b+c=1} \\ {2b-24a=0} \\ {3a=2} \end{array}\right. \]
-
-  \[\left\{\begin{array}{l} {c=61} \\ {b=8} \\ {a=\frac{2}{3} } \end{array}\right. .\]
-
-  Поэтому общее решение дифференциального уравнения:
-
-  \[y=C_{1} +C_{2} e^{2x} +C_{3} e^{-2x} +\frac{2}{3} x^{3} +8x^{2} +61x,\; C_{1} ,C_{2} ,C_{3} \in \RR \]
-
-\end{solution}
-
-
-\question Let $A$, $B$ and $C$ be square matrix of size $n\times n$. Prove the following statements or provide counterexample:
-
-\begin{parts}
-\part[2] If $B=C^{-1} AC$, then $\det (A)=\det (B)$
-\begin{solution}
-$\det (B)=\det (C^{-1} AC)=\det (C^{-1} )\det (C)\det (A)=\det (C^{-1} C)\det (A)=\det (A)$
-\end{solution}
-
-\part[3] $\det ((A+B)^{2} )=\det (A^{2} +2AB+B^{2} )$
-\begin{solution}
-Неверно, контрпример:
-\[A=\left(\begin{array}{cc} {1} & {1} \\ {0} & {1} \end{array}\right),B=\left(\begin{array}{cc} {0} & {1} \\ {0} & {1} \end{array}\right)\]
-В этом случае $\det ((A+B)^{2} )=-2$, но $\det (A^{2} +2AB+B^{2} )=-3$.
-
-\end{solution}
-
-\part[3] $\det ((A+B)^{2} )=\det (A^{2} +B^{2} )$
-\begin{solution}
-Неверно, контрпример: $A=I$, $B=I$. Тогда $\det ((A+B)^{2} )=16$, $\det (A^{2} +B^{2} )=4$.
-\end{solution}
-
-\part[2] If $A$ is invertible, then $(I+A^{-1} )^{-1} =A(A+I)^{-1} $
-\begin{solution}
-$(I+A^{-1} )^{-1} =(AA^{-1} +A^{-1} )^{-1} =\left((A+I)A^{-1} \right)^{-1} =A(A+I)^{-1} $
-\end{solution}
-
-\end{parts}
-
-\question[10] Solve the differential equation
-\[
-2xyy' - y' \ln y + y^2 + \ln x =0
-\]
-\begin{solution}
-Домножим на $dx$
-\[
-(y^2+\ln x)dx + (2xy - \ln y)dy=0
-\]
-Убеждаемся, что это уравнение в полных дифференциалах:
-\[
-\frac{\partial}{\partial y}(y^2+\ln x)=\frac{\partial}{\partial x}(2xy - \ln y)
-\]
-
-И решаем его по стандартной схеме.
-
-Находим интеграл функции при $dx$ по $x$
-
-\[
-F(x,y)=\int  y^2+\ln x \, dx = xy^2 + x(\ln x - 1) + C(y)
-\]
-
-Теперь приравниваем функцию при $dy$  и $F'_y(x,y)$:
-
-\[
-2xy + C'(y)=2xy - \ln y
-\]
-
-Отсюда находим $C(y)$:
-
-\[
-C(y)=\int -\ln y \, dy = y(1-\ln y) + C, \text{ где } C\in \RR
-\]
-
-Итого:
-
-\[
-xy^2+x(\ln x - 1) + y(1-\ln y)=C, \text{ где } C\in \RR
-\]
-
-
-\end{solution}
-
-
 \end{questions}
 
 
 
 \begin{figure}[b]
-\caption{Таблица значений функции распределения для стандартной нормальной величины}
+\caption{Distribution function of a standard normal random variable}
   \begin{minipage}[b]{0.35\linewidth}
     \centering
     \begin{tikzpicture}
@@ -501,7 +598,7 @@ $x$ & $F(x)$ & $x$ & $F(x)$ & $x$ & $F(x)$ & $x$ & $F(x)$ \\
 \end{figure}
 
 \begin{flushright}
-Удачи!
+Good luck!
 \end{flushright}
 
 \end{document}
