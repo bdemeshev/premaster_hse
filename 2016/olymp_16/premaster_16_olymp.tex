@@ -1,0 +1,201 @@
+\documentclass[addpoints, answers]{exam} % добавить или удалить answers в скобках, чтобы показать ответы
+% \documentclass[addpoints, answers]{exam} % добавить или удалить answers в скобках, чтобы показать ответы
+
+
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+%\usepackage[OT1]{fontenc}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\Var}{\mathbb{V}\mathrm{ar}}
+\DeclareMathOperator{\Cov}{\mathbb{C}\mathrm{ov}}
+\DeclareMathOperator{\sgn}{\rm sgn}
+\let\P\relax
+\DeclareMathOperator{\P}{\mathbb{P}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\hbeta}{\hat{\beta}}
+
+\usepackage{floatrow}
+%\newfloatcommand{capbtabbox}{table}[][\FBwidth]
+
+\begin{document}
+
+\pagestyle{headandfoot}
+\runningheadrule
+\firstpageheader{НИУ-ВШЭ}{Высшая математика, стр. \thepage\ из \numpages}{олимпиада 2016}
+\firstpageheadrule
+\runningheader{НИУ-ВШЭ}{Высшая математика, стр. \thepage\ из \numpages}{олимпиада 2016}
+\firstpagefooter{}{}{}
+\runningfooter{}{}{}
+\runningfootrule
+
+
+
+
+\hqword{Задача}
+\hpgword{Страница}
+\hpword{Максимум}
+\hsword{Баллы}
+\htword{Итого}
+\pointname{\%}
+%\renewcommand{\solutiontitle}{\noindent\textbf{Решение:}\par\noindent}
+\renewcommand{\solutiontitle}{}
+
+%Таблица с результатами заполняется проверяющим работу. Пожалуйста, не делайте в ней пометок.
+
+%\begin{center}
+%  \gradetable[h][questions]
+%\end{center}
+
+\begin{center}
+\textbf{Variant A} % Вариант А
+\end{center}
+
+\begin{questions}
+
+\question Let $S$ be the $n\times n$ «shipbuilding timber» matrix, i.e. the square matrix with all elements equal to $1$ and $I$ be the $n\times n$ identity matrix. Let $A=aI+bS$ where $a$ and $b$ are scalar parameters.
+
+\begin{parts}
+\part[2] Express the matrix $A^2$ as a linear combination of matrices $I$ and $S$
+\begin{solution}
+\[
+S^2=(aI+bS)^2=a^2I^2+b^2S^2+abIS+abSI=a^2I+b^2nS+2abS=a^2I+(b^2n+2ab)S
+\]
+\end{solution}
+
+\part[6] Find the inverse of $A$ if it is known that it exists and can be represented as a linear combination of $I$ and $S$
+\begin{solution}
+Допустим обратная к $A$ матрица имеет вид $A^{-1}=cI+dS$.
+\[
+(aI+bS)(cI+dS)=acI+(ad+dc+bdn)S
+\]
+Чтобы этот результа равнялся $I$ нам нужно чтобы:
+\[
+\begin{cases}
+ac=1 \\
+ad+db+bdn = 0
+\end{cases}
+\]
+Выражаем $c$ и $d$ через $a$ и $b$:
+\[
+\begin{cases}
+c=1/a \\
+d=-b/(a^2+b)
+\end{cases}
+\]
+
+Итого,
+\[
+A^{-1}=a^{-1}I - \frac{b}{a^2+b}S
+\]
+
+
+
+\end{solution}
+
+
+\part[2] Using your result in previous part or otherwise find the inverse of
+
+\[
+\begin{pmatrix}
+-1 & 1 & 1 & 1 \\
+1 & -1 & 1 & 1 \\
+1 & 1 & -1 & 1 \\
+1 & 1 & 1 & -1
+\end{pmatrix}
+\]
+
+\begin{solution}
+Здесь $A=-2I+S$. Значит
+\[
+A^{-1}=-0.5I - \frac{1}{4+1}S =
+\begin{pmatrix}
+-0.7 & -0.2 & -0.2 & -0.2 \\
+-0.2 & -0.7 & -0.2 & -0.2 \\
+-0.2 & -0.2 & -0.7 & -0.2 \\
+-0.2 & -0.2 & -0.2 & -0.7
+\end{pmatrix}
+\]
+\end{solution}
+
+\end{parts}
+
+
+
+\end{questions}
+
+
+
+\begin{figure}[b]
+\caption{Таблица значений функции распределения для стандартной нормальной величины}
+  \begin{minipage}[b]{0.35\linewidth}
+    \centering
+    \begin{tikzpicture}
+% define normal distribution function 'normaltwo'
+    \def\normaltwo{\x,{4*1/exp(((\x-3)^2)/2)}}
+
+% input y parameter
+    \def\y{4.4}
+
+% this line calculates f(y)
+    \def\fy{4*1/exp(((\y-3)^2)/2)}
+
+% Shade orange area underneath curve.
+    \fill [fill=gray!30] (2.6,0) -- plot[domain=0:4.4] (\normaltwo) -- ({\y},0) -- cycle;
+
+% Draw and label normal distribution function
+    \draw[domain=0:6] plot (\normaltwo) node[right] {};
+
+% Add dashed line dropping down from normal.
+    \draw[dashed] ({\y},{\fy}) -- ({\y},0) node[below] {$x$};
+
+% Optional: Add axis labels
+%    \draw (-.2,2.5) node[left] {$f_Y(u)$};
+    \draw (3,2) node[below] {$F(x)$};
+
+% Optional: Add axes
+    \draw[->] (0,0) -- (6.2,0) node[right] {};
+%    \draw[->] (0,0) -- (0,5) node[above] {};
+
+\end{tikzpicture}
+%    \rule{6cm}{6cm} %to simulate an actual figure
+\par\vspace{0pt}
+  \end{minipage}%
+  \begin{minipage}[b]{0.60\linewidth}
+    \centering
+\begin{tabular}{rr|rr|rr|rr}
+  \hline
+$x$ & $F(x)$ & $x$ & $F(x)$ & $x$ & $F(x)$ & $x$ & $F(x)$ \\
+  \hline
+0.050 & 0.520 & 0.750 & 0.773 & 1.450 & 0.926 & 2.150 & 0.984 \\
+  0.100 & 0.540 & 0.800 & 0.788 & 1.500 & 0.933 & 2.200 & 0.986 \\
+  0.150 & 0.560 & 0.850 & 0.802 & 1.550 & 0.939 & 2.250 & 0.988 \\
+  0.200 & 0.579 & 0.900 & 0.816 & 1.600 & 0.945 & 2.300 & 0.989 \\
+  0.250 & 0.599 & 0.950 & 0.829 & 1.650 & 0.951 & 2.350 & 0.991 \\
+  0.300 & 0.618 & 1.000 & 0.841 & 1.700 & 0.955 & 2.400 & 0.992 \\
+  0.350 & 0.637 & 1.050 & 0.853 & 1.750 & 0.960 & 2.450 & 0.993 \\
+  0.400 & 0.655 & 1.100 & 0.864 & 1.800 & 0.964 & 2.500 & 0.994 \\
+  0.450 & 0.674 & 1.150 & 0.875 & 1.850 & 0.968 & 2.550 & 0.995 \\
+  0.500 & 0.691 & 1.200 & 0.885 & 1.900 & 0.971 & 2.600 & 0.995 \\
+  0.550 & 0.709 & 1.250 & 0.894 & 1.950 & 0.974 & 2.650 & 0.996 \\
+  0.600 & 0.726 & 1.300 & 0.903 & 2.000 & 0.977 & 2.700 & 0.997 \\
+  0.650 & 0.742 & 1.350 & 0.911 & 2.050 & 0.980 & 2.750 & 0.997 \\
+  0.700 & 0.758 & 1.400 & 0.919 & 2.100 & 0.982 & 2.800 & 0.997 \\
+   \hline
+\end{tabular}
+\par\vspace{0pt}
+\end{minipage}
+\label{fig:test}
+\end{figure}
+
+\begin{flushright}
+Удачи!
+\end{flushright}
+
+\end{document}
