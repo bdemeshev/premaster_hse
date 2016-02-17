@@ -1,5 +1,5 @@
-\documentclass[addpoints, answers]{exam} % добавить или удалить answers в скобках, чтобы показать ответы
-% \documentclass[addpoints, answers]{exam} % добавить или удалить answers в скобках, чтобы показать ответы
+%\documentclass[addpoints, answers]{exam} % добавить или удалить answers в скобках, чтобы показать ответы
+\documentclass[addpoints]{exam} % добавить или удалить answers в скобках, чтобы показать ответы
 
 
 \usepackage[utf8]{inputenc}
@@ -9,6 +9,7 @@
 \usepackage{amsmath}
 \usepackage{tikz}
 \usepackage{amsfonts}
+\usepackage{comment}
 \usepackage{amssymb}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \DeclareMathOperator{\E}{\mathbb{E}}
@@ -28,9 +29,9 @@
 
 \pagestyle{headandfoot}
 \runningheadrule
-\firstpageheader{НИУ-ВШЭ}{Высшая математика, стр. \thepage\ из \numpages}{олимпиада 2016}
+\firstpageheader{Higher School of Economics}{Further mathematics, p. \thepage\ out of \numpages}{olympiad 2016}
 \firstpageheadrule
-\runningheader{НИУ-ВШЭ}{Высшая математика, стр. \thepage\ из \numpages}{олимпиада 2016}
+\firstpageheader{Higher School of Economics}{Further mathematics, p. \thepage\ out of \numpages}{olympiad 2016}
 \firstpagefooter{}{}{}
 \runningfooter{}{}{}
 \runningfootrule
@@ -59,23 +60,71 @@
 
 \begin{questions}
 
+
+\question[10] Evaluate the following limit:
+
+\[\lim_{x \to \infty} \left( \sin \frac{1}{x} + \cos \frac{1}{x} \right)^x\]
+
+\begin{solution}
+
+Сделаем замену $y=\frac{1}{x}$. Тогда
+
+\[\lim_{x \to \infty} \left( \sin \frac{1}{x} + \cos \frac{1}{x} \right)^x = \lim_{y \to 0} \left( \sin y + \cos y \right)^\frac{1}{y} = \exp \left( \lim_{y \to 0} \frac{1}{y} \ln \left( \sin y + \cos y \right) \right). \]
+
+Разложим в ряд Маклорена функцию под логарифмом:
+
+\[ \sin y + \cos y = 1+y-\frac{y^2}{2} + o(y^2).\]
+
+Тогда
+
+\[ \ln \left( \sin y + \cos y \right) = y+o(y). \]
+
+Следовательно,
+
+\[ \lim_{y \to 0} \frac{1}{y} \ln \left( \sin y + \cos y \right) = \lim_{y \to 0} \frac{y+o(y)}{y} =1 \]
+
+и поэтому
+
+\[ \exp \left( \lim_{y \to 0} \frac{1}{y} \ln \left( \sin y + \cos y \right) \right) ={\rm e}. \]
+
+\end{solution}
+
+\question[10] Find and classify the discontinuity points of the following function:
+
+\[
+f(x) = \frac{\frac{1}{x}-\frac{1}{x+1}}{\frac{1}{x-1}-\frac{1}{x}}.
+\]
+
+\begin{solution}
+
+Знаменатели обращаются в ноль в точках -1, 0, 1, следовательно, в этих точках функция имеет разрывы (\textbf{3 балла}). Чтобы классифицировать эти точки, рассмотрим соответствующие пределы:
+
+\[ \lim_{x \to y} f(x) = \lim_{x \to y} \frac{\frac{1}{x (x+1)}}{\frac{1}{x(x-1)}} = \lim_{x \to y} \frac{x (x-1)}{x (x+1)}, y \in \{-1,0,1\}.\]
+
+Этот предел конечен в точках $y=0$ и $y=1$ и бесконечен в точке $y=-1$. Следовательно, 0 и 1 есть точки устранимого разрыва (первого рода), -1 есть точка бесконечного разрыва (второго рода) (\textbf{7 баллов}).
+
+\end{solution}
+
+
+
+
 \question Let $S$ be the $n\times n$ «shipbuilding timber» matrix, i.e. the square matrix with all elements equal to $1$ and $I$ be the $n\times n$ identity matrix. Let $A=aI+bS$ where $a$ and $b$ are scalar parameters.
 
 \begin{parts}
-\part[2] Express the matrix $A^2$ as a linear combination of matrices $I$ and $S$
-\begin{solution}
-\[
-S^2=(aI+bS)^2=a^2I^2+b^2S^2+abIS+abSI=a^2I+b^2nS+2abS=a^2I+(b^2n+2ab)S
-\]
-\end{solution}
+% \part[2] Express the matrix $A^2$ as a linear combination of matrices $I$ and $S$
+% \begin{solution}
+% \[
+% S^2=(aI+bS)^2=a^2I^2+b^2S^2+abIS+abSI=a^2I+b^2nS+2abS=a^2I+(b^2n+2ab)S
+% \]
+% \end{solution}
 
-\part[6] Find the inverse of $A$ if it is known that it exists and can be represented as a linear combination of $I$ and $S$
+\part[7] Find the inverse of $A$ if it is known that it exists and can be represented as a linear combination of $I$ and $S$
 \begin{solution}
 Допустим обратная к $A$ матрица имеет вид $A^{-1}=cI+dS$.
 \[
 (aI+bS)(cI+dS)=acI+(ad+dc+bdn)S
 \]
-Чтобы этот результа равнялся $I$ нам нужно чтобы:
+Чтобы этот результат равнялся $I$ нам нужно чтобы:
 \[
 \begin{cases}
 ac=1 \\
@@ -100,7 +149,7 @@ A^{-1}=a^{-1}I - \frac{b}{a^2+b}S
 \end{solution}
 
 
-\part[2] Using your result in previous part or otherwise find the inverse of
+\part[3] Using your result in previous part or otherwise find the inverse of
 
 \[
 \begin{pmatrix}
@@ -127,13 +176,363 @@ A^{-1}=-0.5I - \frac{1}{4+1}S =
 \end{parts}
 
 
+\question Matrices $A$, $B$ and $M$ are $n\times n$ real matrices, $A'$ denotes the transpose of $A$, $I$ is $n\times n$ identity matrix.
+\begin{parts}
+\part[5] Solve the matrix equation for $Y$ and simplify the answer
+\[
+A'(Y')^{-1}A^2-B=M.
+\]
+You may assume that all necessary inverse matrices exist.
+\begin{solution}
+
+\[A' \left(Y' \right)^{-1} A^{2} =B+M\]
+
+\[\left(Y' \right)^{-1} A^{2} =\left(A' \right)^{-1} \left(B+M\right)\]
+
+\[\left(Y' \right)^{-1} =\left(A' \right)^{-1} \left(B+M\right)\left(A^{2} \right)^{-1} \]
+
+\[Y' =\left(\left(A' \right)^{-1} \left(B+M\right)\left(A^{2} \right)^{-1} \right)^{-1} \]
+
+\[Y' =A^{2} \left(B+M\right)^{-1} A' \]
+
+\[Y=A\left(B' +M' \right)^{-1} \left(A^{2} \right)' \]
+
+
+\end{solution}
+\part[5] The matrix $H$ is $m \times n$ real matrix of full rank with $m>n$. The matrices $X$ and $Y$ are defined by $X=I-H(H'H)^{-1}H'$ and $Y=I-X$. Prove that $X=X'=X^2$ and $Z=Z'=Z^2$.
+\begin{solution}
+Докажем, что $X=X'$
+
+\[X' =\left(H\left(H' H\right)^{-1} H' \right)' =\left(H' \right)' \left(\left(H' H\right)^{-1} \right)' H' =H\left(\left(H' H\right)' \right)^{-1} H' =H\left(H' H\right)^{-1} H' =X\]
+
+Докажем, что $X=X^{2}$
+
+\[X^{2} =X\cdot X=H\left(H' H\right)^{-1} H' \cdot H\left(H' H\right)^{-1} H' =H\left(H' H\right)^{-1} H' =X\]
+
+Докажем, что $Z=Z'$
+
+\[Z' =\left(I-H\left(H' H\right)^{-1} H' \right)' =I' -X' =I-X\]
+
+Докажем, что $Z=Z^{2}$
+
+\[Z^{2} =Z\cdot Z=\left(I-X\right)\cdot \left(I-X\right)=I\cdot I-I\cdot X-X\cdot I+X\cdot X=I-X-X+X=I-X=Z\]
+\end{solution}
+\end{parts}
+
+
+\question[10] For all values of $a$ find and classify the conditional extremum of
+\[
+G\left(x,y;a\right)=\frac{-6a^2y+12axy-9ay^2+2a^2x+18xy^2-a^3}{3y+a}
+\]
+subject to $x + y = 1$
+
+\begin{solution}
+Прежде всего, отметим, что у функции $G\left(x,y;a\right)$ есть особенность на прямой $y=\frac{a}{3}$.
+
+Путем несложных преобразований числителя данной функции ее можно привести к виду
+\[
+G\left(x,y;a\right)=\frac{\left(2x-a\right){\left(3y+a\right)}^2}{\left(3y+a\right)}=\left(2x-a\right)\left(3y+a\right),\ y\ne \frac{a}{3}.
+\]
+Далее, делаем замену переменных $u=2x-a,\ v=3y+a$ и переходим к простой задаче на условный экстремум --- проанализировать наличие и тип условных экстремумов у функции $G\left(x,y;;a\right)$ при условии, что $3u+2v=6-a$. Решение можно получить любым путем --- подстановкой или с помощью метода множителей Лагранжа. Ответ $x=\frac{6-5a}{12},\ y=\frac{6-5a}{12}$ --- точка максимума. Однако, $y\ne \frac{a}{3}$. Это условие будет нарушаться, если $\frac{6-5a}{12}=\frac{a}{3}$. Равенство выполняется при $a=\frac{18}{27}=\frac{2}{3}$ . Таким образом, функция имеет условный максимум при всех значениях параметра кроме двух третей.
+
+\end{solution}
+
+
+
+
+
+\question[10] Solve the nonhomogeneous differential equation of the fourth order:
+
+\[
+y'''' -3y''' +4y' =4\cos 2x
+\]
+
+\begin{solution}
+Сначала запишем решение однородного дифференциального уравнения:
+
+\[y'''' -3y''' +4y' =0.\]
+
+Составим к нему характеристическое уравнение:
+
+\[\lambda ^{4} -3\lambda ^{3} +4\lambda =0.\]
+
+Очевидно, что $\lambda _{1} =0$ является корнем.
+
+Тогда получим уравнение $\lambda ^{3} -3\lambda ^{2} +4=0$.
+
+Методом подбора можно увидеть, что корнем этого уравнения является -1. Значит поделив выражение $\lambda ^{3} -3\lambda ^{2} +4$на $\lambda +1$ получим выражение $\lambda ^{2} -4\lambda +4$.
+
+Тогда корнями будут $\lambda _{2} =-1,\lambda _{3} =2,\lambda _{3} =2$
+
+То есть общее решение дифференциального уравнения может быть записано как
+
+\[y=C_{1} +C_{2} e^{-1x} +C_{3} e^{2x} +C_{4} xe^{2x} ,\]
+где $C_{1}$, $C_2$, $C_3$, $C_4$ --- произвольные действительные константы.
+
+Найдем частное решение этого дифференциального уравнения. В данной задаче -- нерезонансный случай, поскольку все корни являются действительными. То есть будем искать частное решение в виде $y=a\cdot \sin 2x+c\cdot \cos 2x$. Тогда:
+
+\[y' =2a\cos 2x-2c\sin 2x\]
+
+\[y'' =-4a\sin 2x-4c\cos 2x\]
+
+\[y''' =-8a\cos 2x+8c\sin 2x\]
+
+\[y'''' =16a\sin 2x+16c\cos 2x\]
+
+Следовательно,
+
+\[16a\sin 2x+16c\cos 2x-3(-8a\cos 2x+8c\sin 2x)+4(2a\cos 2x-2c\sin 2x)=4\cos 2x\]
+
+\[\left(16a-32A\right)\sin 2x+\left(32a+16c\right)\cos 2x=4\cos 2x\]
+
+Отсюда:
+
+\[\left\{\begin{array}{c} {16a-32c=0} \\ {32a+16c=4} \end{array}\right. \]
+
+\[\left\{\begin{array}{c} {a=2c} \\ {2a+c=\frac{1}{4} } \end{array}\right. \]
+
+\[\left\{\begin{array}{c} {a=\frac{1}{5} } \\ {c=\frac{1}{10} } \end{array}\right. \]
+
+Поэтому решение неоднородного  дифференциального уравнения:
+
+\[y=C_{1} +C_{2} e^{-1x} +C_{3} e^{2x} +C_{4} xe^{2x} +\frac{1}{5} \sin 2x+\frac{1}{10} \cos 2x,\]
+где $C_{1}$, $C_2$, $C_3$, $C_4$ --- произвольные действительные константы.
+
+\end{solution}
+
+\question[10] Solve the differential equation
+\[
+y'+xy=2xy^2
+\]
+
+\begin{solution}
+
+Разделим уравнение на $y^2$
+\[
+y'y^{-2}+xy^{-1}=2x
+\]
+
+Сделаем замену $z=y^{-1}$, тогда $z'=-y'y^{-2}$ и
+\[
+-z'+xz=2x
+\]
+
+Решим однородное уравнение $z'=xz$:
+
+Разделяем переменные:
+\[
+\frac{dz}{z}=xdx
+\]
+
+Решением однородного является функция $z_{hom}(x)=c e^{x^2/2}$.
+
+Далее можно либо решать с помощью вариации постоянной, но проще угадать частное решение в виде константы: $z_{pi}(x)=2$.
+
+Отсюда, $z(x)=2+c e^{x^2/2}$ и
+
+\[
+y(x)=\frac{1}{2+c e^{x^2/2}}
+\]
+
+\end{solution}
+
+\newpage
+
+\question The great wizard Theodore of N-sk knows that aliens spy on him! There are two alien satellites (the red one and the blue one) and one alien battleship flying around the Earth. Aliens can attack Theodore and try to steal his magical power: the red satellite will succeed in stealing with probability 0.1, the blue with probability 0.2, the battleship with probability 0.9. If there is more than one spacecraft, they attack him independently and simultaneously. It is possible that more than one spacecraft succeed in stealing his power. Aliens have one problem: satellites can attack only when they are flying above Theodore (it happens with probabilities 0.7 and 0.4 for red and blue satellites, respectively), and battleship can attack if both satellites are above Theodore and can not attack in other cases.
+
+
+\begin{parts}
+
+\part[1] What is the probability that the battleship can attack Theodore?
+
+\begin{solution}
+	Он может атаковать, когда оба спутника пролетают над Теодором. Вероятность: $P(two \; satellites) = P(red) \cdot P(blue) = 0.7 \cdot 0.4 = 0.28$.
+\end{solution}
+
+\part[2] What is the probability that aliens will steal the power of Theodore, if there are two satellites above him?
+
+\begin{solution}
+	$P(will \; steal) = P(at \; least \; one \; succeeded) = 1 - P(no \; one \; succeeded) = 1 - 0.9 \cdot 0.8 \cdot 0.1 = 0.928$
+\end{solution}
+
+\part[2] What is the probability that exactly one satellite is flying above Theodore?
+
+\begin{solution}
+  $P(one) = P(blue) \cdot P(no \; red) + P(red) \cdot P(no \; blue) = 0.4 \cdot 0.3 + 0.7 \cdot 0.6 = 0.12+0.42 = 0.54$
+\end{solution}
+
+\part[2] Theodore knows that there is at least one satellite above him. What is the probability that the battleship can attack him?
+
+\begin{solution}
+  Это вероятность того, что над ним два спутника при условии, что есть хотя бы один. Тогда по формуле условной веростности:
+
+  $P(2 \; satellites | at \; least \; 1) = \frac{P(2 \; satellites \; \cap \; at \; least \; 1 \; satellite)}{P(at \; least \; 1)} = \frac{P(2 \; satellites)}{P(at \; least \; 1)} = \frac{0.7 \cdot 0.4}{0.54+0.7 \cdot 0.4} = \frac{0.28}{0.82} = 0.341$
+\end{solution}
+
+\part[3] Someone has stolen the power of Theodore. What is the probability that only the red satellite succeeded?
+
+\begin{solution}
+Вероятность того, что у него украдут силу:
+
+$P(S) = P(no \; satellites) \cdot P(S|no \; satellites) + P(only \; red) \cdot P(S|red) + P(only \; blue) \cdot P(S|blue) + P(both) \cdot P(S|both)$
+
+В числах:
+
+$P(S) = 0.3 \cdot 0.6 \cdot 0+0.7 \cdot 0.6 \cdot 0.1+0.3 \cdot 0.4 \cdot 0.2+0.7 \cdot 0.4 \cdot 0.928 = 0.326$
+
+Только красный смог --- либо когда был только красный, либо когда были оба, но синий и корабль не смогли. Тогда:
+
+$P(only \; red \; succeeded) = 0.7 \cdot 0.6 \cdot 0.1 + 0.7 \cdot 0.4 \cdot 0.1 \cdot 0.8 \cdot 0.1 =  0.04424$
+
+Тогда искомая вероятность:
+
+$P(only \; red | S) = \frac{0.04424}{0.326} =  0.1357$
+
+
+\end{solution}
+
+
+\end{parts}
+
+%
+%
+% \question The great wizard Theodore of N-sk knows that aliens spy on him! He also knows, that all 3 coordinates of the satellite the aliens use to spy are normal, independent and identically-distributed with zero mean (with Earth as the origin of coordinate system) and variance 10 (light-years$^2$).
+%
+%
+% \begin{parts}
+% \part[5] Theodore says he can destroy the satellite if its distance to Earth is less than 7.907 light-years. What is the probability that he can destroy it?
+%
+% \begin{solution}
+% Расстояние $d = \sqrt{x_1^2 + x_2^2 + x_3^2}$, где $x_1$, $x_2$, $x_3$ - координаты спутника. Заметим также, что $\frac{x_i}{\sqrt{10}}$ имеет стандартное нормальное распределение.
+%
+% Тогда:
+%
+% \[
+% \begin{array}{l}
+% d^2 = x_1^2 + x_2^2 + x_3^2 \\
+% \frac{d^2}{10} = \frac{x_1^2 + x_2^2 + x_3^2}{10} = (\frac{x_1}{\sqrt{10}})^2 + (\frac{x_2}{\sqrt{10}})^2 + (\frac{x_3}{\sqrt{10}})^2 \\
+% \frac{d^2}{10} \sim \chi^2_3
+% \end{array}
+% \]
+% (3 балла).
+%
+% Тогда вероятность $P(d<7.907) = P( \frac{d^2}{10} < \frac{62.5}{10} ) = P( \frac{d^2}{10} < 6.25 )$. Смотрим в таблицу $\chi^2$-распределения, получаем, что искомая вероятность равна $0.9$. (2 балла)
+%
+% \end{solution}
+%
+% \part[5] In reality, there are 2 alien satellites! The coordinates of the second satellite are also normal, independent and identically-distributed with zero mean, but with variance 92.8. Aliens can steal the magical power of Theodore, but only if the second satellite is closer to Earth, then the first one. What is the probability that aliens can steal the magical power of Theodore?
+%
+% \begin{solution}
+%
+% Учитывая то, что степеней свободы у $d_1$ и $d_2$ поровну (по 3), получаем аналогично предыдущему пункту $\frac{d_1^2 / 10}{d_2^2 / 92.8} \sim F_{3,3}$ (3 балла)
+%
+% Тогда по таблице $P(d_2<d_1) = P(\frac{d_1}{d_2} > 1) = P( \frac{d_1^2 / 10}{d_2^2 / 92.8} > 9.28 ) = 0.05 $ (2 балла)
+%
+%
+% \end{solution}
+%
+%
+% \end{parts}
+
+
+\question Manager desires to estimate the expected value $m$ of the demand for apples. The firm operates $N$ points of sale. Let's denote the demand in the points of sale by $X_1$, $X_2$, \ldots, $X_n$, the average demand by $\bar X$ and the sample variance by $S^2$.
+
+From the previous experience it's known that the distribution of  $Z=\sqrt{N}\frac{\overline{X}-m}{\sqrt{S^2}}$ is not normal but is well approximated by the density function:
+
+$f\left(z\right)=\frac{1}{a}\left\{ \begin{array}{c}
+ \begin{array}{c}
+0,\ z\le -a \\
+\frac{1}{a}z+1,\ -a<z\le 0 \end{array}
+ \\
+ \begin{array}{c}
+-\frac{1}{a}z+1,\ 0<z\le a \\
+0,\ z>a \end{array}
+ \end{array}
+\right.$ , for some $a>0$.
+
+\begin{parts}
+\part[7] Find the length of the shortest 90\% confidence interval for $m$ in terms of $a$
+\part[3] Describe what happens with the length with the increase of $a$
+\end{parts}
+
+
+
+
+\question Random variable $Y$ is uniformly distributed on $[a,b]$.
+
+You have 5 observations on $Y$: $y_1 = y_2 = y_3 = y_4 = 4, y_5 = 9$.
+
+\begin{parts}
+\part[4] Calculate first and second raw sample moments and sample estimate of population variance
+\begin{solution}
+
+  Первый момент: $\bar Y = 25/5 = 5$ (1 балл)
+
+  Второй момент: $\bar Y^2 = (64+81)/5 = 29$ (1 балл)
+
+  Выборочная оценка дисперсии (2 балла):
+
+  \[
+	\hat\sigma^2 = \frac{\sum (y_i-\bar y )^2}{n}=\frac{1+1+1+1+16}{5}=4
+  \]
+
+\end{solution}
+
+\part[6] Using sample mean and sample variance calculate method of moments estimates of parameters $a$ and $b$.
+
+\begin{solution}
+
+Находим истинные значения моментов:
+
+Математическое ожидание:
+
+\[
+	E(Y) = \int_a^b \frac{1}{b-a} x dx = \frac{a+b}{2}
+\]
+
+Дисперсия:
+
+\[
+  \sigma^2 = \int_a^b \frac{1}{b-a} (x-\frac{a+b}{2})^2 dx = \frac{(b-a)^2}{12}
+\]
+
+Получаем систему:
+
+\[
+  \begin{array}{l}
+	\bar Y = \frac{\hat a+ \hat b}{2} \\
+	\hat\sigma^2 = \frac{(\hat b- \hat a)^2}{12}
+  \end{array}
+\]
+
+Решая её, получаем:
+
+\[
+	\begin{array}{l}
+	\hat b = 2 \bar Y - \hat a \\
+	\hat\sigma^2 = \frac{(2 \bar Y-2\hat a)^2}{12} \\
+	\hat a = \bar Y - \frac{\sqrt{12 \hat\sigma^2}}{2} \\
+	\hat b = \bar Y + \frac{\sqrt{12 \hat\sigma^2}}{2}
+  \end{array}
+\]
+
+Тогда $\hat{a} = 5 - \frac{\sqrt{48}}{2} \approx 1.54$, $\hat{b} = 5 + \frac{\sqrt{48}}{2} \approx 8.46$
+
+\end{solution}
+
+
+\end{parts}
+
+
+
+
 
 \end{questions}
 
 
-
+\begin{comment}
 \begin{figure}[b]
-\caption{Таблица значений функции распределения для стандартной нормальной величины}
+\caption{Cumulative distribution function of a standard normal random variable}
   \begin{minipage}[b]{0.35\linewidth}
     \centering
     \begin{tikzpicture}
@@ -194,8 +593,10 @@ $x$ & $F(x)$ & $x$ & $F(x)$ & $x$ & $F(x)$ & $x$ & $F(x)$ \\
 \label{fig:test}
 \end{figure}
 
+\end{comment}
+
 \begin{flushright}
-Удачи!
+May the Force be with You!
 \end{flushright}
 
 \end{document}
