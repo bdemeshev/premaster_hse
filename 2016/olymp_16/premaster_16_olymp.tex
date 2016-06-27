@@ -1,5 +1,5 @@
-%\documentclass[addpoints, answers]{exam} % добавить или удалить answers в скобках, чтобы показать ответы
-\documentclass[addpoints]{exam} % добавить или удалить answers в скобках, чтобы показать ответы
+\documentclass[addpoints, answers]{exam} % добавить или удалить answers в скобках, чтобы показать ответы
+%\documentclass[addpoints]{exam} % добавить или удалить answers в скобках, чтобы показать ответы
 
 
 \usepackage[utf8]{inputenc}
@@ -24,6 +24,21 @@
 
 \usepackage{floatrow}
 %\newfloatcommand{capbtabbox}{table}[][\FBwidth]
+
+% sqcases = cases с квадратной скобкой:
+\makeatletter
+\newenvironment{sqcases}{%
+  \matrix@check\sqcases\env@sqcases
+}{%
+  \endarray\right.%
+}
+\def\env@sqcases{%
+  \let\@ifnextchar\new@ifnextchar
+  \left\lbrack
+  \def\arraystretch{1.2}%
+  \array{@{}l@{\quad}l@{}}%
+}
+\makeatother
 
 \begin{document}
 
@@ -87,6 +102,13 @@
 
 \[ \exp \left( \lim_{y \to 0} \frac{1}{y} \ln \left( \sin y + \cos y \right) \right) ={\rm e}. \]
 
+
+Разбалловка
+\begin{itemize}
+\item в большинстве случаев индивидуальна
+\item штраф за арифметическую ошибку --- 1 балл
+\end{itemize}
+
 \end{solution}
 
 \question[10] Find and classify the discontinuity points of the following function:
@@ -122,26 +144,26 @@ f(x) = \frac{\frac{1}{x}-\frac{1}{x+1}}{\frac{1}{x-1}-\frac{1}{x}}.
 \begin{solution}
 Допустим обратная к $A$ матрица имеет вид $A^{-1}=cI+dS$.
 \[
-(aI+bS)(cI+dS)=acI+(ad+dc+bdn)S
+(aI+bS)(cI+dS)=acI+(ad+bc+bdn)S
 \]
 Чтобы этот результат равнялся $I$ нам нужно чтобы:
 \[
 \begin{cases}
 ac=1 \\
-ad+db+bdn = 0
+ad+bc+bdn = 0
 \end{cases}
 \]
 Выражаем $c$ и $d$ через $a$ и $b$:
 \[
 \begin{cases}
 c=1/a \\
-d=-b/(a^2+b)
+d=-b/(a^2+abn)
 \end{cases}
 \]
 
 Итого,
 \[
-A^{-1}=a^{-1}I - \frac{b}{a^2+b}S
+A^{-1}=a^{-1}I - \frac{b}{a^2+abn}S
 \]
 
 
@@ -163,15 +185,27 @@ A^{-1}=a^{-1}I - \frac{b}{a^2+b}S
 \begin{solution}
 Здесь $A=-2I+S$. Значит
 \[
-A^{-1}=-0.5I - \frac{1}{4+1}S =
+A^{-1}=-0.5I - \frac{1}{4-8}S =
 \begin{pmatrix}
--0.7 & -0.2 & -0.2 & -0.2 \\
--0.2 & -0.7 & -0.2 & -0.2 \\
--0.2 & -0.2 & -0.7 & -0.2 \\
--0.2 & -0.2 & -0.2 & -0.7
+-0.25 & 0.25 & 0.25 & 0.25 \\
+0.25 & -0.25 & 0.25 & 0.25 \\
+0.25 & 0.25 & -0.25 & 0.25 \\
+0.25 & 0.25 & 0.25 & -0.25 \\
 \end{pmatrix}
 \]
+
+Кстати, $A^{-1}=A/4$ :)
+
+Разбалловка:
+\begin{itemize}
+\item Арифметическая ошибка при нахождении обратной матрицы --- штраф в 1 балл
+\item Упоминание какого либо способа (без доведения до конца) --- 1 балл
+\end{itemize}
+
+
 \end{solution}
+
+
 
 \end{parts}
 
@@ -197,9 +231,15 @@ You may assume that all necessary inverse matrices exist.
 
 \[Y=A\left(B' +M' \right)^{-1} \left(A^{2} \right)' \]
 
+Разбалловка:
+\begin{itemize}
+\item За полностью корректное решение --- 5 баллов
+\item За корректное, но не полностью упрощенное уравнение --- 3 балла
+\item Некорректные решения оцениваются индивидуально
+\end{itemize}
 
 \end{solution}
-\part[5] The matrix $H$ is $m \times n$ real matrix of full rank with $m>n$. The matrices $X$ and $Y$ are defined by $X=I-H(H'H)^{-1}H'$ and $Y=I-X$. Prove that $X=X'=X^2$ and $Z=Z'=Z^2$.
+\part[5] The matrix $H$ is $m \times n$ real matrix of full rank with $m>n$. The matrices $X$ and $Z$ are defined by $X=H(H'H)^{-1}H'$ and $Z=I-X$. Prove that $X=X'=X^2$ and $Z=Z'=Z^2$.
 \begin{solution}
 Докажем, что $X=X'$
 
@@ -216,6 +256,15 @@ You may assume that all necessary inverse matrices exist.
 Докажем, что $Z=Z^{2}$
 
 \[Z^{2} =Z\cdot Z=\left(I-X\right)\cdot \left(I-X\right)=I\cdot I-I\cdot X-X\cdot I+X\cdot X=I-X-X+X=I-X=Z\]
+
+Разбалловка
+\begin{itemize}
+\item За доказательство $Z'=Z$ --- 2 балла
+\item За доказательство $Z=Z^2$ --- 1 балл
+\item За доказательство $X=X'$ --- 1 балл
+\item За доказательство $X=X^2$ --- 1 балл
+\end{itemize}
+
 \end{solution}
 \end{parts}
 
@@ -234,6 +283,12 @@ subject to $x + y = 1$
 G\left(x,y;a\right)=\frac{\left(2x-a\right){\left(3y+a\right)}^2}{\left(3y+a\right)}=\left(2x-a\right)\left(3y+a\right),\ y\ne \frac{a}{3}.
 \]
 Далее, делаем замену переменных $u=2x-a,\ v=3y+a$ и переходим к простой задаче на условный экстремум --- проанализировать наличие и тип условных экстремумов у функции $G\left(x,y;;a\right)$ при условии, что $3u+2v=6-a$. Решение можно получить любым путем --- подстановкой или с помощью метода множителей Лагранжа. Ответ $x=\frac{6-5a}{12},\ y=\frac{6-5a}{12}$ --- точка максимума. Однако, $y\ne \frac{a}{3}$. Это условие будет нарушаться, если $\frac{6-5a}{12}=\frac{a}{3}$. Равенство выполняется при $a=\frac{18}{27}=\frac{2}{3}$ . Таким образом, функция имеет условный максимум при всех значениях параметра кроме двух третей.
+
+Разбалловка:
+\begin{itemize}
+\item Отсутствие указания на наличие особенности у исследуемой функции --- оценка задачи не превышает пяти баллов
+\item Решение без предварительного преобразования числителя --- снижение на два балла
+\end{itemize}
 
 \end{solution}
 
@@ -260,7 +315,7 @@ y'''' -3y''' +4y' =4\cos 2x
 
 Тогда получим уравнение $\lambda ^{3} -3\lambda ^{2} +4=0$.
 
-Методом подбора можно увидеть, что корнем этого уравнения является -1. Значит поделив выражение $\lambda ^{3} -3\lambda ^{2} +4$на $\lambda +1$ получим выражение $\lambda ^{2} -4\lambda +4$.
+Методом подбора можно увидеть, что корнем этого уравнения является -1. Значит поделив выражение $\lambda ^{3} -3\lambda ^{2} +4$ на $\lambda +1$ получим выражение $\lambda ^{2} -4\lambda +4$.
 
 Тогда корнями будут $\lambda _{2} =-1,\lambda _{3} =2,\lambda _{3} =2$
 
@@ -269,7 +324,7 @@ y'''' -3y''' +4y' =4\cos 2x
 \[y=C_{1} +C_{2} e^{-1x} +C_{3} e^{2x} +C_{4} xe^{2x} ,\]
 где $C_{1}$, $C_2$, $C_3$, $C_4$ --- произвольные действительные константы.
 
-Найдем частное решение этого дифференциального уравнения. В данной задаче -- нерезонансный случай, поскольку все корни являются действительными. То есть будем искать частное решение в виде $y=a\cdot \sin 2x+c\cdot \cos 2x$. Тогда:
+Найдем частное решение этого дифференциального уравнения. В данной задаче --- нерезонансный случай, поскольку все корни являются действительными. То есть будем искать частное решение в виде $y=a\cdot \sin 2x+c\cdot \cos 2x$. Тогда:
 
 \[y' =2a\cos 2x-2c\sin 2x\]
 
@@ -291,13 +346,23 @@ y'''' -3y''' +4y' =4\cos 2x
 
 \[\left\{\begin{array}{c} {a=2c} \\ {2a+c=\frac{1}{4} } \end{array}\right. \]
 
-\[\left\{\begin{array}{c} {a=\frac{1}{5} } \\ {c=\frac{1}{10} } \end{array}\right. \]
+\[\left\{\begin{array}{c} {a=\frac{1}{10} } \\ {c=\frac{1}{20} } \end{array}\right. \]
 
 Поэтому решение неоднородного  дифференциального уравнения:
 
-\[y=C_{1} +C_{2} e^{-1x} +C_{3} e^{2x} +C_{4} xe^{2x} +\frac{1}{5} \sin 2x+\frac{1}{10} \cos 2x,\]
+\[y=C_{1} +C_{2} e^{-1x} +C_{3} e^{2x} +C_{4} xe^{2x} +\frac{1}{10} \sin 2x+\frac{1}{20} \cos 2x,\]
 где $C_{1}$, $C_2$, $C_3$, $C_4$ --- произвольные действительные константы.
 
+
+Разбалловка:
+\begin{itemize}
+\item За составление характеристического уравнения  для однородного уравнения --- 2 балла
+\item За расчет корней характеристического уравнения --- 1 балл
+\item За запись общего решения дифференциального уравнения --- 2 балла
+\item За получение частного решения --- 4 балла
+\item За запись итогового решения --- 1 балл
+\item Арифметическая ошибка --- штраф 1 балл
+\end{itemize}
 \end{solution}
 
 \question[10] Solve the differential equation
@@ -317,6 +382,8 @@ y'y^{-2}+xy^{-1}=2x
 -z'+xz=2x
 \]
 
+Замена была опасной, проверяем и убеждаемся, что $y=0$ --- это решение.
+
 Решим однородное уравнение $z'=xz$:
 
 Разделяем переменные:
@@ -329,14 +396,29 @@ y'y^{-2}+xy^{-1}=2x
 Далее можно либо решать с помощью вариации постоянной, но проще угадать частное решение в виде константы: $z_{pi}(x)=2$.
 
 Отсюда, $z(x)=2+c e^{x^2/2}$ и
-
 \[
-y(x)=\frac{1}{2+c e^{x^2/2}}
+y(x)=
+\begin{sqcases}
+0 \\
+\frac{1}{2+c e^{x^2/2}}
+\end{sqcases}
 \]
 
-\end{solution}
+Если решение следует указанной схеме, то разбалловка такая:
+\begin{itemize}
+\item замена --- 3 балла
+\item особое решение $y=0$ --- 1 балл
+\item решение однородного уравнения --- 4 балла
+\item частное решение --- 1 балл
+\item комбинирование всего в ответ --- 1 балл
+\end{itemize}
 
-\newpage
+
+Если решение идёт по другой схеме, то разбалловка индивидуальна. В любом случае, полный балл можно получить вне зависимости от схемы решения.
+
+
+
+\end{solution}
 
 \question The great wizard Theodore of N-sk knows that aliens spy on him! There are two alien satellites (the red one and the blue one) and one alien battleship flying around the Earth. Aliens can attack Theodore and try to steal his magical power: the red satellite will succeed in stealing with probability 0.1, the blue with probability 0.2, the battleship with probability 0.9. If there is more than one spacecraft, they attack him independently and simultaneously. It is possible that more than one spacecraft succeed in stealing his power. Aliens have one problem: satellites can attack only when they are flying above Theodore (it happens with probabilities 0.7 and 0.4 for red and blue satellites, respectively), and battleship can attack if both satellites are above Theodore and can not attack in other cases.
 
@@ -435,9 +517,9 @@ $P(only \; red | S) = \frac{0.04424}{0.326} =  0.1357$
 % \end{parts}
 
 
-\question Manager desires to estimate the expected value $m$ of the demand for apples. The firm operates $N$ points of sale. Let's denote the demand in the points of sale by $X_1$, $X_2$, \ldots, $X_n$, the average demand by $\bar X$ and the sample variance by $S^2$.
+\question Manager desires to estimate the expected value $m$ of the demand for apples. The firm operates $n$ points of sale. Let's denote the demand in the points of sale by $X_1$, $X_2$, \ldots, $X_n$, the average demand by $\bar X$ and the sample variance by $S^2$.
 
-From the previous experience it's known that the distribution of  $Z=\sqrt{N}\frac{\overline{X}-m}{\sqrt{S^2}}$ is not normal but is well approximated by the density function:
+From the previous experience it's known that the distribution of  $Z=\sqrt{n}\frac{\overline{X}-m}{\sqrt{S^2}}$ is not normal but is well approximated by the density function:
 
 $f\left(z\right)=\frac{1}{a}\left\{ \begin{array}{c}
  \begin{array}{c}
@@ -452,8 +534,53 @@ $f\left(z\right)=\frac{1}{a}\left\{ \begin{array}{c}
 
 \begin{parts}
 \part[7] Find the length of the shortest 90\% confidence interval for $m$ in terms of $a$
+
+\begin{solution}
+
+Из условия задачи следует, что в данном случае для построения доверительного интервала следует использовать метод центральной статистики. В качестве центральной статистики, очевидно, следует использовать функцию $G\left(\overline{X,}m\right)=\sqrt{n}\frac{\overline{X}-m}{\sqrt{S^2}}$, где $n$ -- возможное количество измерений. В данном случае $n$ -- количество точек продаж. Она зависит от неизвестного параметра $m$, при каждом значении $\overline{X}$  это монотонная функция от данного параметра и ее распределение абсолютно непрерывно и не зависит от $m$.
+
+Шаг 1. Общий вид кратчайшего доверительного интервала (возможно, известный факт)
+
+В соответствие с выбранным методом построения доверительного интервала он уровня доверия $\alpha $ имеет вид: ${\triangle }_{\alpha }\left(\overline{X}\right)=\left(\overline{X}-\frac{\sqrt{S^2}}{\sqrt{n}}g_1,\ \overline{X}+\frac{\sqrt{S^2}}{\sqrt{n}}g_2\right)$, где $g_1,\ g_2$ -- решения уравнения $F\left(g_2\right)-F\left(g_1\right)=\int^{g_2}_{g_1}{f\left(x\right)dx}=\alpha $, $F\left(.\right),\ f\left(.\right)$--- функция и плотность распределения $G\left(\overline{X,}m\right)$. Плотность распределения указана в постановке задачи. Длина доверительного интервала имеет вид:$I_{\alpha }\left(g_1,\ g_2\right)=\ \left(g_2-g_1\right)\frac{\sqrt{S^2}}{\sqrt{n}}$. Таким образом, для того чтобы найти интервал с наименьшей длинной, необходимо решить задачу: $I_{\alpha }\left(g_1,\ g_2\right)\to min$, при условии, что $F\left(g_2\right)-F\left(g_1\right)=\alpha $. Поскольку распределение центральной статистики симметрично относительно нуля, используя метод множителей Лагранжа, несложно показать, что  $g_1=-g_2$ и $g_2$ --- квантиль порядка $\frac{1+\alpha }{2}$ распределения $F\left(.\right)$.
+
+Шаг 2. Вычисление границ доверительного интервала
+
+Используя формулу для плотности распределения из постановки задачи, несложно получить вид функции распределения:
+
+\[F\left(z\right)=\left\{ \begin{array}{c}
+ \begin{array}{c}
+0,\ z\le -a \\
+\frac{1}{2}{\left(\frac{z}{a}+1\right)}^2,\ -a<z\le 0 \end{array}
+ \\
+ \begin{array}{c}
+1-\frac{1}{2}{\left(\frac{z}{a}-1\right)}^2,\ 0<z\le a \\
+1,\ z>a \end{array}
+ \end{array}
+\right..\]
+
+Из определения квантили следует, что $1-\frac{1}{2}{\left(\frac{g_2}{a}-1\right)}^2=\frac{1+0.9}{2}$, т.е. ${\left(\frac{g_2}{a}-1\right)}^2=0.1$ и $g_2=a\left(1+\sqrt{0.1}\right)$.
+
+Таким образом, длина кратчайшего доверительного интервала для $n$ точек продаж имеет вид: $I_{\alpha }\left(g_1,\ g_2\right)=a\left(1+\sqrt{0.1}\right)\frac{\sqrt{S^2}}{\sqrt{n}}$.
+
+
+% Определение вида кратчайшего доверительного интервала - до 5 баллов
+% Нахождение квантили функции распределения до 4 баллов
+% Выписывание длины доверительного интервала и анализ ее динамики - до 1 балла.
+
+
+\end{solution}
+
+
 \part[3] Describe what happens with the length with the increase of $a$
+
+\begin{solution}
+С возрастанием $a$ длина интервала будет возрастать.
+\end{solution}
+
 \end{parts}
+
+
+
 
 
 
@@ -493,7 +620,7 @@ You have 5 observations on $Y$: $y_1 = y_2 = y_3 = y_4 = 4, y_5 = 9$.
 Дисперсия:
 
 \[
-  \sigma^2 = \int_a^b \frac{1}{b-a} (x-\frac{a+b}{2})^2 dx = \frac{(b-a)^2}{12}
+  \sigma^2 = \int_a^b \frac{1}{b-a} \left(x-\frac{a+b}{2}\right)^2 dx = \frac{(b-a)^2}{12}
 \]
 
 Получаем систему:
