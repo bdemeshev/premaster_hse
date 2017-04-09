@@ -15,6 +15,7 @@
 %\DeclareMathOperator{\P}{\mathbb{P}}
 \newcommand{\cN}{\mathcal{N}}
 \newcommand{\hbeta}{\hat{\beta}}
+\newcommand{\rank}{\mathrm{rank}}
 
 \usepackage{floatrow}
 %\newfloatcommand{capbtabbox}{table}[][\FBwidth]
@@ -4609,7 +4610,7 @@ You may assume that all necessary inverse matrices exist.
 
 \end{solution}
 
-\part[5] 
+\part[5]
 The matrix $H$ is $m \times n$ real matrix of full rank with $m>n$. The matrices $X$ and $Z$ are defined by $X=H(H'H)^{-1}H'$ and $Z=I-X$. Prove that $X=X'=X^2$ and $Z=Z'=Z^2$.
 
 \begin{solution}
@@ -5032,6 +5033,868 @@ You have 5 observations on $Y$: $y_1 = y_2 = y_3 = y_4 = 4, y_5 = 9$.
 \begin{flushright}
 May the Force be with You!
 \end{flushright}
+
+\section{2017}
+
+\subsection{Демо олимпиады}
+
+
+\begin{questions}
+
+\question[10] Evaluate the following limit:
+
+\[
+\lim_{x \to 0} \sqrt[x]{\cos \sqrt{x}}
+\]
+
+\begin{solution}
+
+\[
+\lim_{x \rightarrow 0} \sqrt[x]{\cos \sqrt{x}} = \lim_{x \rightarrow 0} \left({\cos \sqrt{x}}\right) ^{1/x} =  \lim_{x \rightarrow 0} \exp
+\left( \frac{\ln (\cos \sqrt{x})}{x} \right) = \exp \left( \lim_{x \rightarrow 0}
+\frac{\ln (\cos \sqrt{x})}{x} \right),
+\]
+
+\noindent где последнее равенство использует теорему о предельном переходе для непрерывных функций. Далее используем разложение в ряд Маклорена.
+
+\[
+\frac{\ln (\cos \sqrt{x})}{x} = \frac{\ln (1-
+\frac{x}{2}+\frac{x^2}{24}+o(x^2))}{x} = \frac{-\frac{x}{2}+o(x)}{x}
+\]
+
+\noindent Следовательно,
+
+\[
+\lim_{x \rightarrow 0} \frac{\ln (\cos \sqrt{x})}{x} = -\frac{1}{2},
+\]
+
+\noindent поэтому
+
+\[
+\lim_{x \rightarrow 0} \sqrt[x]{\cos \sqrt{x}} = \exp \left( -\frac{1}{2}\right) = \frac{1}{\sqrt{e}}.
+\]
+\end{solution}
+
+\question[10] Find and classify the discontinuity points of the following function:
+
+\[
+f(x) = {\sgn} \left(\sin \left( \frac{\pi}{x}\right)\right).
+\]
+
+\begin{solution}
+Точки, в которых данная функция может иметь разрыв: $x=0$, поскольку в ней равен нулю знаменатель аргумента функции, и точки $x=1/k, k \in \mathbb{Z}$, поскольку в них $\sin \left( \frac{\pi}{x}\right)$ меняет знак. В точках $x=1/k, k \in \mathbb{Z}$ функция имеет разрывы первого рода, так как существуют не равные между собой односторонние пределы. Например, рассмотрим $k=1$. Существует правосторонняя окрестность точки $x=1$, в которой функция $\sin \left( \frac{\pi}{x} \right)$ положительна. В самом деле, для $x \in (1,2)$ имеет место $\frac{\pi}{2} < \frac{\pi}{x} < \pi$. Для точек из этой окрестности имеем $f(x) = 1$, следовательно, $\lim_{x \rightarrow 1+0} f(x) = 1$. С другой стороны, существует левосторонняя окрестность точки $x=1$, в которой функция $\sin \left( \frac{\pi}{x} \right)$ отрицательна. В самом деле, для $x \in (1/2,1)$ имеет место $\pi < \frac{\pi}{x} < 2 \pi$. Для точек из этой окрестности имеем $f(x) = -1$, следовательно, $\lim_{x \rightarrow 1-0} f(x) = -1$. Аналогичные окрестности могут быть найдены для всех рассматриваемых точек.
+
+
+
+В точке $x=0$ функция имеет разрыв второго рода, поскольку не существует односторонних пределов. Действительно, рассмотрим последовательности $a_n = \frac{2}{1+4 n}, n
+\in \mathbb{N}$ и $b_n = \frac{2}{3+4 n}, n \in \mathbb{N}$, стремящиеся к нулю справа. Тогда $f(a_n) = {\sgn} \left(\sin \left( \frac{\pi}{\frac{2}{1+4 n}}\right)\right) = {\sgn} \left( \sin \left( \frac{\pi}{2} + 2 \pi n \right)\right)=1$ и $f(b_n) = {\sgn} \left(\sin \left( \frac{\pi}{\frac{2}{3+4 n}}\right)\right) = {\sgn} \left( \sin \left( \frac{3 \pi}{2} + 2 \pi n \right)\right)=-1$. Тем самым показано, что правостороннего предела $f(x)$ при $x$ стремящемся к нулю не существует. Аналогично можно показать, что не существует левостороннего предела, например, рассмотрев последовательности $-a_n$ и $-b_n$.
+\end{solution}
+
+
+
+
+
+\question It is known, that the $2 \times 2$ matrix $A$ has $\tr(A) = -7$ (matrix trace, the sum of diagonal elements) and $\det(A) = 0$.
+
+\begin{parts}
+
+\part[5] Find the eigenvalues of $A$
+\begin{solution}
+
+Let $\lambda_1, \lambda_2$ be the eigenvalues of A. Then $\tr(A) = \lambda_1 + \lambda_2$, $\det(A) = \lambda_1 \cdot \lambda_2$. Hence, $\lambda_1 = -7, \lambda_2 = 0$
+
+\end{solution}
+
+\part[5] Find $B^{2017}$ for
+$B =
+\begin{pmatrix}
+1 & -4\\
+2 & -8
+\end{pmatrix}$
+
+
+
+\begin{solution}
+
+The matrix $B$ has eigenvalues $\lambda_1 = -7$ and $\lambda_2 = 0$ and corresponding eigenvectors $\begin{pmatrix}
+1 & 2
+\end{pmatrix}$ and $\begin{pmatrix}
+4 & 1
+\end{pmatrix}$. Then $B$ can be represented as $B=
+\begin{pmatrix}
+1 & 4\\
+2 & 1
+\end{pmatrix}
+\begin{pmatrix}
+-7 & 0\\
+0 & 0
+\end{pmatrix}
+\begin{pmatrix}
+1 & 4\\
+2 & 1
+\end{pmatrix}^{-1}
+$.
+
+Hence, $B^{2017} = \begin{pmatrix}
+1 & 4\\
+2 & 1
+\end{pmatrix}
+\begin{pmatrix}
+(-7)^{2017} & 0\\
+0 & 0
+\end{pmatrix}
+\begin{pmatrix}
+1 & 4\\
+2 & 1
+\end{pmatrix}^{-1}
+$
+
+\end{solution}
+
+
+\end{parts}
+
+
+
+\question It is known that $A$ is a square matrix and
+\[
+A^T X A = \begin{pmatrix}
+18 & 0 & 2\\
+0 & 0 & 3\\
+2 & 3 & 10
+\end{pmatrix},
+\]
+
+\begin{parts}
+
+\part[3] Find $\rank(X)$
+
+\begin{solution}
+$\det(A^T X A) = \det(A) \cdot \det(X) \cdot \det(A) = 18 \cdot (- 3 \cdot 3) = -162 \neq 0$ (since $\det(AB) = \det(A) \det(B)$). Hence, $\det(X) \neq 0$ and $\rank(X) = 3$.
+\end{solution}
+
+\part[2]  For given matrix $A = \begin{pmatrix}
+3 & 2 & 0\\
+0 & 3 & 0\\
+0 & 5 & 1
+\end{pmatrix}
+$ find the determinant $\det(X)$
+
+\begin{solution}
+
+$\det(A) = 9$, $\det(A)^2 \cdot \det(X) = -162$, hence, $\det(X) = -2$.
+
+\end{solution}
+
+\part[5] For given matrix $A = \begin{pmatrix}
+3 & 2 & 0\\
+0 & 3 & 0\\
+0 & 5 & 1
+\end{pmatrix}$
+find the matrix $X$ and test it for positive and negative definiteness.
+
+\begin{solution}
+
+It is not hard to find that $X = \begin{pmatrix}
+2 & -22/9 & 2/3 \\
+-22/9 & 724/27 & -145/9\\
+2/3 & -145/9 & 10
+\end{pmatrix}
+$.
+
+
+Check the principal minors signs: $\Delta_1 > 0, \Delta_2 > 0, \Delta_3 < 0$.
+Using Sylvester's criterion, we conclude that $X$ is indefinite.
+
+\end{solution}
+
+\end{parts}
+
+
+\question[10] Solve the  differential equation:
+
+\[
+y''' -4y'' +y' =2x^{2} +1.
+\]
+
+\begin{solution}
+Сначала запишем решение однородного дифференциального уравнения:
+
+\[y''' -4y'' +y' =0.\]
+
+Составим к нему характеристическое уравнение:
+
+  \[\lambda ^{3} -4\lambda ^{2} +\lambda =0.\]
+
+  \[\lambda _{1} =0,\lambda _{2} =2 + \sqrt{3},\lambda _{3} =2 - \sqrt{3}.\]
+
+  То есть общее решение дифференциального уравнения может быть записано как
+
+  \[y=C_{1} +C_{2} e^{\lambda_2 x} +C_{3} e^{\lambda_3 x},\; C_{1} ,C_{2} ,C_{3} \in \RR \]
+
+  Найдем частное решение этого дифференциального уравнения. В данной задаче -- резонансный случай, поскольку $\left(2x^{2} +1\right)e^{0} =2x^{2} +1$. То есть будем искать частное решение в виде $y=(ax^{2} +bx+c)x$. Тогда
+
+  \[y' =3ax^{2} +2bx+c\]
+
+  \[y'' =6ax+2b\]
+
+  \[y''' =6a\]
+
+  Следовательно,
+
+  \[6a-4(6ax+2b)+3ax^{2} +2bx+c=2x^{2} +1\]
+
+  \[3ax^{2} +2bx-24ax+6a-8b+c=2x^{2} +1.\]
+
+  Отсюда
+
+  \[\left\{\begin{array}{l} {6a-8b+c=1} \\ {2b-24a=0} \\ {3a=2} \end{array}\right. \]
+
+  \[\left\{\begin{array}{l} {c=61} \\ {b=8} \\ {a=\frac{2}{3} } \end{array}\right. .\]
+
+  Поэтому общее решение дифференциального уравнения:
+
+  \[y=C_{1} +C_{2} e^{\lambda_2 x} +C_{3} e^{\lambda_3 x} +\frac{2}{3} x^{3} +8x^{2} +61x,\; C_{1} ,C_{2} ,C_{3} \in \RR \]
+
+\end{solution}
+
+
+
+
+
+\question[10] Find the points of maximum of the function
+\[
+F\left(u,v\right)=\sqrt{u}\left(\sqrt{u}-2\right)-\sqrt{v}\left(\sqrt{v}-2\right),
+\]
+given that  $\sqrt{u}\le 2,\ \sqrt{v}\le 2$
+
+
+\begin{solution}
+  \begin{enumerate}
+  \item  Выполняем замену переменных $x=\sqrt{u},\ y=\sqrt{v}$. Далее путем несложных алгебраических преобразований выражения для целевой функции приводим ее к виду:$G\left(x,y\right)={\left(x-1\right)}^2-{\left(y-1\right)}^2+3$. При этом ограничения принимают вид $x\in \left[0,2\right],\ y\in \left[0,2\right]$
+
+  \item  Определяем наличие экстремумов внутри области поиска, определенной ограничениями.
+
+  \[\frac{\partial G\left(x,y\right)}{\partial x}=2\left(x-1\right),\ \frac{\partial G\left(x,y\right)}{\partial y}=-2\left(y-1\right),\ \frac{{\partial }^2G\left(x,y\right)}{\partial x\partial y}=\left( \begin{array}{cc}
+  2 & 0 \\
+  0 & -2 \end{array}
+  \right)\]
+
+
+Используя критерий Сильвестра, легко проверить, что в точке (1,1) у функции $G(x,y)$ нет экстремумов.
+
+\item  Проанализируем наличие экстремумов на границах области поиска.
+
+Граница$\left\{x=0,\ y\in \left[0,2\right]\right\},\ G\left(0,y\right)=1-{\left(y-1\right)}^2$. В точке (0, 1) достигается \textbf{\underbar{максимум}} равный 1, в конечных точках функция равна 0.
+
+Граница $\left\{y=0,\ x\in \left[0,2\right]\right\},\ G\left(x,0\right)={\left(x-1\right)}^2-1$. В точке (1, 0) достигается минимум равный -- 1, в конечных точках функция равна 0.
+
+Граница $\left\{x=2,\ y\in \left[0,2\right]\right\},\ G\left(0,y\right)=1-{\left(y-1\right)}^2$. В точке (2, 1) достигается \textbf{\underbar{максимум}} равный 1, в конечных точках функция равна 0.
+
+Граница $\left\{y=2,\ x\in \left[0,2\right]\right\},\ G\left(x,2\right)={\left(x-1\right)}^2-1$. В точке (1, 2) достигаетсяминимум равный -- 1, в конечных точках функция равна 0.
+
+\item  Возвращаемся к начальному преобразованию.
+\end{enumerate}
+
+Ответ: Точки максимума: (0, 1) и (4, 1)
+
+Неполная попытка решить задачу не выполняя преобразование — не более 8 баллов за верный ответ.
+
+\end{solution}
+
+\newpage
+
+\question
+There are three coins in the bag. Two coins are unbiased, and for the third coin the probability of «head» is equal to $0.8$. James Bond chooses one coin at random from the bag and tosses it
+
+\begin{parts}
+\part[5] What is the probability that it will show «head»?
+\begin{solution}
+\[
+\P(B) = \P(\text{head}) = \frac{2}{3} \cdot 0.5 + \frac{1}{3} \cdot 0.8 = \frac{18}{30} = \frac{3}{5} = 0.6
+\]
+\end{solution}
+
+\part[5] What is the conditional probability that the coin is unbiased if it shows «head»?
+\begin{solution}
+\[
+\P(A|B) = \frac{\P(A\cap B)}{\P(B)} = \frac{\frac{2}{3} \cdot 0.5}{0.6} = \frac{10}{18} = \frac{5}{9}
+\]
+\end{solution}
+
+\end{parts}
+
+\question
+The pair of random variables $X$ and $Y$ with $\E(X)=0$ and $\E(Y)=1$ has the following covariance matrix
+\[
+\begin{pmatrix}
+10 & -2 \\
+-2 & 9
+\end{pmatrix}.
+\]
+
+\begin{parts}
+\part[5] Find $\Var(X+Y)$, $\Corr(X, Y)$, $\Cov(X - 2Y +1 , 7 + X + Y)$
+\begin{solution}
+  \[
+  \Var(X+Y) = 10 + 9 - 2 \cdot 2 = 15
+  \]
+  \[
+  \Corr(X, Y) = \frac{-2}{\sqrt{10\cdot 9}}
+  \]
+  \[
+  \Cov(X - 2Y +1 , 7 + X + Y) = \Var(X) - 2\Cov(Y, X) + \Cov(X, Y) - 2 \Var(Y) = 10 - (-2) - 18 = -6
+  \]
+\end{solution}
+
+\part[5] Find the value of $a$ if it is known that $X$ is independent of $Y - aX$.
+\begin{solution}
+  For independent variables the covariance is equal to zero: $\Cov(X, Y - aX) = 0$. Hence, $a = \frac{\Cov(X, Y)}{\Var(X)} = -0.2$.
+\end{solution}
+
+\end{parts}
+
+
+
+\question You have  height measurements of a random sample of 100 persons, $y_1$, \ldots, $y_{100}$. It is known that $\sum_{i=1}^{100} y_i = 15800$ and $\sum_{i=1}^{100} y_i^2 = 2530060$.
+
+\begin{parts}
+\part[3] Calculate unbiased estimate of population mean and population variance of the height
+
+\begin{solution}
+Оценка среднего: $\bar y = 15800/100=158$.
+
+Несмещённая оценка дисперсии
+\[
+\hat\sigma^2 = \frac{\sum (y_i-\bar y )^2}{n-1}=\frac{\sum y_i^2 - n \bar y^2}{n-1}=340
+\]
+\end{solution}
+\part[3] At 4\% significance test the null-hypothesis that the population mean is equal to 155 cm, against two-sided alternative.
+
+\begin{solution}
+Наблюдаемое значение $Z$-статистики
+\[
+Z_{obs}=\frac{158-155}{\sqrt{340}/\sqrt{100}}=1.63
+\]
+
+Критическое значение $Z_{crit}=2.05$.
+
+Вывод: гипотеза $H_0$ не отвергается.
+\end{solution}
+\part[2] Find the p-value
+\begin{solution}
+Находим по таблице, что площадь справа от $1.63$ примерно равна 5\%. Значит P-значение равно $10\%$.
+\end{solution}
+\part[2] Find the 96\% confidence interval for the population mean
+\begin{solution}
+Интервал имеет вид
+\[
+[158 - 2.05 \cdot \sqrt{340/100} ; 158 + 2.05 \cdot \sqrt{340/100} ]
+\]
+Итого: $[154.2;161.8]$
+\end{solution}
+\end{parts}
+
+
+\question Density function of a random variable $Y$ is given by
+
+\[
+f(y)=
+\begin{cases}
+    \frac{1}{\theta^2} y e^{-y/ \theta}, \text{ if } y>0 \\
+    0, \text{ otherwise } \\
+\end{cases}
+\]
+
+You have 3 observations on $Y$: $y_1 = 48, y_2 = 50, y_3 = 52$.
+
+\begin{parts}
+\part[4] Using maximum likelihood, find the estimate of $\theta$
+\begin{solution}
+
+  Нахождение оценки:
+
+  \[
+    \begin{array}{l}
+  	\ln(L) = \sum_{i=1}^n (-\ln(\theta^2)+\ln(y_i) - \frac{y_i}{\theta}) \\
+  	\ln(L) = -2n\ln(\theta)+\sum_{i=1}^n \ln(y_i)  - \frac{\sum_{i=1}^n y_i}{\theta} \\
+  	\frac{\partial \ln(L)}{\partial \theta} = - \frac{2n}{\theta} + \frac{\sum_{i=1}^n y_i}{\theta^2} = 0 \\
+  	\widehat{\theta} = \frac{\sum_{i=1}^n y_i}{2n} = \frac{\overline{y}}{2} \\
+    \end{array}
+  \]
+
+  Подставляя наши данные, получаем $\widehat{\theta} = 25$.
+\end{solution}
+
+\part[3] Is the estimator $\hat\theta$ unbiased?
+
+\begin{solution}
+  Несмещенность:
+
+  \[
+    \begin{array}{l}
+  	\E(\widehat{\theta}) = \frac{\E(y_i)}{2}
+    \end{array}
+  \]
+
+  Найдём математическое ожидание $y_i$:
+
+  \[
+    \begin{array}{l}
+  	\E(y_i) = \int_0^{+ \infty} \frac{1}{\theta^2} y^2 e^{-y/ \theta} dy
+    \end{array}
+  \]
+
+  Интегрируя по частям, получаем:
+
+  \[
+    \begin{array}{l}
+  	\E(y_i) = \int_0^{+ \infty} \frac{2y}{\theta} e^{-y/ \theta} dy \\
+  	\E(y_i) = \int_0^{+ \infty} 2 e^{-y/ \theta} dy \\
+  	\E(y_i) = 2 \theta
+    \end{array}
+  \]
+
+  Тогда $\E(\widehat{\theta}) = \frac{\E(y_i)}{2} = \theta$. Оценка несмещенная.
+
+\end{solution}
+
+\part[3] Calculate the variance of $\hat\theta$
+
+
+\begin{solution}
+  Для расчёта дисперсии вычислим $\E(y_i^2)$:
+
+  \[
+  	\E(y_i^2) = \int_0^{+ \infty} \frac{1}{\theta^2} y^3 e^{-y/ \theta} dy
+  \]
+
+  Аналогично предыдущему случаю, интегрируем по частям. Получаем:
+
+  \[
+  	\E(y_i^2) = 6 \theta^2
+  \]
+
+  Тогда
+
+  \[
+  	\Var(y_i) = 6 \theta^2 - 4 \theta^2 = 2 \theta^2
+  \]
+
+  И дисперсия оценки
+
+  \[
+  	\Var(\widehat{\theta}) = \Var(\frac{\overline{y}}{2}) = \frac{1}{4n} \Var(y_i) = \frac{\theta^2}{2n}
+  \]
+
+
+\end{solution}
+
+\end{parts}
+
+
+\end{questions}
+
+\subsection{Олимпиада}
+
+
+\begin{questions}
+
+\question[10] Evaluate the following limit:
+
+\[
+\lim_{x \to \infty} \left( \sqrt{x+\sqrt{x}} - \sqrt{x} \right).
+\]
+
+\begin{solution}
+
+The function may be written in the following way $\sqrt{x+\sqrt{x}} - \sqrt{x} = \sqrt{x} \left( \sqrt{1+x^{-1/2}} -1 \right)$. Using substituion $x^{-1/2} = y$ one may find the Taylor expansion of the expression inside brackets. This will give \textbf{(7 points)}
+\[
+\sqrt{x} \left( \left( 1+\frac{1}{2} \sqrt{\frac{1}{x}} + o \left(\sqrt{\frac{1}{x}}\right) \right) -1 \right).
+\]
+
+The limit is equal to \textbf{(3 points)}
+
+\[
+\lim_{x \to \infty} \sqrt{x} \left( \frac{1}{2} \sqrt{\frac{1}{x}} + o \left(\sqrt{\frac{1}{x}} \right) \right) = \frac{1}{2}.
+\]
+
+There is also another approach: multiply and divide by conjugate expression $\sqrt{x + \sqrt{x}} + \sqrt{x}$. Idea is worth \textbf{(5 points)}. All the rest is worth \textbf{(5 points)}.
+
+\end{solution}
+
+\question[10] Let $D(x)$ be so-called Dirichlet function, which equals 1 if its argument is rational and 0 otherwise, and let $k$ be a natural number.
+
+Prove that the function $x^k D(x)$ is nowhere differentiable if $k=1$ and is differentiable only at $x=0$ if $k=2017$.
+
+\begin{solution}
+
+For every $k$ the function $x^k D(x)$ is continuous only at $x=0$. To see it one may sketch the graph of the function. So the function is not differentiable for $x\neq 0$. \textbf{(3 points)}
+
+Let's consider the derivative at $x=0$ for $k=1$:
+
+\[
+\lim_{\Delta x \to 0} \frac{\Delta x D(\Delta x) - 0 \cdot D(0)}{\Delta x} = \lim_{\Delta x \to 0} D(\Delta x).
+\]
+
+If all $\Delta x$ are rational then $D(\Delta x)=1$.  If all $\Delta x$ are irrational then $D(\Delta x)=0$. The derivative does not exist at $x=0$. \textbf{(3 points)}
+
+Let's consider the derivative at $x=0$ for $k=1$:
+
+\[
+\lim_{\Delta x \to 0} \frac{\Delta x^{2017} D(\Delta x) - 0 \cdot D(0)}{\Delta x} = \lim_{\Delta x \to 0} \Delta x^{2016} D(\Delta x).
+\]
+
+As  $D(\Delta x)$ is bounded and $\Delta x^{2016}$ tends to zero, their product tends to zero. So, the limit exists and the function is differentiable at $x=0$. \textbf{(4 points)}
+
+\end{solution}
+
+
+\question The matrices $A$ and $B$ are symmetric $3 \times 3$ matrices. Eigenvalues of the matrix $A$ are $\lambda^A_1 = 4, \lambda^A_2 = 2, \lambda^A_3 = 1$, eigenvalues of the matrix $B$ are $\lambda^B_1 = 11, \lambda^B_2 = 5, \lambda^B_3 = 1$.
+
+\begin{parts}
+
+\part[2] Find the trace (the sum of diagonal elements) of the matrix $A+B$.
+\begin{solution}
+
+We note that $\tr(A+B) = \tr(A) + \tr(B)$. Hence,
+\[
+\tr(A+B) = \sum_{i = 1}^3 \lambda^A_i + \sum_{i = 1}^3 \lambda^B_i = 7 + 17 = 24
+\]
+
+\end{solution}
+
+\part[3]
+Let the matrix $C$ be $3 \times 3$ matrix with $\det(C) = 1$. Find $\tr(C^{-1} A C)$.
+\begin{solution}
+
+Using the properties of trace, we get: $\tr(C^{-1} A C) = \tr(A C^{-1} C) = \tr(A) = 7$.
+
+\end{solution}
+
+\part[5] Prove that $\tr(A^k) = \sum_i \lambda_i^k$.
+\begin{solution}
+
+Diagonalize the matrix $A$: $A = P \Lambda P^{-1}$, where $P$ — the matrix of eigenvectors, $\Lambda$ — the diagonal matrix with eigenvalues on the diagonal. Hence, $A^k = P \Lambda^k P^{-1}$, where $\Lambda^k$ — diagonal matrix with k-th powers of eigenvalues on the diagonal. Then $\tr(A^k) = \tr(P \Lambda^k P^{-1}) = \tr(\Lambda^k) = \sum_i \lambda_i^k$.
+
+\end{solution}
+
+\end{parts}
+
+
+
+
+\question Consider the matrix
+\[
+A = \begin{pmatrix}
+-1 & 2 & 0\\
+0 & 1 & 0\\
+-18 & 18 & 8
+\end{pmatrix}.
+\]
+
+
+\begin{parts}
+
+\part[4] Find the eigenvalues and eigenvectors of matrix $A$.
+\begin{solution}
+
+$ det(A - \lambda I) = (1 - \lambda) (-1 - \lambda) (8 - \lambda) = 0$. Therefore, eigenvalues: $\lambda_1 = 1, \lambda_2 = -1, \lambda_3 = 8$. Eigenvectors are $v_1 = (1, 1, 0), v_2 = (1, 0, 2), v_3 = (0, 0, 1)$ respectively.
+
+\end{solution}
+
+\part[6] Find the matrix $A^{1/3}$.  By definition, $A^{1/3}$ is such a matrix that $(A^{1/3})^3 = A$.
+\begin{solution}
+
+Diagonalize matrix $A$: $A = P \Lambda P^{-1}$, where $P$ — matrix of eigenvectors, $\Lambda$ — diagonal matrix with eigenvalues on the diagonal.
+$P = \begin{pmatrix}
+1 & 1 & 0\\
+1 & 0 & 0\\
+0 & 2 & 1
+\end{pmatrix}
+$,
+$P^{-1} = \begin{pmatrix}
+0 & 1 & 0\\
+1 & -1 & 0\\
+-2 & 2 & 1
+\end{pmatrix}
+$,
+$A^{1/3} = P \Lambda^{1/3} P^{-1}$, where $\Lambda^{1/3}$ is a diagonal matrix with $\lambda^{1/3}$ on the diagonal. Hence,
+\[
+A^{1/3} = \begin{pmatrix}
+1 & 1 & 0\\
+1 & 0 & 0\\
+0 & 2 & 1
+\end{pmatrix}
+\begin{pmatrix}
+1 & 0 & 0\\
+0 & -1 & 0\\
+0 & 0 & 2
+\end{pmatrix}
+\begin{pmatrix}
+0 & 1 & 0\\
+1 & -1 & 0\\
+-2 & 2 & 1
+\end{pmatrix} =
+\begin{pmatrix}
+-1 & 2 & 0\\
+0 & 1 & 0\\
+-6 & 6 & 2
+\end{pmatrix}.
+\]
+
+
+\end{solution}
+
+\end{parts}
+
+
+
+
+\question[10] Solve the  differential equation:
+
+\[
+(3x^2y^4+2xy) \, dx + (2y^2-3x^2) \, dy = 0
+\]
+
+
+\begin{solution}
+Заметим, что $y=0$ является решением уравнения. Запомнив это, поделим левую и правую часть исходного уравнения на $y^4$. Это интегрирующий множитель. Полученное уравнение имеет вид:
+\[\left(3x^2+\frac{2x}{y^3}\right)dx+\left(\frac{2}{y^2}-\frac{3x^2}{y^4}\right)dy=0\]
+Тогда, если $P\left(x,y\right)=\left(3x^2+\frac{2x}{y^3}\right)$ и $Q\left(x,y\right)=\left(\frac{2}{y^2}-\frac{3x^2}{y^4}\right)$, то $\frac{\partial P}{\partial y}=\frac{\partial Q}{\partial x}=-6\frac{x}{y^4}$. Имеем уравнение в полных дифференциалах.
+
+Составляем и решаем систему уравнений для нахождения потенциала $u(x,y)$:
+\[
+\begin{cases}
+\frac{\partial u}{\partial x}=3x^2+\frac{2x}{y^3} \\
+\frac{\partial u}{\partial x}=\frac{2}{y^2}-\frac{3x^2}{y^4}.
+\end{cases}
+\]
+Из первого уравнения находим, что $u\left(x,y\right)=x^3+\frac{x^2}{y^3}+h(y)$, где $h(y)$ — произвольная непрерывно дифференцируемая функция от $y$. Подставляем найденное во второе уравнение:
+\[{u'}_y\left(x,y\right)=\frac{-3x^2}{y^4}+h'(y)\]
+\[\frac{-3x^2}{y^4}+h'\left(y\right)=\frac{2}{y^2}-\frac{3x^2}{y^4}\]
+\[h\left(y\right)=-\frac{2}{y}-C\]
+$C$ — произвольная константа.
+
+Тогда решение исходного уравнения
+\[
+x^3+\frac{x^2}{y^3}-\frac{2}{y}=C
+\]
+\end{solution}
+
+
+
+
+
+\question Let $F(x, y) = xy$ and  $G(x, y; a, b) = y + bx - a$.
+
+\begin{parts}
+
+\part[3] For each value of parameters $(a, b)$ find the conditional extremum if it exists, classify it and find the extremal value $F^*(a, b)$.
+
+\begin{solution}
+One may use the Lagrange multiplier method or direct substitution or graphical analysis. There is no extremum for $b=0$. For $b>0$ there is one conditional maximum $(x^*, y^*) = (a/2b, a/2)$. For $b<0$ the same point is the conditional minimum of $F$. The optimal value is $F^*(a, b) = a^2/4b$.
+\end{solution}
+
+\part[4] Find all possible values of $F^*(a, b)$ in the region
+\[
+D_1 = \begin{cases}
+a \geq b \\
+a \in (0, 1) \\
+\end{cases}
+\]
+
+\begin{solution}
+We need to find the range of the fraction $a^2/4b$ in the region $D_1$.
+
+Using negative values of $b$ we may set $F^*$ to arbitrary negative value.
+
+As $a \neq 0$ we note that $F^*$ can't be equal to zero.
+
+Let's consider positive $b$. If it exists, the minimal value of $F^*$ should be when $a=b$. In this case $F^* = b^2/4b=b/4$. We can take arbitrary small value of $b$, so on the line $a=b$ we may reach $F^* \in (0, 1/4)$. If we fix the value of $a$ and consider all $b \leq a$ then $F^* \in [1/4, +\infty)$.
+
+Finally, $F^* \in (-\infty; 0) \cap (0; +\infty)$.
+\end{solution}
+
+
+\part[3] Find all possible values of $F^*(a, b)$ in the region
+\[
+D_2 = \begin{cases}
+a \geq b \\
+a \in (0, 1) \\
+b \geq 0.5 \\
+\end{cases}
+\]
+
+\begin{solution}
+We need to find the range of the fraction $a^2/4b$ in the region $D_2$.
+
+The minimum will be achieved on the line $a=b$, so $F^*_{min} = b^2/4b=b/4$. As $b \geq 0.5$ we see that $F^*_{min} = 1/8$.
+
+The supremum will be achieved for $a=1$ and $b=0.5$, so $F^*_{sup} = a^2/4b=1/2$.
+
+Finally, $F^* \in [1/8; 1/2)$.
+\end{solution}
+
+
+\end{parts}
+
+\newpage
+
+\question
+The island is populated with knights and knaves. Each sentence of a knight is true with probability $0.9$ independently of other sentences. Each sentence of a knave is true with probability $0.2$ independently of other sentences.
+The proportion of knights on the island is equal to $0.7$. You meet one person on the island at random and asked him, whether he is a knight.
+
+
+\begin{parts}
+\part[2] What is the probability that he will say «I am a knight»?
+\begin{solution}
+\[
+\P(B) = 0.7 \cdot 0.9 + 0.3 \cdot 0.8 =  0.87
+\]
+\end{solution}
+
+\part[4] What is the conditional probability that he is a knight given that he said «I am a knight»?
+\begin{solution}
+\[
+\P(A|B) = \frac{\P(A\cap B)}{\P(B)} = \frac{0.7 \cdot 0.9}{0.87} = \frac{63}{87} \approx 0.72
+\]
+\end{solution}
+
+
+\part[4] What is the conditional probability that he is a knight given that he said «I am a knight», paused and said «I am not a knight»?
+\begin{solution}
+\[
+\P(A|C) = \frac{\P(A\cap C)}{\P(C)} = \frac{0.7 \cdot 0.9 \cdot 0.1}{0.7 \cdot 0.9 \cdot 0.1 + 0.3 \cdot 0.2 \cdot 0.8} =
+\frac{63}{111}\approx 0.57
+\]
+\end{solution}
+
+\end{parts}
+
+\question
+The joint density of random variables $X$ and $Y$ is given by the function
+\[
+f(x, y) = \begin{cases}
+x + y, \text{ if } x \in [0; 1], \, y \in [0; 1] \\
+0, \text{ otherwise } \\
+\end{cases}
+\]
+
+\begin{parts}
+\part[2] Are $X$ and $Y$ independent? Give short argument.
+\begin{solution}
+No, the density function can not be represented as a product $f(x,y) \neq f_X(x) f_Y(y)$.
+\end{solution}
+
+\part[4] Find $\P(Y > 2X)$ and $\E(XY)$
+\begin{solution}
+\[
+\P(Y>2X) = \int_0^{1/2} \int_{2x}^1 x+y \, dy \, dx = \int_0^{1/2} x + 0.5 - 4x^2 \, dx = \frac{5}{24}
+\]
+\[
+\E(XY)= \int_0^1 \int_0^1 xy(x + y) \, dx \, dy  = \frac{1}{3}
+\]
+\end{solution}
+
+\part[4] Find marginal density $f_X(x)$ and conditional density $f_{Y|X}(y|x)$
+\begin{solution}
+\[
+f_X(x) = \int_0^1 f(x, y) \, dy =  \begin{cases}
+x + 0.5, \text{ if } x\in [0; 1] \\
+0, \text{ otherwise } \\
+\end{cases}
+\]
+
+\[
+f(y|x)=\frac{f(x, y)}{f_X(x)}= \begin{cases}
+\frac{x+y}{x+0.5}, \text{ if } x \in [0; 1], \, y \in [0; 1] \\
+0, \text{ otherwise } \\
+\end{cases}
+\]
+\end{solution}
+
+
+
+
+\end{parts}
+
+
+
+\question Boris loves hunting Pokemons. Today he randomly captured three Pokemons.
+
+Boris has sorted Pokemons by their height in ascending order and obtained their ranks $H_i$. The lowest Pokemon gets the rank $H_i = 1$, the tallest gets the rank $H_i = 3$. After sorting Pokemons by their combat power Boris obtained the ranks $C_i$ in the same manner. Height and combat power of Pokemons are continuously distributed, so ties are impossible.
+
+Boris would like to test the hypothesis $H_0$: height and combat power are independent. He calculates $\hat \rho$, sample Pearson correlation coefficient between ranks $C_i$ and $H_i$.
+
+\begin{parts}
+\part[6] Find the distribution of $\hat \rho$ under $H_0$, that is find all possible values of $\hat \rho$ and their probabilities.
+\begin{solution}
+Let's sort Pokemons by $H_i$ and consider possible orderings of $C_i$:
+
+\begin{tabular}{ccc}
+\toprule
+Ordering of $C_i$ & Value of $\hat\rho$ & Probability \\
+\midrule
+1, 2, 3             &      $1$        &  $1/6$  \\
+1, 3, 2             &      $0.5$        &  $1/6$  \\
+2, 1, 3             &      $0.5$        &  $1/6$  \\
+3, 2, 1             &      $-1$        &  $1/6$  \\
+2, 3, 1             &      $-0.5$        &  $1/6$  \\
+3, 1, 2             &      $-0.5$        &  $1/6$  \\
+\bottomrule
+\end{tabular}
+
+So the distribution of $\hat\rho$ is
+
+\begin{tabular}{ccccc}
+\toprule
+$\hat\rho$ & $-1$ & $-0.5$ & $0.5$ & $1$ \\
+Probability & $1/6$ & $2/6$ & $2/6$ & $1/6$ \\
+\bottomrule
+\end{tabular}
+
+\end{solution}
+
+\part[4] Find the minimal threshold value $\rho^*$ that will be exceeded by $\hat\rho$ with probability less or equal to $0.2$ under $H_0$.
+
+\begin{solution}
+  From the distribution table we find that $\rho^* = 0.5$. Indeed $\P(\hat \rho > 0.5) = 1/6 \leq 0.2$. The value of $\rho^*$ can't be decreased further as probability would jump to $3/6$.
+\end{solution}
+\end{parts}
+
+
+\question[10]
+
+You estimated two models using $47$ observations:
+
+\begin{enumerate}
+\item[A.]  $\hat y_i=40+0.3x_i+0.8z_i-1.8w_i$, $R^2=0.82$
+
+\item[B.]  $\hat y_i=65+0.6x_i+0.51z_i$, $R^2=0.7$
+\end{enumerate}
+
+Test the hypothesis $\beta_w=-1$ against $\beta_w \ne -1$ on 5\% significance level. Here $\beta_w$ is the coefficient before the variable $w$  in the first regression.
+
+\begin{solution}
+
+Поскольку необходимо проверить гипотезу, что $\beta_w=-1$, то необходимо использовать $t$-тест ($F$-тест для проверки одной гипотезы эквивалентен $t$-статистике в квадрате). Необходимая $t$-статистика рассчитывается по формуле $\frac{\hat{\beta}_{w} +1}{se(\hat{\beta }_{w} )}$, где нам не известен знаменатель.
+
+Теперь обратимся к условию. Вторая модель является ограниченной (restricted) версией первой модели при ограничении $\beta_w=0$. Поэтому на основе данных об $R^2$ можно проверить гипотезу $\beta_w=0$ с помощью соответствующего $F$-теста. $F=\frac{(R_{UR}^{2} -R_{R}^{2} )/q}{(1-R_{UR}^{2} )/(n-k)} =\frac{(0.82-0.7)/1}{(1-0.82)/(47-4)} =\frac{0.12}{0.18/43} =29.27$.
+
+Как было сказано выше для тестирования одного ограничения $F(1,n-k)=t_{n-k}^{2} $, следовательно $t_{43} =-5.41$. Мы берём отрицательное значение, так как сама оценка коэффициента отрицательная. Отсюда можно получить $se(\hat{\beta }_{w} )$, так как $\frac{\hat{\beta }_{w} }{se(\hat{\beta }_{w} )} =-5.41$, следовательно
+\[
+se(\hat{\beta }_{w} )=\frac{\hat{\beta }_{w} }{-5.41} =\frac{-1.8}{-5.41} =0.333.
+\]
+Исходя из полученных значений, необходимая $t$-статистика равна $\frac{-1.8+1}{0.333} =-2.403$. Критическое значение равно  $-2.018$, соответственно нулевая гипотеза отвергается на 5\% уровне значимости.
+\end{solution}
+
+
+
+
+\end{questions}
+
+
 
 
 

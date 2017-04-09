@@ -1,7 +1,7 @@
-# makefile: tex -> pdf
+# makefile: Rnw -> tex -> pdf
 # v 2.0
 # .Rnw extension is automatically added
-file_name = premaster_exam_collection
+file_name = premaster_17_demo
 
 $(file_name).pdf: $(file_name).tex
 	# protection against biber error

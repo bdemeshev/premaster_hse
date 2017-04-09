@@ -1,0 +1,120 @@
+---
+title: "Olympiad problem. Econometrics"
+output: word_document
+---
+
+Researcher John Smith estimated two models for Fertility using a data set on socio-economic indicators of Swizerland at about 1888 (47 observations): 
+
+```{r, include=FALSE}
+library("pander")
+library("memisc")
+library("dplyr")
+mod_r <- lm(data=swiss, Fertility~Agriculture)
+mod_ur <- lm(data=swiss, Fertility~Agriculture+Catholic+Education)
+```
+
+```{r, results='asis', echo=FALSE}
+a <- mtable("Model 1"=mod_r, "Model 2"=mod_ur, 
+       coef.style = "horizontal", 
+       summary.stats=c("R-squared","N", "Deviance")) 
+small_table <- data_frame(
+  `Variable` = c("(Intercept)","Agriculture", "Catholic", "Education", "R^2", "RSS"), 
+  `Model 1`= c("60.304 (4.251)", "0.194 (0.077)", "", "", "0.1", "6283.1"), 
+  `Model 2`= c("86.225 (4.735)", "-0.203 (0.071)", "0.145 (0.030)", "-1.072 (0.156)", "0.6", "2567.9") )
+colnames(small_table)[1] <- ""
+
+small_table %>% pander()
+```
+
+Fertility - (dependent variable) standardized female fertility measure, Agriculture - percentage of males involved in agriculture, Education - percentage of educated beyond primary school for draftees, Catholic - percentage of catholic people, (standard errors are in parenthesis). 
+
+Estimate of covariance matrix for Model 1:
+```{r, echo=FALSE}
+vcov(mod_r) %>% pander()
+```
+
+
+1. [4 pts] Find a 95\% confindence interval for coefficient before Agriculture in Model 2. 
+
+2. [6 pts] Using appropriate test compare the two models at 5\% significance level. Clearly state the null and alternative hypothesis.
+
+3. [10 pts] Find 95\% predictive interval for fertility in Model 1 for a region with 50\% of males involved in agriculture as occupation.
+
+
+Solution:
+
+Arithmetics errors cost [-1 pt] for each error. 
+
+Part 1.
+
+General formula for confidence interval [+3 pts]:
+
+\[
+[\hat{\beta} - t_{cr}se(\hat{\beta}); \hat{\beta} + t_{cr}se(\hat{\beta}) ]
+\]
+
+Critical value $t_{cr}$: either approximate (2) or from statistical table for $t_{43}$ (2.0167) or for $N(0;1)$ (1.96) --- all are considered correct [+1 pt]
+
+Final answer (considered correct if two decimal digits after point coincide):  [-0.34; -0.06]
+
+Part 2.
+
+Statement of hyphothesis: [1 pt]:
+
+$H_0$: Model 1 is true OR ($\beta_{catholic}=\beta_{education}=0$)
+
+$H_a$: Model 1 is false, but Model 2 is true OR (at least one of $\beta_{catholic}$ or $\beta_{education}$ is not equal to zero)
+
+Observed value of F-statistic [3 pts]
+
+\[
+F_{obs}=\frac{(R^2_2 - R^1_2)/2}{(1-R^2_2)/(47-4)} \approx 26.9
+\]
+
+Critical value for F-statistic [1 pt]
+
+$F_{cr, 2, 43}=3.21$
+
+Statistical conclusion [1 pt]
+
+$H_0$ is rejected.
+
+Part 3.
+
+Point prediction: [+1 pt]
+
+\[
+\hat y_{n+1} = 60.304+50\cdot 0.194 = 70
+\]
+
+Estimation of standard error of regression $\hat{\sigma}^2$: [+2 pts]
+
+\[
+\hat{\sigma}^2 = \frac{RSS}{n-k}=\frac{6283}{46-2}=139.6
+\]
+
+
+Formula for estimate of variance of forecast: [+2 pts]
+\[
+se^2(\hat{\beta}_1 + \hat{\beta}_2 \cdot 50) = se^2(\hat{\beta}_1) + 50^2 se^2(\hat{\beta}_2) + 2\cdot 50\cdot \widehat{Cov}(\hat{\beta}_1, \hat{\beta}_2) \approx 2.97
+\]
+
+Formula for estimate of forecast variance [+2 pts]
+
+\[
+se^2(\hat{y}_{n+1}-y_{n+1})=se^2(\hat{\beta}_1 + \hat{\beta}_2 \cdot 50) + \hat{\sigma}^2 = 2.97 + 139.6 \approx 146
+\]
+
+Formula for predictive interval [+2 pts]
+
+\[
+[\hat{y}_{n+1} - t_{cr}se(\hat{y}_{n+1}-y_{n+1}); \hat{y}_{n+1} + t_{cr}se(\hat{y}_{n+1}-y_{n+1}) ]
+\]
+
+Critical value of t-statistic: either approximate (2) or from statistical table for $t_{45}$ (2.0141) or for $N(0;1)$ (1.96) - all are considered correct [+1 pt]
+
+Final answer: [46; 94] (plus-minus 1 is considered ok)
+
+
+
+

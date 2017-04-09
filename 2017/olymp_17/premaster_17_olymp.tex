@@ -1,0 +1,544 @@
+\documentclass[addpoints, answers]{exam} % добавить или удалить answers в скобках, чтобы показать ответы
+% \documentclass[addpoints]{exam} % добавить или удалить answers в скобках, чтобы показать ответы
+
+% DONE: 1, 2, 5, 6, 7, 8, 9, 10
+
+
+\usepackage[utf8]{inputenc}
+\usepackage[british, russian]{babel}
+%\usepackage[OT1]{fontenc}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{comment}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\Var}{\mathbb{V}\mathrm{ar}}
+\DeclareMathOperator{\Cov}{\mathbb{C}\mathrm{ov}}
+\DeclareMathOperator{\Corr}{\mathbb{C}\mathrm{orr}}
+\DeclareMathOperator{\sgn}{sign}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\rank}{rank}
+
+\let\P\relax
+\DeclareMathOperator{\P}{\mathbb{P}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\hbeta}{\hat{\beta}}
+\newcommand{\hb}{\hbeta}
+
+\usepackage{floatrow}
+%\newfloatcommand{capbtabbox}{table}[][\FBwidth]
+
+\usepackage{lastpage}
+
+%\usepackage{fancyhdr} % весёлые колонтитулы
+%\pagestyle{fancy}
+\lhead{Higher School of Economics}
+\chead{}
+\rhead{Maths for economists, olympiad 2017}
+\lfoot{}
+\cfoot{}
+\rfoot{\thepage/\pageref{LastPage}}
+%\renewcommand{\headrulewidth}{0.4pt}
+%\renewcommand{\footrulewidth}{0.4pt}
+
+
+
+
+\begin{document}
+
+
+
+
+
+
+
+\hqword{Problem}
+\hpgword{Page}
+\hpword{Maximum}
+\hsword{Points}
+\htword{Total}
+\pointname{\%}
+%\renewcommand{\solutiontitle}{\noindent\textbf{Решение:}\par\noindent}
+\renewcommand{\solutiontitle}{}
+
+The table below is for grading. Please, leave it blank :)
+\begin{center}
+  \gradetable[h][questions]
+\end{center}
+
+You may write your solutions in Russian or in English.
+
+\begin{flushright}
+Good luck!
+\end{flushright}
+
+
+\begin{questions}
+
+\question[10] Evaluate the following limit:
+
+\[
+\lim_{x \to \infty} \left( \sqrt{x+\sqrt{x}} - \sqrt{x} \right).
+\]
+
+\begin{solution}
+
+The function may be written in the following way $\sqrt{x+\sqrt{x}} - \sqrt{x} = \sqrt{x} \left( \sqrt{1+x^{-1/2}} -1 \right)$. Using substituion $x^{-1/2} = y$ one may find the Taylor expansion of the expression inside brackets. This will give \textbf{(7 points)}
+\[
+\sqrt{x} \left( \left( 1+\frac{1}{2} \sqrt{\frac{1}{x}} + o \left(\sqrt{\frac{1}{x}}\right) \right) -1 \right).
+\]
+
+The limit is equal to \textbf{(3 points)}
+
+\[
+\lim_{x \to \infty} \sqrt{x} \left( \frac{1}{2} \sqrt{\frac{1}{x}} + o \left(\sqrt{\frac{1}{x}} \right) \right) = \frac{1}{2}.
+\]
+
+There is also another approach: multiply and divide by conjugate expression $\sqrt{x + \sqrt{x}} + \sqrt{x}$. Idea is worth \textbf{(5 points)}. All the rest is worth \textbf{(5 points)}.
+
+\end{solution}
+
+\question[10] Let $D(x)$ be so-called Dirichlet function, which equals 1 if its argument is rational and 0 otherwise, and let $k$ be a natural number.
+
+Prove that the function $x^k D(x)$ is nowhere differentiable if $k=1$ and is differentiable only at $x=0$ if $k=2017$.
+
+\begin{solution}
+
+For every $k$ the function $x^k D(x)$ is continuous only at $x=0$. To see it one may sketch the graph of the function. So the function is not differentiable for $x\neq 0$. \textbf{(3 points)}
+
+Let's consider the derivative at $x=0$ for $k=1$:
+
+\[
+\lim_{\Delta x \to 0} \frac{\Delta x D(\Delta x) - 0 \cdot D(0)}{\Delta x} = \lim_{\Delta x \to 0} D(\Delta x).
+\]
+
+If all $\Delta x$ are rational then $D(\Delta x)=1$.  If all $\Delta x$ are irrational then $D(\Delta x)=0$. The derivative does not exist at $x=0$. \textbf{(3 points)}
+
+Let's consider the derivative at $x=0$ for $k=1$:
+
+\[
+\lim_{\Delta x \to 0} \frac{\Delta x^{2017} D(\Delta x) - 0 \cdot D(0)}{\Delta x} = \lim_{\Delta x \to 0} \Delta x^{2016} D(\Delta x).
+\]
+
+As  $D(\Delta x)$ is bounded and $\Delta x^{2016}$ tends to zero, their product tends to zero. So, the limit exists and the function is differentiable at $x=0$. \textbf{(4 points)}
+
+\end{solution}
+
+
+\question The matrices $A$ and $B$ are symmetric $3 \times 3$ matrices. Eigenvalues of the matrix $A$ are $\lambda^A_1 = 4, \lambda^A_2 = 2, \lambda^A_3 = 1$, eigenvalues of the matrix $B$ are $\lambda^B_1 = 11, \lambda^B_2 = 5, \lambda^B_3 = 1$.
+
+\begin{parts}
+
+\part[2] Find the trace (the sum of diagonal elements) of the matrix $A+B$.
+\begin{solution}
+
+We note that $\tr(A+B) = \tr(A) + \tr(B)$. Hence,
+\[
+\tr(A+B) = \sum_{i = 1}^3 \lambda^A_i + \sum_{i = 1}^3 \lambda^B_i = 7 + 17 = 24
+\]
+
+\end{solution}
+
+\part[3]
+Let the matrix $C$ be $3 \times 3$ matrix with $\det(C) = 1$. Find $\tr(C^{-1} A C)$.
+\begin{solution}
+
+Using the properties of trace, we get: $\tr(C^{-1} A C) = \tr(A C^{-1} C) = \tr(A) = 7$.
+
+\end{solution}
+
+\part[5] Prove that $\tr(A^k) = \sum_i \lambda_i^k$.
+\begin{solution}
+
+Diagonalize the matrix $A$: $A = P \Lambda P^{-1}$, where $P$ — the matrix of eigenvectors, $\Lambda$ — the diagonal matrix with eigenvalues on the diagonal. Hence, $A^k = P \Lambda^k P^{-1}$, where $\Lambda^k$ — diagonal matrix with k-th powers of eigenvalues on the diagonal. Then $\tr(A^k) = \tr(P \Lambda^k P^{-1}) = \tr(\Lambda^k) = \sum_i \lambda_i^k$.
+
+\end{solution}
+
+\end{parts}
+
+
+
+
+\question Consider the matrix
+\[
+A = \begin{pmatrix}
+-1 & 2 & 0\\
+0 & 1 & 0\\
+-18 & 18 & 8
+\end{pmatrix}.
+\]
+
+
+\begin{parts}
+
+\part[4] Find the eigenvalues and eigenvectors of matrix $A$.
+\begin{solution}
+
+$ det(A - \lambda I) = (1 - \lambda) (-1 - \lambda) (8 - \lambda) = 0$. Therefore, eigenvalues: $\lambda_1 = 1, \lambda_2 = -1, \lambda_3 = 8$. Eigenvectors are $v_1 = (1, 1, 0), v_2 = (1, 0, 2), v_3 = (0, 0, 1)$ respectively.
+
+\end{solution}
+
+\part[6] Find the matrix $A^{1/3}$.  By definition, $A^{1/3}$ is such a matrix that $(A^{1/3})^3 = A$.
+\begin{solution}
+
+Diagonalize matrix $A$: $A = P \Lambda P^{-1}$, where $P$ — matrix of eigenvectors, $\Lambda$ — diagonal matrix with eigenvalues on the diagonal.
+$P = \begin{pmatrix}
+1 & 1 & 0\\
+1 & 0 & 0\\
+0 & 2 & 1
+\end{pmatrix}
+$,
+$P^{-1} = \begin{pmatrix}
+0 & 1 & 0\\
+1 & -1 & 0\\
+-2 & 2 & 1
+\end{pmatrix}
+$,
+$A^{1/3} = P \Lambda^{1/3} P^{-1}$, where $\Lambda^{1/3}$ is a diagonal matrix with $\lambda^{1/3}$ on the diagonal. Hence,
+\[
+A^{1/3} = \begin{pmatrix}
+1 & 1 & 0\\
+1 & 0 & 0\\
+0 & 2 & 1
+\end{pmatrix}
+\begin{pmatrix}
+1 & 0 & 0\\
+0 & -1 & 0\\
+0 & 0 & 2
+\end{pmatrix}
+\begin{pmatrix}
+0 & 1 & 0\\
+1 & -1 & 0\\
+-2 & 2 & 1
+\end{pmatrix} =
+\begin{pmatrix}
+-1 & 2 & 0\\
+0 & 1 & 0\\
+-6 & 6 & 2
+\end{pmatrix}.
+\]
+
+
+\end{solution}
+
+\end{parts}
+
+
+
+
+\question[10] Solve the  differential equation:
+
+\[
+(3x^2y^4+2xy) \, dx + (2y^2-3x^2) \, dy = 0
+\]
+
+
+\begin{solution}
+Заметим, что $y=0$ является решением уравнения. Запомнив это, поделим левую и правую часть исходного уравнения на $y^4$. Это интегрирующий множитель. Полученное уравнение имеет вид:
+\[\left(3x^2+\frac{2x}{y^3}\right)dx+\left(\frac{2}{y^2}-\frac{3x^2}{y^4}\right)dy=0\]
+Тогда, если $P\left(x,y\right)=\left(3x^2+\frac{2x}{y^3}\right)$ и $Q\left(x,y\right)=\left(\frac{2}{y^2}-\frac{3x^2}{y^4}\right)$, то $\frac{\partial P}{\partial y}=\frac{\partial Q}{\partial x}=-6\frac{x}{y^4}$. Имеем уравнение в полных дифференциалах.
+
+Составляем и решаем систему уравнений для нахождения потенциала $u(x,y)$:
+\[
+\begin{cases}
+\frac{\partial u}{\partial x}=3x^2+\frac{2x}{y^3} \\
+\frac{\partial u}{\partial x}=\frac{2}{y^2}-\frac{3x^2}{y^4}.
+\end{cases}
+\]
+Из первого уравнения находим, что $u\left(x,y\right)=x^3+\frac{x^2}{y^3}+h(y)$, где $h(y)$ — произвольная непрерывно дифференцируемая функция от $y$. Подставляем найденное во второе уравнение:
+\[{u'}_y\left(x,y\right)=\frac{-3x^2}{y^4}+h'(y)\]
+\[\frac{-3x^2}{y^4}+h'\left(y\right)=\frac{2}{y^2}-\frac{3x^2}{y^4}\]
+\[h\left(y\right)=-\frac{2}{y}-C\]
+$C$ — произвольная константа.
+
+Тогда решение исходного уравнения
+\[
+x^3+\frac{x^2}{y^3}-\frac{2}{y}=C
+\]
+\end{solution}
+
+
+
+
+
+\question Let $F(x, y) = xy$ and  $G(x, y; a, b) = y + bx - a$.
+
+\begin{parts}
+
+\part[3] For each value of parameters $(a, b)$ find the conditional extremum if it exists, classify it and find the extremal value $F^*(a, b)$.
+
+\begin{solution}
+One may use the Lagrange multiplier method or direct substitution or graphical analysis. There is no extremum for $b=0$. For $b>0$ there is one conditional maximum $(x^*, y^*) = (a/2b, a/2)$. For $b<0$ the same point is the conditional minimum of $F$. The optimal value is $F^*(a, b) = a^2/4b$.
+\end{solution}
+
+\part[4] Find all possible values of $F^*(a, b)$ in the region
+\[
+D_1 = \begin{cases}
+a \geq b \\
+a \in (0, 1) \\
+\end{cases}
+\]
+
+\begin{solution}
+We need to find the range of the fraction $a^2/4b$ in the region $D_1$.
+
+Using negative values of $b$ we may set $F^*$ to arbitrary negative value.
+
+As $a \neq 0$ we note that $F^*$ can't be equal to zero.
+
+Let's consider positive $b$. If it exists, the minimal value of $F^*$ should be when $a=b$. In this case $F^* = b^2/4b=b/4$. We can take arbitrary small value of $b$, so on the line $a=b$ we may reach $F^* \in (0, 1/4)$. If we fix the value of $a$ and consider all $b \leq a$ then $F^* \in [1/4, +\infty)$.
+
+Finally, $F^* \in (-\infty; 0) \cap (0; +\infty)$.
+\end{solution}
+
+
+\part[3] Find all possible values of $F^*(a, b)$ in the region
+\[
+D_2 = \begin{cases}
+a \geq b \\
+a \in (0, 1) \\
+b \geq 0.5 \\
+\end{cases}
+\]
+
+\begin{solution}
+We need to find the range of the fraction $a^2/4b$ in the region $D_2$.
+
+The minimum will be achieved on the line $a=b$, so $F^*_{min} = b^2/4b=b/4$. As $b \geq 0.5$ we see that $F^*_{min} = 1/8$.
+
+The supremum will be achieved for $a=1$ and $b=0.5$, so $F^*_{sup} = a^2/4b=1/2$.
+
+Finally, $F^* \in [1/8; 1/2)$.
+\end{solution}
+
+
+\end{parts}
+
+\newpage
+
+\question
+The island is populated with knights and knaves. Each sentence of a knight is true with probability $0.9$ independently of other sentences. Each sentence of a knave is true with probability $0.2$ independently of other sentences.
+The proportion of knights on the island is equal to $0.7$. You meet one person on the island at random and asked him, whether he is a knight.
+
+
+\begin{parts}
+\part[2] What is the probability that he will say «I am a knight»?
+\begin{solution}
+\[
+\P(B) = 0.7 \cdot 0.9 + 0.3 \cdot 0.8 =  0.87
+\]
+\end{solution}
+
+\part[4] What is the conditional probability that he is a knight given that he said «I am a knight»?
+\begin{solution}
+\[
+\P(A|B) = \frac{\P(A\cap B)}{\P(B)} = \frac{0.7 \cdot 0.9}{0.87} = \frac{63}{87} \approx 0.72
+\]
+\end{solution}
+
+
+\part[4] What is the conditional probability that he is a knight given that he said «I am a knight», paused and said «I am not a knight»?
+\begin{solution}
+\[
+\P(A|C) = \frac{\P(A\cap C)}{\P(C)} = \frac{0.7 \cdot 0.9 \cdot 0.1}{0.7 \cdot 0.9 \cdot 0.1 + 0.3 \cdot 0.2 \cdot 0.8} =
+\frac{63}{111}\approx 0.57
+\]
+\end{solution}
+
+\end{parts}
+
+\question
+The joint density of random variables $X$ and $Y$ is given by the function
+\[
+f(x, y) = \begin{cases}
+x + y, \text{ if } x \in [0; 1], \, y \in [0; 1] \\
+0, \text{ otherwise } \\
+\end{cases}
+\]
+
+\begin{parts}
+\part[2] Are $X$ and $Y$ independent? Give short argument.
+\begin{solution}
+No, the density function can not be represented as a product $f(x,y) \neq f_X(x) f_Y(y)$.
+\end{solution}
+
+\part[4] Find $\P(Y > 2X)$ and $\E(XY)$
+\begin{solution}
+\[
+\P(Y>2X) = \int_0^{1/2} \int_{2x}^1 x+y \, dy \, dx = \int_0^{1/2} x + 0.5 - 4x^2 \, dx = \frac{5}{24}
+\]
+\[
+\E(XY)= \int_0^1 \int_0^1 xy(x + y) \, dx \, dy  = \frac{1}{3}
+\]
+\end{solution}
+
+\part[4] Find marginal density $f_X(x)$ and conditional density $f_{Y|X}(y|x)$
+\begin{solution}
+\[
+f_X(x) = \int_0^1 f(x, y) \, dy =  \begin{cases}
+x + 0.5, \text{ if } x\in [0; 1] \\
+0, \text{ otherwise } \\
+\end{cases}
+\]
+
+\[
+f(y|x)=\frac{f(x, y)}{f_X(x)}= \begin{cases}
+\frac{x+y}{x+0.5}, \text{ if } x \in [0; 1], \, y \in [0; 1] \\
+0, \text{ otherwise } \\
+\end{cases}
+\]
+\end{solution}
+
+
+
+
+\end{parts}
+
+
+
+\question Boris loves hunting Pokemons. Today he randomly captured three Pokemons.
+
+Boris has sorted Pokemons by their height in ascending order and obtained their ranks $H_i$. The lowest Pokemon gets the rank $H_i = 1$, the tallest gets the rank $H_i = 3$. After sorting Pokemons by their combat power Boris obtained the ranks $C_i$ in the same manner. Height and combat power of Pokemons are continuously distributed, so ties are impossible.
+
+Boris would like to test the hypothesis $H_0$: height and combat power are independent. He calculates $\hat \rho$, sample Pearson correlation coefficient between ranks $C_i$ and $H_i$.
+
+\begin{parts}
+\part[6] Find the distribution of $\hat \rho$ under $H_0$, that is find all possible values of $\hat \rho$ and their probabilities.
+\begin{solution}
+Let's sort Pokemons by $H_i$ and consider possible orderings of $C_i$:
+
+\begin{tabular}{ccc}
+\toprule
+Ordering of $C_i$ & Value of $\hat\rho$ & Probability \\
+\midrule
+1, 2, 3             &      $1$        &  $1/6$  \\
+1, 3, 2             &      $0.5$        &  $1/6$  \\
+2, 1, 3             &      $0.5$        &  $1/6$  \\
+3, 2, 1             &      $-1$        &  $1/6$  \\
+2, 3, 1             &      $-0.5$        &  $1/6$  \\
+3, 1, 2             &      $-0.5$        &  $1/6$  \\
+\bottomrule
+\end{tabular}
+
+So the distribution of $\hat\rho$ is
+
+\begin{tabular}{ccccc}
+\toprule
+$\hat\rho$ & $-1$ & $-0.5$ & $0.5$ & $1$ \\
+Probability & $1/6$ & $2/6$ & $2/6$ & $1/6$ \\
+\bottomrule
+\end{tabular}
+
+\end{solution}
+
+\part[4] Find the minimal threshold value $\rho^*$ that will be exceeded by $\hat\rho$ with probability less or equal to $0.2$ under $H_0$.
+
+\begin{solution}
+  From the distribution table we find that $\rho^* = 0.5$. Indeed $\P(\hat \rho > 0.5) = 1/6 \leq 0.2$. The value of $\rho^*$ can't be decreased further as probability would jump to $3/6$.
+\end{solution}
+\end{parts}
+
+
+\question[10]
+
+You estimated two models using $47$ observations:
+
+\begin{enumerate}
+\item[A.]  $\hat y_i=40+0.3x_i+0.8z_i-1.8w_i$, $R^2=0.82$
+
+\item[B.]  $\hat y_i=65+0.6x_i+0.51z_i$, $R^2=0.7$
+\end{enumerate}
+
+Test the hypothesis $\beta_w=-1$ against $\beta_w \ne -1$ on 5\% significance level. Here $\beta_w$ is the coefficient before the variable $w$  in the first regression.
+
+\begin{solution}
+
+Поскольку необходимо проверить гипотезу, что $\beta_w=-1$, то необходимо использовать $t$-тест ($F$-тест для проверки одной гипотезы эквивалентен $t$-статистике в квадрате). Необходимая $t$-статистика рассчитывается по формуле $\frac{\hat{\beta}_{w} +1}{se(\hat{\beta }_{w} )}$, где нам не известен знаменатель.
+
+Теперь обратимся к условию. Вторая модель является ограниченной (restricted) версией первой модели при ограничении $\beta_w=0$. Поэтому на основе данных об $R^2$ можно проверить гипотезу $\beta_w=0$ с помощью соответствующего $F$-теста. $F=\frac{(R_{UR}^{2} -R_{R}^{2} )/q}{(1-R_{UR}^{2} )/(n-k)} =\frac{(0.82-0.7)/1}{(1-0.82)/(47-4)} =\frac{0.12}{0.18/43} =29.27$.
+
+Как было сказано выше для тестирования одного ограничения $F(1,n-k)=t_{n-k}^{2} $, следовательно $t_{43} =-5.41$. Мы берём отрицательное значение, так как сама оценка коэффициента отрицательная. Отсюда можно получить $se(\hat{\beta }_{w} )$, так как $\frac{\hat{\beta }_{w} }{se(\hat{\beta }_{w} )} =-5.41$, следовательно
+\[
+se(\hat{\beta }_{w} )=\frac{\hat{\beta }_{w} }{-5.41} =\frac{-1.8}{-5.41} =0.333.
+\]
+Исходя из полученных значений, необходимая $t$-статистика равна $\frac{-1.8+1}{0.333} =-2.403$. Критическое значение равно  $-2.018$, соответственно нулевая гипотеза отвергается на 5\% уровне значимости.
+\end{solution}
+
+
+
+
+\end{questions}
+
+
+\begin{comment}
+
+\begin{figure}[b]
+\caption{Distribution function of a standard normal random variable}
+  \begin{minipage}[b]{0.35\linewidth}
+    \centering
+    \begin{tikzpicture}
+% define normal distribution function 'normaltwo'
+    \def\normaltwo{\x,{4*1/exp(((\x-3)^2)/2)}}
+
+% input y parameter
+    \def\y{4.4}
+
+% this line calculates f(y)
+    \def\fy{4*1/exp(((\y-3)^2)/2)}
+
+% Shade orange area underneath curve.
+    \fill [fill=gray!30] (2.6,0) -- plot[domain=0:4.4] (\normaltwo) -- ({\y},0) -- cycle;
+
+% Draw and label normal distribution function
+    \draw[domain=0:6] plot (\normaltwo) node[right] {};
+
+% Add dashed line dropping down from normal.
+    \draw[dashed] ({\y},{\fy}) -- ({\y},0) node[below] {$x$};
+
+% Optional: Add axis labels
+%    \draw (-.2,2.5) node[left] {$f_Y(u)$};
+    \draw (3,2) node[below] {$F(x)$};
+
+% Optional: Add axes
+    \draw[->] (0,0) -- (6.2,0) node[right] {};
+%    \draw[->] (0,0) -- (0,5) node[above] {};
+
+\end{tikzpicture}
+%    \rule{6cm}{6cm} %to simulate an actual figure
+\par\vspace{0pt}
+  \end{minipage}%
+  \begin{minipage}[b]{0.60\linewidth}
+    \centering
+\begin{tabular}{rr|rr|rr|rr}
+  \hline
+$x$ & $F(x)$ & $x$ & $F(x)$ & $x$ & $F(x)$ & $x$ & $F(x)$ \\
+  \hline
+0.050 & 0.520 & 0.750 & 0.773 & 1.450 & 0.926 & 2.150 & 0.984 \\
+  0.100 & 0.540 & 0.800 & 0.788 & 1.500 & 0.933 & 2.200 & 0.986 \\
+  0.150 & 0.560 & 0.850 & 0.802 & 1.550 & 0.939 & 2.250 & 0.988 \\
+  0.200 & 0.579 & 0.900 & 0.816 & 1.600 & 0.945 & 2.300 & 0.989 \\
+  0.250 & 0.599 & 0.950 & 0.829 & 1.650 & 0.951 & 2.350 & 0.991 \\
+  0.300 & 0.618 & 1.000 & 0.841 & 1.700 & 0.955 & 2.400 & 0.992 \\
+  0.350 & 0.637 & 1.050 & 0.853 & 1.750 & 0.960 & 2.450 & 0.993 \\
+  0.400 & 0.655 & 1.100 & 0.864 & 1.800 & 0.964 & 2.500 & 0.994 \\
+  0.450 & 0.674 & 1.150 & 0.875 & 1.850 & 0.968 & 2.550 & 0.995 \\
+  0.500 & 0.691 & 1.200 & 0.885 & 1.900 & 0.971 & 2.600 & 0.995 \\
+  0.550 & 0.709 & 1.250 & 0.894 & 1.950 & 0.974 & 2.650 & 0.996 \\
+  0.600 & 0.726 & 1.300 & 0.903 & 2.000 & 0.977 & 2.700 & 0.997 \\
+  0.650 & 0.742 & 1.350 & 0.911 & 2.050 & 0.980 & 2.750 & 0.997 \\
+  0.700 & 0.758 & 1.400 & 0.919 & 2.100 & 0.982 & 2.800 & 0.997 \\
+   \hline
+\end{tabular}
+\par\vspace{0pt}
+\end{minipage}
+\label{fig:test}
+\end{figure}
+
+\end{comment}
+
+
+\end{document}
