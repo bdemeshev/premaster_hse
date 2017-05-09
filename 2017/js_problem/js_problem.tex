@@ -1,0 +1,149 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath, amssymb}
+\usepackage{tikz} % картинки в tikz
+\usepackage{microtype} % свешивание пунктуации
+
+\usepackage{array} % для столбцов фиксированной ширины
+
+\usepackage{indentfirst} % отступ в первом параграфе
+
+\usepackage{sectsty} % для центрирования названий частей
+\allsectionsfont{\centering}
+
+\usepackage{verbatim}
+\usepackage{amsmath} % куча стандартных математических плюшек
+
+\usepackage[top=2cm, left=1.5cm, right=1.5cm, bottom=2cm]{geometry} % размер текста на странице
+
+\usepackage{lastpage} % чтобы узнать номер последней страницы
+
+\usepackage{enumitem} % дополнительные плюшки для списков
+%  например \begin{enumerate}[resume] позволяет продолжить нумерацию в новом списке
+\usepackage{caption}
+
+
+\usepackage{fancyhdr} % весёлые колонтитулы
+\pagestyle{fancy}
+\lhead{Задачка про парадокс Джеймса-Штейна}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+
+\usepackage{todonotes} % для вставки в документ заметок о том, что осталось сделать
+% \todo{Здесь надо коэффициенты исправить}
+% \missingfigure{Здесь будет Последний день Помпеи}
+% \listoftodos — печатает все поставленные \todo'шки
+
+
+% более красивые таблицы
+\usepackage{booktabs}
+% заповеди из докупентации:
+% 1. Не используйте вертикальные линни
+% 2. Не используйте двойные линии
+% 3. Единицы измерения - в шапку таблицы
+% 4. Не сокращайте .1 вместо 0.1
+% 5. Повторяющееся значение повторяйте, а не говорите "то же"
+
+
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+
+\setmainlanguage{russian}
+\setotherlanguages{english}
+
+% download "Linux Libertine" fonts:
+% http://www.linuxlibertine.org/index.php?id=91&L=1
+\setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% why do we need \newfontfamily:
+% http://tex.stackexchange.com/questions/91507/
+\newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+\setlist[enumerate, 2]{label=\asbuk*),ref=\asbuk*}
+
+%% эконометрические сокращения
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\E}{E}
+\def \hb{\hat{\beta}}
+\def \hs{\hat{\sigma}}
+\def \htheta{\hat{\theta}}
+\def \s{\sigma}
+\def \hy{\hat{y}}
+\def \hY{\hat{Y}}
+\def \v1{\vec{1}}
+\def \e{\varepsilon}
+\def \he{\hat{\e}}
+\def \z{z}
+\def \hVar{\widehat{\Var}}
+\def \hCorr{\widehat{\Corr}}
+\def \hCov{\widehat{\Cov}}
+\def \cN{\mathcal{N}}
+
+
+\begin{document}
+
+Макс и Нюша хотят оценить три неизвестные константы, $\mu_1$, $\mu_2$ и $\mu_3$. К несчастью, у них всего три независимых наблюдения: $X_1 \sim \cN(\mu_1, 1)$, $X_2 \sim \cN(\mu_2, 1)$ и $X_3 \sim \cN(\mu_3, 1)$.
+
+Поскольку оценить важно все три константы, Макс и Нюша хотят, чтобы оценки минимизировали общую величину риска $R=\E((\hat\mu_1 - \mu_1)^2 + (\hat\mu_2 - \mu_2)^2 + (\hat\mu_3 - \mu_3)^2)$.
+
+Максим использует метод максимального правдоподобия для получения вектор-столбца оценок $\hat\mu^{ML}$. А Нюша просто любит число ноль, поэтому использует оценку $\hat \mu^{N} = \alpha \cdot 0 + (1-\alpha) \hat\mu^{ML}$, где $\alpha = 1/X'X$ и $X$ — вектор-столбец из $X_i$.
+
+\begin{enumerate}
+\item Несут ли величины $X_2$ и $X_3$ информацию о параметре $\mu_1$?
+\item Какие оценки получит Макс?
+\item Чему будет равна общая величина риска для оценок Макса?
+\item Какую формулу использует Нюша для оценки $\mu_1$?
+\item У кого общая величина риска будет выше, у Макса или у Нюши?
+\end{enumerate}
+
+
+Без доказательства можно пользоваться утверждением:
+
+Если $g(X)$ — дифференциируемая функция $g : \mathbb{R}^n \to \mathbb{R}$ и $X \sim \cN(\mu, \sigma^2 I)$, где $I$ — единичная матрица, то
+\[
+\E((X_i-\mu)g(X))=\E\left(\frac{\partial g(X)}{\partial X_i} \right).
+\]
+
+
+Ответы:
+\begin{enumerate}
+\item нет
+
+\item $\hat\mu_i = X_i$
+
+\item $R^{ML}=3$
+
+\item $\hat\mu_1 = \left(1 - \frac{1}{X_1^2+X_2^2+X_3^2} \right)X_1$
+
+\item У Нюши.
+
+$\hat\mu^{N} = \alpha \cdot 0 + (1-\alpha)X = X - g(X)$
+
+\[
+R^N = \E[(X-g(X)-\mu)^T(X-g(X)-\mu)] = \E[(X-\mu)^T(X-\mu)] + \E(g(X)^Tg(X)) -2\E[(X-\mu)^Tg(X)]
+\]
+
+Замечаем, что $\E[(X-\mu)^T(X-\mu)]=3$.
+
+Из предложенной теоремы следует, что $\E[(X-\mu)^Tg(X)] = \sum_i\E\left(\frac{\partial g_i(X)}{\partial X_i} \right) = \E(g(X)^Tg(X))$.
+
+Следовательно,
+
+\[
+R^N = 3 + \E(g(X)^Tg(X)) - 2\E(g(X)^Tg(X)) = 3 - \E(g(X)^Tg(X)) < 3
+\]
+\end{enumerate}
+
+
+
+\end{document}
