@@ -1,5 +1,5 @@
-\documentclass[addpoints, answers]{exam} % добавить или удалить answers в скобках, чтобы показать ответы
-%\documentclass[addpoints]{exam} % добавить или удалить answers в скобках, чтобы показать ответы
+%\documentclass[addpoints, answers]{exam} % добавить или удалить answers в скобках, чтобы показать ответы
+\documentclass[addpoints]{exam} % добавить или удалить answers в скобках, чтобы показать ответы
 
 \usepackage{etex}
 
@@ -110,12 +110,28 @@ f(x) = {\sgn} \left(\sin \left( \frac{\pi}{x}\right)\right).
 \]
 
 \begin{solution}
-Точки, в которых данная функция может иметь разрыв: $x=0$, поскольку в ней равен нулю знаменатель аргумента функции, и точки $x=1/k, k \in \mathbb{Z}$, поскольку в них $\sin \left( \frac{\pi}{x}\right)$ меняет знак. В точках $x=1/k, k \in \mathbb{Z}$ функция имеет разрывы первого рода, так как существуют не равные между собой односторонние пределы. Например, рассмотрим $k=1$. Существует правосторонняя окрестность точки $x=1$, в которой функция $\sin \left( \frac{\pi}{x} \right)$ положительна. В самом деле, для $x \in (1,2)$ имеет место $\frac{\pi}{2} < \frac{\pi}{x} < \pi$. Для точек из этой окрестности имеем $f(x) = 1$, следовательно, $\lim_{x \rightarrow 1+0} f(x) = 1$. С другой стороны, существует левосторонняя окрестность точки $x=1$, в которой функция $\sin \left( \frac{\pi}{x} \right)$ отрицательна. В самом деле, для $x \in (1/2,1)$ имеет место $\pi < \frac{\pi}{x} < 2 \pi$. Для точек из этой окрестности имеем $f(x) = -1$, следовательно, $\lim_{x \rightarrow 1-0} f(x) = -1$. Аналогичные окрестности могут быть найдены для всех рассматриваемых точек.
+The discontinuity points are: the point $x=0$, as denominator is zero, and the points $x=1/k, k \in \mathbb{Z}$, as $\sin \left( \frac{\pi}{x}\right)$ changes sign.
+
+
+At the points $x=1/k, k \in \mathbb{Z}$ the function has first order discontinuities, as one-side limits exist but are not equal.
+
+For example, let's consider $k=1$. In a small right neighbourhood of the point $x=1$, the function $\sin \left( \frac{\pi}{x} \right)$ is positive, as for $x \in (1,2)$ one has $\frac{\pi}{2} < \frac{\pi}{x} < \pi$. For all points of this neighbourhood one has $f(x) = 1$, hence, $\lim_{x \rightarrow 1+0} f(x) = 1$.
+
+In a small right neighbourhood of the point $x=1$, the function $\sin \left( \frac{\pi}{x} \right)$ is negative as for $x \in (1/2,1)$ one has $\pi < \frac{\pi}{x} < 2 \pi$. For all points of this neighbourhood one has $f(x) = -1$, hence, $\lim_{x \rightarrow 1-0} f(x) = -1$. Similar neighbourhoods may be found for other values of $k$.
 
 
 
-В точке $x=0$ функция имеет разрыв второго рода, поскольку не существует односторонних пределов. Действительно, рассмотрим последовательности $a_n = \frac{2}{1+4 n}, n
-\in \mathbb{N}$ и $b_n = \frac{2}{3+4 n}, n \in \mathbb{N}$, стремящиеся к нулю справа. Тогда $f(a_n) = {\sgn} \left(\sin \left( \frac{\pi}{\frac{2}{1+4 n}}\right)\right) = {\sgn} \left( \sin \left( \frac{\pi}{2} + 2 \pi n \right)\right)=1$ и $f(b_n) = {\sgn} \left(\sin \left( \frac{\pi}{\frac{2}{3+4 n}}\right)\right) = {\sgn} \left( \sin \left( \frac{3 \pi}{2} + 2 \pi n \right)\right)=-1$. Тем самым показано, что правостороннего предела $f(x)$ при $x$ стремящемся к нулю не существует. Аналогично можно показать, что не существует левостороннего предела, например, рассмотрев последовательности $-a_n$ и $-b_n$.
+At the point $x=0$ the function has second order discontinuity, as one sided limits do not exist. Let's consider the sequences $a_n = \frac{2}{1+4 n}, n
+\in \mathbb{N}$ and $b_n = \frac{2}{3+4 n}, n \in \mathbb{N}$, convergint to zero from the right side. Then
+\[
+f(a_n) = {\sgn} \left(\sin \left( \frac{\pi}{\frac{2}{1+4 n}}\right)\right) = {\sgn} \left( \sin \left( \frac{\pi}{2} + 2 \pi n \right)\right)=1
+\]
+And
+\[
+f(b_n) = {\sgn} \left(\sin \left( \frac{\pi}{\frac{2}{3+4 n}}\right)\right) = {\sgn} \left( \sin \left( \frac{3 \pi}{2} + 2 \pi n \right)\right)=-1.
+\]
+
+We have shown that the limit of $f(x)$ for $x$ converging to zero from the right does not exist. One may prove that the limit from the left does not exist by considering sequences $-a_n$ and $-b_n$.
 \end{solution}
 
 
