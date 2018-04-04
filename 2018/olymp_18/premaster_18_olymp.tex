@@ -1,0 +1,574 @@
+%\documentclass[addpoints, answers]{exam} % добавить или удалить answers в скобках, чтобы показать ответы
+\documentclass[addpoints]{exam} % добавить или удалить answers в скобках, чтобы показать ответы
+
+\usepackage{etex}
+
+\usepackage{verbatim}
+
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\Var}{\mathbb{V}\mathrm{ar}}
+\DeclareMathOperator{\Lin}{Lin}
+\DeclareMathOperator{\Cov}{\mathbb{C}\mathrm{ov}}
+\DeclareMathOperator{\Corr}{\mathbb{C}\mathrm{orr}}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\tr}{trace}
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\plim}{plim}
+
+\let\P\relax
+\DeclareMathOperator{\P}{\mathbb{P}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\hbeta}{\hat{\beta}}
+\newcommand{\hb}{\hat{\beta}}
+
+\newcommand{\Lim}[1]{\raisebox{0.5ex}{\scalebox{0.8}{$\displaystyle \lim_{#1}\;$}}}
+
+\usepackage{floatrow}
+
+\begin{document}
+
+\pagestyle{headandfoot}
+\runningheadrule
+\firstpageheader{Higher School of Economics}{Further mathematics, p. \thepage\ of \numpages}{olympiad 2018}
+\firstpageheadrule
+\runningheader{Higher School of Economics}{Further mathematics, p. \thepage\ of \numpages}{olympiad 2018}
+\firstpagefooter{}{}{}
+\runningfooter{}{}{}
+\runningfootrule
+
+
+
+
+\hqword{Задача}
+\hpgword{Страница}
+\hpword{Максимум}
+\hsword{Баллы}
+\htword{Итого}
+\pointname{\%}
+%\renewcommand{\solutiontitle}{\noindent\textbf{Решение:}\par\noindent}
+\renewcommand{\solutiontitle}{}
+
+%Таблица с результатами заполняется проверяющим работу. Пожалуйста, не делайте в ней пометок.
+
+%\begin{center}
+%  \gradetable[h][questions]
+%\end{center}
+
+\begin{center}
+\textbf{Olympiad 2018} % Вариант А
+\end{center}
+
+\begin{questions}
+
+\question[10] For the function
+
+\[
+f(x,y) = \frac{x^2 y^2}{x^2 y^2 + (x-y)^2}
+\]
+
+If possible find the following limits:
+
+\begin{parts}
+  \part[2] $\Lim{x \rightarrow 0} \left( \Lim{y \rightarrow 0} f(x,y) \right)$;
+
+  \begin{solution}
+Fix some $x_0 \neq 0$ and consider $f(x_0,y)$ as a function of $y$. Then $\Lim{y \rightarrow 0} f(x_0,y) = \frac{0}{x_0^2} = 0$, hence $\Lim{x \rightarrow 0} \left( \Lim{y \rightarrow 0} f(x,y) \right) = \Lim{x \rightarrow 0} 0 = 0$.
+\end{solution}
+  
+\part[2] $\Lim{y \rightarrow 0} \left( \Lim{x \rightarrow 0} f(x,y) \right)$;
+
+\begin{solution}
+Similarly, fixing some $y_0 \neq 0$ and considering $f(x,y_0)$ as a function of $x$, we conclude that $\Lim{y \rightarrow 0} \left( \Lim{x \rightarrow 0} f(x,y) \right) = 0$. 
+\end{solution}
+
+\part[6] $\Lim{\substack{x \rightarrow 0 \\ y \rightarrow 0}} f(x,y)$.
+\begin{solution}
+Now consider a case when $x$ and $y$ tend to zero simultaneously. For example, let $x=y$. In this case $\Lim{\substack{x \rightarrow 0}} f(x,x) = \frac{x^4}{x^4} = 1$ \textbf{(3 points)}. Combining this to the results above, we conclude that $\Lim{\substack{x \rightarrow 0 \\ y \rightarrow 0}} f(x,y)$ does not exist \textbf{(3 points)}.
+\end{solution}
+
+
+
+\end{parts}
+
+
+
+
+
+% q2
+\question[10] Find the discontinuity points of the following function
+
+\[
+f(x) = \frac{\frac{1}{x}-\frac{1}{x+1}}{\frac{1}{x-1}-\frac{1}{x}}
+\]
+
+and find the limits of $f(x)$ as $x$ tends to these discontinuity points.
+
+\begin{solution}
+
+The discontinuity points are 0, 1 and -1, because at least one of the denominators is zero at these points \textbf{(2 points)}. In order to classify them, rewrite the function in the following way:
+
+\[
+f(x) = \frac{\frac{1}{x (x+1)}}{\frac{1}{x (x-1)}} = \frac{x (x-1)}{x (x+1)}
+\]
+
+\noindent \textbf{(2 points)}. From this representation it is clear that 0 and 1 are the points of removable discontinuity, because the limit of $f(x)$ exists as $x$ tends to 0 or 1. Indeed, $\Lim{x \rightarrow 0} f(x) = -1$, which can be found by applying the L'Hôpital's rule \textbf{(2 points)}, and $\Lim{x \rightarrow 1} f(x) = 0$ can be found by direct substitution \textbf{(2 points)}. Finally, -1 is a point of essential discontinuity and $\Lim{x \rightarrow -1} f(x) = \infty$, as the nominator tends to non-zero finite number and denominator tends to zero \textbf{(2 points)}.
+
+\end{solution}
+
+
+
+
+% q3
+\question Matrix $A$ is given by
+\[
+A=\begin{pmatrix}
+  2 & 1 & 3 & 4 \\
+  0 & 2 & 1 & 3 \\
+  2 & 1 & 6 & 5 \\
+  1 & 2 & 4 & 8 \\
+\end{pmatrix}.
+\]
+
+\begin{parts}
+
+\part[6] Find the space $V$ of all eigenvectors of $A$ corresponding to the eigenvalue $\lambda = 1$;
+\begin{solution}
+
+Subtract $\lambda = 1$ from the diagonal and do the Gauss elimination.
+
+After Gaussian elimination we have the matrix
+\[
+\begin{pmatrix}
+  1 & 1 & 3 & 4 \\
+  0 & 1 & 1 & 3 \\
+  \end{pmatrix}
+\]
+
+Fundamental set of solutions is 
+\[
+  V = \Lin\left(
+    \begin{pmatrix}
+      -2 \\
+      -1 \\
+      1 \\
+      0 \\
+    \end{pmatrix},
+    \begin{pmatrix}
+      -1 \\
+      -3 \\
+      0 \\
+      1 \\
+    \end{pmatrix}
+  \right)
+\]
+
+
+Grading: 2 points for the system of linear equations, 2 points for the elimination, 2 points for the answer;
+
+\end{solution}
+
+\part[4] Find one vector that is orthogonal to the space $V$; 
+
+\begin{solution}
+  Any solution to the system
+  \[
+  \begin{pmatrix}
+    -2 & -1 & 1 & 0 \\
+    -1 & -3 & 0 & 1 \\
+  \end{pmatrix}
+  \]
+
+  For example, $a=(0, 1, 1, 3)$ or any row of $A-I$ will do, but many other vector are also ok.
+
+  Grading. Solution with explicit system: 2 points for the system of two linear equations; 2 points for the answer. 
+  Quick solution based on idea that any row of $A-I$ is ok gives 4 points. 
+
+\end{solution}
+
+\end{parts}
+
+
+% q4
+\question The $3\times 3$ matrix $A$ has eigenvalues 0, 1 and 2. If there is enough information find  
+
+
+\begin{parts}
+
+\part[3] The determinant $A^TA$;
+
+
+\begin{solution}
+  The $\det(A)$ is zero, so $\det(A^TA)=\det(A^T)\det(A)=0$;
+\end{solution}
+
+\part[4] The eigenvalues of $A^TA$;
+
+
+\begin{solution}
+  It is not possible to find eigenvalues of $A^TA$. Consider two matrices. The matrix $A_1$ has 0, 1 and 2 on the main diagonal and 0 elsewhere. The matrix $A_2$ has 0, 1 and 2 on the main diagonal, $A_{12}=1$ and 0 elsewhere. The resulting matrices $A_1^TA_1$ and $A_2^TA_2$ will have different eigenvalues.
+
+\end{solution}
+
+
+\part[3] The eigenvalues of $(A^3 - 2I)^{-1}$, where $I$ is the identity matrix;
+
+
+\begin{solution}
+Eigenvalues of $A^3 - 2I$ are $-2$, $-1$ and $6$. So eigenvalues of $(A^3 - 2I)^{-1}$ are $-1$, $-1/2$ and $1/6$.
+\end{solution}
+
+\end{parts}
+
+% q5
+\question[10] 
+Find the point and the value of conditional maximum of the function $F\left(x,\ y\right)=\max\left(2x+3y,3x+2y\right)$ subject to $x^2+y^2=1$.
+\begin{solution}
+Considers the functions $f_1\left(x,y\right)=2x+3y,\ f_2\left(x,y\right)=3x+2y$. Equality $f_1\left(x,y\right)=f_2\left(x,y\right)$ is fulfilled on the line $y=x$. Thus, for example $F\left(x,y\right)=\left\{ \begin{array}{c}
+f_1\left(x,y\right),\ y\ge x \\ 
+f_2\left(x,y\right),\ y<x \end{array}
+\right.$.
+
+One may consider three cases and compare the maximum values:
+
+\begin{enumerate}
+\item  Find conditional maximum of $f_1\left(x,y\right)$, given $x^2+y^2=1$ and $y>x$ .
+
+\item  Find conditional maximum of $f_2\left(x,y\right)$, given $x^2+y^2=1$ and $y<x$.
+
+\item  Find conditional maximum of $f_1\left(x,y\right)$, given $y=x$, $x\in \left[-\frac{\sqrt{2}}{2},\frac{\sqrt{2}}{2}\right]$.
+\end{enumerate}
+
+\textit{Case 1}
+
+It may be done in various ways. Let's use the method of Lagrange multipliers.
+\[L\left(x, y, \lambda\right)=2x+3y+\lambda \left(x^2+y^2-1\right)\] 
+
+Potential extremum is reached at the point $y=-\frac{3}{2\lambda}$, $x=-\frac{1}{\lambda}$, $\lambda =\pm \sqrt{\frac{13}{4}}$
+
+Inequality $y>x$ is fulfilled if $\lambda =-\sqrt{\frac{13}{4}}$.  In this case the bordered Hessian is greater than zero: $\det\left( \begin{array}{ccc}
+0 & 2x & 2y \\ 
+2x & 2\lambda & 0 \\ 
+2y & 0 & 2\lambda \end{array}
+\right)=-8\lambda\left(x^2+y^2\right)$. 
+
+Thus, there is conditional maximum at the point $x=\sqrt{\frac{4}{13}},y=\frac{3}{2}\sqrt{\frac{4}{13}}$, which is equal to $\frac{13}{2}\sqrt{\frac{4}{13}}\approx 3,6$ .
+
+\textit{Case 2}.
+
+\[L\left(x,\ y,\ \lambda\right)=3x+2y+\lambda\left(x^2+y^2-1\right)\] 
+
+Potential extremum is reached at the point $x=-\frac{3}{2\lambda}$, $y=-\frac{1}{\lambda}$, $\lambda=\pm \sqrt{\frac{13}{4}}$. 
+
+Inequality $y<x$ must be met. Thereby, again $\lambda=-\sqrt{\frac{13}{4}}$ and there is conditional maximum at the point $y=\sqrt{\frac{4}{13}},x=\frac{3}{2}\sqrt{\frac{4}{13}}$ which is equal to  $\frac{13}{2}\sqrt{\frac{4}{13}}\approx 3,6$ again.
+
+\textit{Case 3}.
+
+It is obvious that in this case conditional maximum is reached at the point $x=\frac{\sqrt{2}}{2},y=\frac{\sqrt{2}}{2}$, which is equal to $5\frac{\sqrt{2}}{2}\approx 3.5$
+
+Thus, there are two points of conditional maximum $x=\sqrt{\frac{4}{13}},y=\frac{3}{2}\sqrt{\frac{4}{13}}$ and $y=\sqrt{\frac{4}{13}},x=\frac{3}{2}\sqrt{\frac{4}{13}}$, which is equal to $\frac{13}{2}\sqrt{\frac{4}{13}}\approx 3,6$.
+
+
+Grading: decomposition into cases — 3 points, solution of the cases 1 and 2 — 3 points for each, case 3 — 1 point.
+  
+\end{solution}
+
+
+
+% q6
+\question
+\begin{parts}
+  \part[4] Find the general solution of $y'' - 2y' + 10y = 0$,
+  \begin{solution}
+Let us solve the characteristic equation
+\[
+\lambda ^2 - 2\lambda  + 10 = 0 \text{}
+\]
+corresponding to the differential equation (a). We find that $\lambda_1 = 1 + 3i$ and $\lambda_2 = 1 - 3i$ are the solutions of this characteristic equation. Hence, the general solution of the differential equation (a) is
+\[
+y(x) = {C_1}{e^{x}} \cos 3x + {C_2}{e^{x}} \sin 3x \text{, \quad where $C_1, \, C_2 \in \mathbb{R}$.}
+\]
+\end{solution}
+
+\part[2] Find any particular solution of $y'' - 2y' + 10y = \sin 3x$,
+  \begin{solution}
+ We seek the particular solution of the differential equation (b) in the form
+\begin{equation}\label{sjy2ms}
+  y(x) = A_1 \cos 3x + A_2 \sin 3x \text{.}
+\end{equation}
+Substituting expression (\ref{sjy2ms}) into equation (b), we obtain $A_1 = \frac{6}{37}$ and $A_2 = \frac{1}{37}$. Therefore, the particular solution of the differential equation (b) is
+\[
+    y(x) = \frac{6}{37} \cos 3x + \frac{1}{37} \sin 3x \text{.}
+\]
+\end{solution}
+
+\part[2] Find any particular solution of $y'' - 2y' + 10y = e^x$,
+  \begin{solution}  
+ We seek the particular solution of the differential equation (c) in the form
+\begin{equation}\label{vj63s}
+  y(x) = B e^x \text{.}
+\end{equation}
+Substituting expression (\ref{vj63s}) into equation (c), we obtain $B = \frac{1}{9}$. Consequently, the particular solution of the differential equation (c) is
+\[
+    y(x) = \frac{1}{9} e^x \text{.}
+\]
+\end{solution} 
+
+\part[2] Find the general solution of $y'' - 2y' + 10y = \sin 3x + e^x$.
+\begin{solution}
+The particular solution of the differential equation (d) is a sum of particular solutions of equations (b) and (c). Thus, the particular solution of the differential equation (d) is
+\[
+    y(x) = \frac{6}{37} \cos 3x + \frac{1}{37} \sin 3x + \frac{1}{9} e^x \text{.}
+\]
+Therefore, the general solution of equation (d) is
+\[
+    y_b(x) =  {C_1}{e^{x}} \cos 3x + {C_2}{e^{x}} \sin 3x + \frac{6}{37} \cos 3x + \frac{1}{37} \sin 3x + \frac{1}{9} e^x \text{, \quad where $C_1, \, C_2 \in \mathbb{R}$.}
+\]
+\end{solution}
+\end{parts}
+
+
+\newpage
+% q7
+\question
+Time before the first screen break of IPhone 11 is a random variable, $X$, with exponential distribution: $\P(X\leq x)=1-e^{-\lambda x}$. The mean time before break is 10 months. 
+\begin{parts}
+  \part[3] Find the probability that a new IPhone screen will not be broken during the first 15 months. 
+  \begin{solution}
+    $\E(X)=10$, so $\lambda = 1/10$, 
+    $\P(X > 15) = \int_{15}^{\infty}f(x)dx = \exp(-3/2)$
+  \end{solution}
+  \part[3] Find the variance of the time before the first screen break.
+  \begin{solution}
+    \[ 
+      \Var(X) = 1/\lambda^2 = 100
+    \]
+  \end{solution}
+  \part[4] You have an IPhone with screen which was not broken during the first 10 months since purchase. Find the probability that the screen for this IPhone will be ok for at least additional 15 months.  
+  \begin{solution}
+    Using memoryless property of exponential distribution or explicitely calculating conditional probability we obtain the same probability $\exp(-3/2)$.
+  \end{solution}
+\end{parts}
+
+% q8
+\question
+Joint probability density function of random variables X and Y is:
+
+  \[ 
+  f(x,y)= \begin{cases}      
+        c(x^2 + y), \text{ if }  0 \leq x \leq 2, 0 \leq y \leq 1 \\
+	0, \text{ otherwise} \\
+    \end{cases}
+  \]
+
+\begin{parts}
+\part[2] Find $c$
+\begin{solution}
+$\int_0^1 \int_0^2 c(x^2 + y) dx dy = \frac{11}{3} c = 1 $. Hence, $c = \frac{3}{11}$
+\end{solution}
+
+\part[3] Check whether X and Y are independent
+\begin{solution}
+$f_X(x) = \int_0^1 \frac{3}{11} (x^2 + y) dy = \frac{3}{22} (2 x^2 + 1) $, $f_Y(y) = \int_0^2 \frac{3}{11} (x^2 + y) dx = \frac{2}{11} (3y + 4) $. $f_X(x) f_Y(y) \neq f_{X,Y}(x,y)$, hence, variables are not independent. 
+\end{solution}
+
+\part[2] Find $\E(X)$
+\begin{solution}
+$\E(X) = \int_0^2 \frac{3}{22} (2 x^2 + 1) x dx = \frac{15}{11}$
+\end{solution}
+
+\part[3] Find probability $\P(XY>1)$
+\begin{solution}
+$\P(XY>1) = \int_1^2 \int_{1/x}^1 \frac{3}{11} (x^2 + y) dy dx = \frac{13}{44} $
+\end{solution}
+
+\end{parts}
+
+
+% q9
+\question Let $X = (X_1, \, \ldots, \, X_n)$ be a random sample from the distribution with density function
+\[
+    f(x, \, \theta) = \left\{
+                        \begin{array}{ll}
+                          \frac{2x}{\theta^2}, & \hbox{$x \in [0; \, \theta]$,} \\
+                          0, & \hbox{$x \not\in [0; \, \theta]$,}
+                        \end{array}
+                      \right.
+\]
+where $\theta > 0$ is an unknown parameter.
+
+\begin{parts}
+  \part[2] Find the estimator of the parameter $\theta$ using method of moments. Use first initial moment condition.
+  \begin{solution}
+
+The first initial moment condition is $\mu_1 = \widehat{\mu}_1$. Let us find $\mu_1 : = \E[X_i]$. We have
+\[
+{\mu _1} = \E[{X_i}] = \int_{ - \infty }^{ + \infty } {x{f_{{X_i}}}(x)dx}  = \int_0^\theta  {x\frac{{2x}}{{{\theta ^2}}}dx}  = \int_0^\theta  {\frac{{2{x^2}}}{{{\theta ^2}}}dx}  = \frac{{2{\theta ^3}}}{{3{\theta ^2}}} = \frac{2}{3}\theta \text{.}
+\]
+As $\widehat{\mu}_1 = \overline{X}$, the moment condition takes the form $\frac{2}{3}\theta = \overline{X}$. Solving this equation with respect to $\theta$, we find $\theta = \frac{3}{2} \overline{X}$. Hence, the method of moments estimator of the parameter $\theta$ is $\widehat{\theta}_{MM} = \frac{3}{2} \overline{X}$.
+\end{solution} 
+
+
+\part[2] Is the estimator from (a) an unbiased estimator of the parameter $\theta$?
+  \begin{solution}
+As
+\[
+  \E(\hat \theta _{MM}) = \frac{3}{2}\E(\bar X) = \frac{3}{2}\E(X_i) = \frac{3}{2}\frac{2}{3}\theta  = \theta \text{,}
+\]
+the estimator $\widehat{\theta}_{MM} = \frac{3}{2} \overline{X}$ is an unbiased estimator of the parameter $\theta$.
+\end{solution}
+
+\part[2] Is the estimator  from (a) a consistent estimator of the parameter $\theta$?
+  \begin{solution}
+    As random variables $X_1, \ldots, X_n, \ldots$ are independent, have the same distribution, and  have finite means, we can apply the law of large numbers, according to which we have $\overline{X} \mathop  \to \limits^{\P} \E(X_i) = \frac{2}{3}\theta $ as $n \rightarrow \infty$. Hence, $\hat \theta_{MM} = \frac{3}{2}\bar X\mathop  \to \limits^{\P} \frac{3}{2}\frac{2}{3}\theta  = \theta$ as $n \rightarrow \infty$. The last condition means that the estimator $\widehat{\theta}_{MM} = \frac{3}{2} \overline{X}$ is consistent. 
+\end{solution}
+
+\part[2] Find the following probability limit $\plim_{n \rightarrow \infty}e^{\overline{X}}$.
+  \begin{solution}
+    As $\overline{X} \mathop  \to \limits^{\P} \E(X_i) = \frac{2}{3}\theta $, and the function $g(x) = e^x$ is continuous, by Slutsky's theorem we derive $e^{\overline{X}} \mathop  \to \limits^{\P} e^{\frac{2}{3}\theta}$.
+\end{solution}
+
+
+
+\part[2] Find the estimator of the parameter $\theta$ using maximum likelihood method.
+  \begin{solution}
+The likelihood function of a random sample $X$ is
+\[
+\mathcal{L}({x_1},\; \ldots ,\;{x_n};\;\theta ) = {f_{{X_1},\; \ldots ,\;{X_n}}}({x_1},\; \ldots ,\;{x_n};\;\theta ) = 
+\]
+\[ 
+= \prod\nolimits_{i = 1}^n {{f_{{X_i}}}({x_i};\;\theta )}  = \prod\nolimits_{i = 1}^n {\frac{{2{x_i}}}{{{\theta ^2}}}{\mathbb{I}_{[0;\;\theta ]}}({x_i})}  = \frac{{{2^n}\left( {\prod\nolimits_{i = 1}^n {{x_i}} } \right)}}{{{\theta ^{2n}}}}\prod\nolimits_{i = 1}^n {{\mathbb{I}_{[0;\;\theta ]}}({x_i})}  = 
+\]
+\[ 
+  = \frac{{{2^n}\left( {\prod\nolimits_{i = 1}^n {{x_i}} } \right)}}{{{\theta ^{2n}}}}\prod\nolimits_{i = 1}^n {{\mathbb{I}_{[{x_i};\; + \infty )}}(\theta )}  = \frac{{{2^n}\left( {\prod\nolimits_{i = 1}^n {{x_i}} } \right)}}{{{\theta ^{2n}}}}{\mathbb{I}_{[\mathop {\max }\limits_{1 \leq i \leq n} {x_i};\; + \infty )}}(\theta ) \text{.}
+\]
+As likelihood function $\mathcal{L}(\theta )$ vanishes, when $\theta < \max_{1 \leq i \leq n}{x_i}$, and strictly decreases, when $\theta \geq \max_{1 \leq i \leq n}{x_i}$, the point $\theta = \max_{1 \leq i \leq n}{x_i}$ is a maximum point of likelihood function. Hence, ${\widehat\theta _{ML}} = \mathop {\max }\limits_{1 \leq i \leq n} {X_i}$.
+\end{solution}
+
+
+\end{parts}
+
+
+
+\question 
+$X_1, \ldots, X_n$ is independent identically distributed sample from Bernoulli distribution with probability $\theta$. 
+Additionally, it is known, that $1/2 \leq \theta \leq 1$. 
+
+\begin{parts}
+\part[2] Find the method of moments estimator of the parameter $\theta$. 
+\begin{solution}
+$\E(X_i) = \theta$,  $\hat{\theta}_{MM} = \overline{X} $
+\end{solution}
+
+\part[2] Compute mean squared error of $\hat{\theta}_{MM} $
+\begin{solution}
+$MSE(\hat{\theta}_{MM}) = \E((\hat{\theta}_{MM} - \theta)^2) = \E((\overline{X} - \theta)^2) = \Var(\overline{X}) = \frac{ \theta (1 - \theta)}{n}$ (as $\E(\overline{X}) = \theta$). 
+\end{solution}
+
+\part[4] Find maximum likelihood estimator of parameter $\theta$
+\begin{solution}
+Likelihood function $L = \prod_{i=1}^{n} \theta^{x_i} (1 - \theta)^{1-x_i} $ is maximized by $\theta$ that satisfied inequality $1/2 \leq \theta \leq 1$. It can be easily shown that when $ \overline{X} > 1/2$, it is the maximum likelihood estimator of $\theta$. 
+
+When $ \overline{X} < 1/2$, likelihood function is decreasing for $ \theta > \overline{X}$ as the first derivative of log likelihood function is $\frac{\sum x - n \theta}{\theta(1 - \theta)}$ and it is negative when $ \theta > \overline{X}$. Hence, likelihood reaches its maximum at $\theta = 1/2$. 
+
+So, $\hat{\theta}_{ML} = \max(1/2, \overline{X})$
+\end{solution}
+
+\part[2] Compute mean squared error of $\hat{\theta}_{ML} $ at $\theta = 1$
+ 
+\begin{solution}
+With $\theta = 1$, $X_i = 1$ with probability 1. Hence, $\overline{X} = 1, \hat{\theta}_{ML} = 1$ and $MSE(\hat{\theta}_{ML}) = \E( (1 - 1)^2) = 0$.
+\end{solution}
+
+
+
+
+
+\end{parts}
+
+
+\end{questions}
+
+\begin{comment}
+
+\begin{figure}[b]
+\caption{Distribution function of a standard normal random variable}
+  \begin{minipage}[b]{0.35\linewidth}
+    \centering
+    \begin{tikzpicture}
+% define normal distribution function 'normaltwo'
+    \def\normaltwo{\x,{4*1/exp(((\x-3)^2)/2)}}
+
+% input y parameter
+    \def\y{4.4}
+
+% this line calculates f(y)
+    \def\fy{4*1/exp(((\y-3)^2)/2)}
+
+% Shade orange area underneath curve.
+    \fill [fill=gray!30] (2.6,0) -- plot[domain=0:4.4] (\normaltwo) -- ({\y},0) -- cycle;
+
+% Draw and label normal distribution function
+    \draw[domain=0:6] plot (\normaltwo) node[right] {};
+
+% Add dashed line dropping down from normal.
+    \draw[dashed] ({\y},{\fy}) -- ({\y},0) node[below] {$x$};
+
+% Optional: Add axis labels
+%    \draw (-.2,2.5) node[left] {$f_Y(u)$};
+    \draw (3,2) node[below] {$F(x)$};
+
+% Optional: Add axes
+    \draw[->] (0,0) -- (6.2,0) node[right] {};
+%    \draw[->] (0,0) -- (0,5) node[above] {};
+
+\end{tikzpicture}
+%    \rule{6cm}{6cm} %to simulate an actual figure
+\par\vspace{0pt}
+  \end{minipage}%
+  \begin{minipage}[b]{0.60\linewidth}
+    \centering
+\begin{tabular}{rr|rr|rr|rr}
+  \hline
+$x$ & $F(x)$ & $x$ & $F(x)$ & $x$ & $F(x)$ & $x$ & $F(x)$ \\
+  \hline
+0.050 & 0.520 & 0.750 & 0.773 & 1.450 & 0.926 & 2.150 & 0.984 \\
+  0.100 & 0.540 & 0.800 & 0.788 & 1.500 & 0.933 & 2.200 & 0.986 \\
+  0.150 & 0.560 & 0.850 & 0.802 & 1.550 & 0.939 & 2.250 & 0.988 \\
+  0.200 & 0.579 & 0.900 & 0.816 & 1.600 & 0.945 & 2.300 & 0.989 \\
+  0.250 & 0.599 & 0.950 & 0.829 & 1.650 & 0.951 & 2.350 & 0.991 \\
+  0.300 & 0.618 & 1.000 & 0.841 & 1.700 & 0.955 & 2.400 & 0.992 \\
+  0.350 & 0.637 & 1.050 & 0.853 & 1.750 & 0.960 & 2.450 & 0.993 \\
+  0.400 & 0.655 & 1.100 & 0.864 & 1.800 & 0.964 & 2.500 & 0.994 \\
+  0.450 & 0.674 & 1.150 & 0.875 & 1.850 & 0.968 & 2.550 & 0.995 \\
+  0.500 & 0.691 & 1.200 & 0.885 & 1.900 & 0.971 & 2.600 & 0.995 \\
+  0.550 & 0.709 & 1.250 & 0.894 & 1.950 & 0.974 & 2.650 & 0.996 \\
+  0.600 & 0.726 & 1.300 & 0.903 & 2.000 & 0.977 & 2.700 & 0.997 \\
+  0.650 & 0.742 & 1.350 & 0.911 & 2.050 & 0.980 & 2.750 & 0.997 \\
+  0.700 & 0.758 & 1.400 & 0.919 & 2.100 & 0.982 & 2.800 & 0.997 \\
+   \hline
+\end{tabular}
+\par\vspace{0pt}
+\end{minipage}
+\label{fig:test}
+\end{figure}
+
+\end{comment}
+
+
+\begin{flushright}
+Good luck!
+\end{flushright}
+
+\end{document}
