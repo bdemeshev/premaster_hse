@@ -13,14 +13,19 @@
 %\DeclareMathOperator{\Cov}{\mathbb{C}\mathrm{ov}}
 %\let\P\relax
 %\DeclareMathOperator{\P}{\mathbb{P}}
-\newcommand{\cN}{\mathcal{N}}
-\newcommand{\hbeta}{\hat{\beta}}
-\newcommand{\rank}{\mathrm{rank}}
+
 
 \usepackage{floatrow}
 %\newfloatcommand{capbtabbox}{table}[][\FBwidth]
 
 \input{title_bor_utf8}
+
+
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\hbeta}{\hat{\beta}}
+\newcommand{\rank}{\mathrm{rank}}
+\DeclareMathOperator{\Lin}{Lin}
+\newcommand{\Lim}[1]{\raisebox{0.5ex}{\scalebox{0.8}{$\displaystyle \lim_{#1}\;$}}}
 
 % sqcases = cases с квадратной скобкой:
 \makeatletter
@@ -2193,13 +2198,13 @@ p.v.=P(Z<\frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}})=P(Z<-2.73)=0.00315
 \]
 В данном случае $t_{\alpha/2, n-k}=t_{2.5, 9}=2.262$ . Доверительные интервалы для коэффициентов:\\
 \[
-\beta_1 \in (0.8-2.262\cdot 0.3;0.8+2.262\cdot 0.3)=(0.12;1.48)
+\beta_1 \in (-0.8-2.262\cdot 0.3;-0.8+2.262\cdot 0.3)=(-1.48;-0.12)
 \]
 \[
 \beta_2 \in (-0.0048;1.8048)
 \]
-$\hat{\beta_1}$значим на уровне значимости 5\%,\\
-$\hat{\beta_2}$   незначим на уровне значимости 5\%.
+$\hat{\beta_1}$ значим на уровне значимости 5\%,\\
+$\hat{\beta_2}$ незначим на уровне значимости 5\%.
 \end{solution}
 
 \part	Исследователь предполагает, что при изменении цены пирожка с картошкой на 1 рубль  спрос на пирожки с картошкой останется прежним, если цена на пирожок с капустой  упадет на 1 рубль. Сформулируйте данную гипотезу в терминах коэффициентов регрессии и проверьте ее на уровне значимости 5\% против двусторонней альтернативной.
@@ -5895,8 +5900,907 @@ se(\hat{\beta }_{w} )=\frac{\hat{\beta }_{w} }{-5.41} =\frac{-1.8}{-5.41} =0.333
 \end{questions}
 
 
+\section{2018}
+
+\subsection{demo-2018}
 
 
+\begin{questions}
+
+\question[10] Evaluate the following limit:
+
+\[
+\lim_{x \to 0} \sqrt[x]{\cos \sqrt{x}}
+\]
+
+\begin{solution}
+
+\[
+\lim_{x \rightarrow 0} \sqrt[x]{\cos \sqrt{x}} = \lim_{x \rightarrow 0} \left({\cos \sqrt{x}}\right) ^{1/x} =  \lim_{x \rightarrow 0} \exp
+\left( \frac{\ln (\cos \sqrt{x})}{x} \right) = \exp \left( \lim_{x \rightarrow 0}
+\frac{\ln (\cos \sqrt{x})}{x} \right),
+\]
+
+In the last equality we interchanged limit and continuous function. Now we use Taylor's expansion:
+
+\[
+\frac{\ln (\cos \sqrt{x})}{x} = \frac{\ln (1-
+\frac{x}{2}+\frac{x^2}{24}+o(x^2))}{x} = \frac{-\frac{x}{2}+o(x)}{x}
+\]
+
+\noindent It follows that
+
+\[
+\lim_{x \rightarrow 0} \frac{\ln (\cos \sqrt{x})}{x} = -\frac{1}{2},
+\]
+
+\noindent And finally
+
+\[
+\lim_{x \rightarrow 0} \sqrt[x]{\cos \sqrt{x}} = \exp \left( -\frac{1}{2}\right) = \frac{1}{\sqrt{e}}.
+\]
+\end{solution}
+
+\question[10] Find and classify the discontinuity points of the following function:
+
+\[
+f(x) = {\sgn} \left(\sin \left( \frac{\pi}{x}\right)\right).
+\]
+
+\begin{solution}
+The discontinuity points are: the point $x=0$, as denominator is zero, and the points $x=1/k, k \in \mathbb{Z}$, as $\sin \left( \frac{\pi}{x}\right)$ changes sign.
+
+
+At the points $x=1/k, k \in \mathbb{Z}$ the function has first order discontinuities, as one-side limits exist but are not equal.
+
+For example, let's consider $k=1$. In a small right neighbourhood of the point $x=1$, the function $\sin \left( \frac{\pi}{x} \right)$ is positive, as for $x \in (1,2)$ one has $\frac{\pi}{2} < \frac{\pi}{x} < \pi$. For all points of this neighbourhood one has $f(x) = 1$, hence, $\lim_{x \rightarrow 1+0} f(x) = 1$.
+
+In a small right neighbourhood of the point $x=1$, the function $\sin \left( \frac{\pi}{x} \right)$ is negative as for $x \in (1/2,1)$ one has $\pi < \frac{\pi}{x} < 2 \pi$. For all points of this neighbourhood one has $f(x) = -1$, hence, $\lim_{x \rightarrow 1-0} f(x) = -1$. Similar neighbourhoods may be found for other values of $k$.
+
+
+
+At the point $x=0$ the function has second order discontinuity, as one sided limits do not exist. Let's consider the sequences $a_n = \frac{2}{1+4 n}, n
+\in \mathbb{N}$ and $b_n = \frac{2}{3+4 n}, n \in \mathbb{N}$, convergint to zero from the right side. Then
+\[
+f(a_n) = {\sgn} \left(\sin \left( \frac{\pi}{\frac{2}{1+4 n}}\right)\right) = {\sgn} \left( \sin \left( \frac{\pi}{2} + 2 \pi n \right)\right)=1
+\]
+And
+\[
+f(b_n) = {\sgn} \left(\sin \left( \frac{\pi}{\frac{2}{3+4 n}}\right)\right) = {\sgn} \left( \sin \left( \frac{3 \pi}{2} + 2 \pi n \right)\right)=-1.
+\]
+
+We have shown that the limit of $f(x)$ for $x$ converging to zero from the right does not exist. One may prove that the limit from the left does not exist by considering sequences $-a_n$ and $-b_n$.
+\end{solution}
+
+
+
+
+
+\question Matrix $A$ is given by
+\[
+A=\begin{pmatrix}
+3 & 2 & 0 \\
+1 & 4 & 0 \\
+0 & 0 & 10 \\
+\end{pmatrix}.
+\]
+
+\begin{parts}
+
+\part[6] Find the eigenvalues and eigenvectors of $A$;
+\begin{solution}
+
+First, we solve the equation $\det(A- \lambda I) = 0$. The roots are $\lambda_1 = 2$, $\lambda_2 = 5$, $\lambda_3=10$.
+
+The eigenvectors are
+\[
+v_1 = \begin{pmatrix}
+2 \\
+-1 \\
+0 \\
+\end{pmatrix}; \;
+v_2 = \begin{pmatrix}
+1 \\
+1 \\
+0 \\
+\end{pmatrix}; \;
+v_3 = \begin{pmatrix}
+0 \\
+0 \\
+1 \\
+\end{pmatrix};
+\]
+
+\end{solution}
+
+\part[4] Find the eigenvalues of $4A^{-1} + 2I$, where $I$ is identity matrix.
+
+\begin{solution}
+  Eigenvalues of $A^{-1}$ are $0.5$, $0.2$ and $0.1$. So the eigenvalues of $4A^{-1}+2I$ are $4$, $2.8$ and $2.4$.
+\end{solution}
+
+
+\end{parts}
+
+
+
+\question The characteristic polynomial of a matrix $B$ is given by $f(\lambda) = 6\lambda - 5\lambda^2 - \lambda^3$.
+
+
+\begin{parts}
+
+\part[6] Find dimensions of $B$, $\rank B$, $\det B$, sum of diagonal elements of $B$;
+
+
+\begin{solution}
+The highest power of $\lambda$ is 3, so the dimension of $B$ is $3\times 3$. We can solve for $\lambda$ and find $\lambda_1=0$, $\lambda_2=1$, $\lambda_3=-6$. So, $\det B =0$ and $\trace B =\sum b_{ii} = 0 + 1 -6 = -5$.
+\end{solution}
+
+\part[2] Suppose additionaly that $B$ is symmetric.
+Can we find random variables with covariance matrix $B$?
+
+
+\begin{solution}
+
+The quadratic form $B$ is indefinite, so $B$ is not a valid covariance matrix.
+
+\end{solution}
+
+
+\part[2] Suppose additionaly that $B$ is symmetric.
+How many solutions does equation $v^TBv=-2018$ has?
+
+
+\begin{solution}
+
+The quadratic form $B$ is indefinite, so the equation has infinitely many solutions.
+
+\end{solution}
+
+\end{parts}
+
+
+\question[10] Solve the following differential equations
+\begin{parts}
+  \part[5] $y'' - 2y' - 8y = 0$,
+
+\begin{solution}
+  Let us solve the characteristic equation
+  \[
+  \lambda ^2 - 2\lambda  - 8 = 0 \text{}
+  \]
+  corresponding to the differential equation (a). It is easy to see that $\lambda_1 = 4$ and $\lambda_2 = -2$ are the solutions of this characteristic equation. Hence, the general solution of the differential equation (a) is
+  \[
+  y_a(x) = {C_1}{e^{4x}} + {C_2}{e^{ - 2x}} \text{, \quad where $C_1, \, C_2 \in \mathbb{R}$.}
+  \]
+\end{solution}
+
+  \part[5] $y'' - 2y' - 8y = e^x - 8\cos 2x$.
+
+\begin{solution}
+  To solve the differential equation (b) we have to find the particular solutions of the following differential equations
+  \begin{equation}\label{djsk73}
+    y'' - 2y' - 8y = e^x \text{,}
+  \end{equation}
+  and
+  \begin{equation}\label{ayu61h}
+    y'' - 2y' - 8y = - 8\cos 2x \text{.}
+  \end{equation}
+
+  We seek the particular solution of the differential equation (\ref{djsk73}) in the form
+  \begin{equation}\label{vah5gs}
+    y(x) = A e^x \text{.}
+  \end{equation}
+  Substituting expression (\ref{vah5gs}) into equation (\ref{djsk73}), we obtain $A = - 1 / 9$.
+
+  We seek the particular solution of the differential equation (\ref{ayu61h}) in the form
+  \begin{equation}\label{h72hjs}
+  y(x) = {B_1} \cos 2x + {B_2} \sin 2x \text{.}
+  \end{equation}
+  Substituting expression (\ref{h72hjs}) into equation (\ref{ayu61h}), we obtain $B_1 = 3 / 5$ and $B_2 = 1/5$.
+
+  The particular solution of the differential equation (b) is a sum of particular solutions of equations (\ref{djsk73}) and (\ref{ayu61h}). Thus, the particular solution of the differential equation (b) is
+  \[
+      y(x) = -\frac{1}{9} e^x + \frac{3}{5} \cos 2x + \frac{1}{5} \sin 2x \text{.}
+  \]
+  Therefore, the general solution of equation (b) is
+  \[
+      y_b(x) = {C_1}{e^{4x}} + {C_2}{e^{ - 2x}} -\frac{1}{9} e^x + \frac{3}{5} \cos 2x + \frac{1}{5} \sin 2x \text{, \quad where $C_1, \, C_2 \in \mathbb{R}$.}
+  \]
+\end{solution}
+
+
+\end{parts}
+
+
+
+
+
+\question[10] Find the points of maximum of the function
+\[
+F\left(u,v\right)=\sqrt{u}\left(\sqrt{u}-2\right)-\sqrt{v}\left(\sqrt{v}-2\right),
+\]
+given that  $\sqrt{u}\le 2,\ \sqrt{v}\le 2$
+
+
+\begin{solution}
+  \begin{enumerate}
+  \item  We use the change of variables $x=\sqrt{u},\ y=\sqrt{v}$. Using algebraic manipulations we transform $G$ into: $G\left(x,y\right)={\left(x-1\right)}^2-{\left(y-1\right)}^2+3$. Now constraints have the form $x\in \left[0,2\right],\ y\in \left[0,2\right]$
+
+  \item  First we check for internal extrema:
+
+  \[\frac{\partial G\left(x,y\right)}{\partial x}=2\left(x-1\right),\ \frac{\partial G\left(x,y\right)}{\partial y}=-2\left(y-1\right),\ \frac{{\partial }^2G\left(x,y\right)}{\partial x\partial y}=\left( \begin{array}{cc}
+  2 & 0 \\
+  0 & -2 \end{array}
+  \right)\]
+
+
+Using Sylvester's criterion we find that the point $(1,1)$ is not a maximum of $G(x,y)$.
+
+\item  Now we check for corner solutions.
+
+Line $\left\{x=0,\ y\in \left[0,2\right]\right\},\ G\left(0,y\right)=1-{\left(y-1\right)}^2$. At the point (0, 1) we have a \textbf{\underbar{maximum}} equal to 1, with values at the borders equal to $0$.
+
+Line $\left\{y=0,\ x\in \left[0,2\right]\right\},\ G\left(x,0\right)={\left(x-1\right)}^2-1$. At the point (1, 0) we have a minimum equal to $(-1)$, with values at the borders equal to 0.
+
+Line $\left\{x=2,\ y\in \left[0,2\right]\right\},\ G\left(0,y\right)=1-{\left(y-1\right)}^2$. At the point (2, 1) we have a \textbf{\underbar{maximum}} equal to 1, with values at the borders equal to $0$.
+
+Line $\left\{y=2,\ x\in \left[0,2\right]\right\},\ G\left(x,2\right)={\left(x-1\right)}^2-1$. At the point (1, 2) we have a minimum equal to $(-1)$, with values at the borders equal to 0.
+
+\item  Now we do inverse substitution.
+\end{enumerate}
+
+Answer: Maxumum points: (0, 1) и (4, 1)
+
+
+\end{solution}
+
+\newpage
+
+\question
+There are three coins in the bag. Two coins are unbiased, and for the third coin the probability of «head» is equal to $0.8$. James Bond chooses one coin at random from the bag and tosses it
+
+\begin{parts}
+\part[5] What is the probability that it will show «head»?
+\begin{solution}
+\[
+\P(B) = \P(\text{head}) = \frac{2}{3} \cdot 0.5 + \frac{1}{3} \cdot 0.8 = \frac{18}{30} = \frac{3}{5} = 0.6
+\]
+\end{solution}
+
+\part[5] What is the conditional probability that the coin is unbiased if it shows «head»?
+\begin{solution}
+\[
+\P(A|B) = \frac{\P(A\cap B)}{\P(B)} = \frac{\frac{2}{3} \cdot 0.5}{0.6} = \frac{10}{18} = \frac{5}{9}
+\]
+\end{solution}
+
+\end{parts}
+
+
+\question
+The pair of random variables $X$ and $Y$ with $\E(X)=0$ and $\E(Y)=1$ has the following covariance matrix
+
+
+\[
+\begin{pmatrix}
+10 & -2 \\
+-2 & 9 \\
+\end{pmatrix}.
+\]
+
+
+
+\begin{parts}
+\part[5] Find $\Var(X+Y)$, $\Corr(X, Y)$, $\Cov(X - 2Y +1 , 7 + X + Y)$
+\begin{solution}
+  \[
+  \Var(X+Y) = 10 + 9 - 2 \cdot 2 = 15
+  \]
+  \[
+  \Corr(X, Y) = \frac{-2}{\sqrt{10\cdot 9}}
+  \]
+  \[
+  \Cov(X - 2Y +1 , 7 + X + Y) = \Var(X) - 2\Cov(Y, X) + \Cov(X, Y) - 2 \Var(Y) = 10 - (-2) - 18 = -6
+  \]
+\end{solution}
+
+\part[5] Find the value of $a$ if it is known that $X$ is independent of $Y - aX$.
+\begin{solution}
+  For independent variables the covariance is equal to zero: $\Cov(X, Y - aX) = 0$. Hence, $a = \frac{\Cov(X, Y)}{\Var(X)} = -0.2$.
+\end{solution}
+
+\end{parts}
+
+
+
+\question You have  height measurements of a random sample of 100 persons, $y_1$, \ldots, $y_{100}$. It is known that $\sum_{i=1}^{100} y_i = 15800$ and $\sum_{i=1}^{100} y_i^2 = 2530060$.
+
+\begin{parts}
+\part[3] Calculate unbiased estimate of population mean and population variance of the height
+
+\begin{solution}
+Sample mean: $\bar y = 15800/100=158$.
+
+Unbiased estimate of the variance:
+\[
+\hat\sigma^2 = \frac{\sum (y_i-\bar y )^2}{n-1}=\frac{\sum y_i^2 - n \bar y^2}{n-1}=340
+\]
+\end{solution}
+\part[3] At 4\% significance test the null-hypothesis that the population mean is equal to 155 cm, against two-sided alternative.
+
+\begin{solution}
+Observed value of $Z$-statistics
+\[
+Z_{obs}=\frac{158-155}{\sqrt{340}/\sqrt{100}}=1.63
+\]
+
+Critical value of $Z$-statistics $Z_{crit}=2.05$.
+
+Conclusion: hypothesis $H_0$ is not rejected.
+\end{solution}
+\part[2] Find the p-value
+\begin{solution}
+Using tables we find that the area under the curve to the right of $1.63$ is approximately 5\%. Hense p-value is equal to $10\%$.
+\end{solution}
+\part[2] Find the 96\% confidence interval for the population mean
+\begin{solution}
+The confidence interval has the form
+\[
+[158 - 2.05 \cdot \sqrt{340/100} ; 158 + 2.05 \cdot \sqrt{340/100} ]
+\]
+Finally: $[154.2;161.8]$
+\end{solution}
+\end{parts}
+
+
+
+\question Let $X = (X_1, \, \ldots, \, X_n)$ be a random sample from normal distribution with zero mean and unknown variance $\sigma^2 > 0$.
+
+If $\xi \sim \cN(0, \, \sigma^2)$, then $\E[\xi^4] = 3\sigma^2$.
+
+\begin{parts}
+\part[2] Derive the log-likelihood function of a random sample $X$.
+\begin{solution}
+  The likelihood function of a random sample $X$ is
+  \[
+  L({x_1},\; \ldots ,\;{x_n};{\sigma ^2}) = {f_{{X_1},\; \ldots ,\;{X_n}}}({x_1},\; \ldots ,\;{x_n};{\sigma ^2}) =
+  \]
+  \[
+  = \prod\nolimits_{i = 1}^n {{f_{{X_i}}}({x_i};{\sigma ^2})}  = \prod\nolimits_{i = 1}^n {\frac{1}{{\sqrt {2\pi {\sigma ^2}} }}{e^{ - \frac{{x_i^2}}{{2{\sigma ^2}}}}}}  = {(2\pi )^{ - n/2}}{({\sigma ^2})^{ - n/2}}{e^{ - \frac{{\sum\nolimits_{i = 1}^n {x_i^2} }}{{2{\sigma ^2}}}}} \text{.}
+  \]
+  Hence, the log-likelihood function of a random sample $X$ is
+  \[
+  l({x_1},\; \ldots ,\;{x_n};{\sigma ^2}): = \ln \mathcal{L}({x_1},\; \ldots ,\;{x_n};{\sigma ^2}) =  - \frac{n}{2}\ln (2\pi ) - \frac{n}{2}\ln ({\sigma ^2}) - \frac{{\sum\nolimits_{i = 1}^n {x_i^2} }}{{2{\sigma ^2}}} \text{.}
+  \]
+\end{solution}
+
+\part[2] Find the estimator of the parameter $\sigma^2$ using maximum likelihood method.
+
+\begin{solution}
+  Let us write the likelihood equation:
+  \[
+  \frac{{\partial l({x_1},\; \ldots ,\;{x_n};{\sigma ^2})}}{{\partial ({\sigma ^2})}} =  - \frac{n}{{2{\sigma ^2}}} + \frac{{\sum\nolimits_{i = 1}^n {x_i^2} }}{{2{\sigma ^4}}} = 0 \text{.}
+  \]
+  Solving this equation with respect to $\sigma^2$, we find $\sigma^2 = \sum_{i=1}^{n}x_i^2$. Hence, the maximum likelihood  estimator of the parameter $\sigma^2$ is ${\widehat{{\sigma ^2}}_{ML}} = \tfrac{1}{n}\sum\nolimits_{i = 1}^n {X_i^2}$.
+\end{solution}
+
+\part[2] Using the realization of a random sample $x = (1, \, -2, \, 0, \, 1)$ find the maximum likelihood estimate of the parameter $\sigma^2$ derived in (b).
+
+\begin{solution}
+  The maximum likelihood estimate of the parameter $\sigma^2$ is
+  \[
+  {\widehat{{\sigma ^2}}_{ML}} = \tfrac{1}{4}\left( {{1^2} + {{( - 2)}^2} + {0^2} + {1^2}} \right) = \tfrac{3}{2} \text{.}
+  \]
+\end{solution}
+
+\part[2] Find the Fisher information $I_n(\sigma^2)$ about the parameter $\sigma^2$ contained in $n$ observations of a random sample.
+
+\begin{solution}
+  Considering that $l({x_1};{\sigma ^2}) =  - \tfrac{1}{2}\ln (2\pi ) - \tfrac{1}{2}\ln ({\sigma ^2}) - \tfrac{{x_1^2}}{{2{\sigma ^2}}}$, we arrive at
+  \[
+  \frac{{\partial l({x_1};{\sigma ^2})}}{{\partial ({\sigma ^2})}} =  - \frac{1}{{2{\sigma ^2}}} + \frac{{x_1^2}}{{2{\sigma ^4}}} = \frac{{x_1^2 - {\sigma ^2}}}{{2{\sigma ^4}}} \text{.}
+  \]
+  Therefore, the Fisher information $I_1(\sigma^2)$ about the parameter $\sigma^2$ contained in a single observation of a random sample is
+  \[
+  {I_1}({\sigma ^2}) = \E\left[ {{{\left( {\frac{{\partial l({X_1};{\sigma ^2})}}{{\partial ({\sigma ^2})}}} \right)}^2}} \right] = \E\left[ {\frac{{{{\left( {X_1^2 - {\sigma ^2}} \right)}^2}}}{{4{\sigma ^8}}}} \right] = \frac{{\E\left[ {{{\left( {X_1^2 - {\sigma ^2}} \right)}^2}} \right]}}{{4{\sigma ^8}}}\mathop  = \limits^{\E[X_1^2] = {\sigma ^2}}
+  \]
+  \[
+  = \frac{{\operatorname{D} (X_1^2)}}{{4{\sigma ^8}}} = \frac{{\E[X_1^4] - {{\left( {\E[X_1^2]} \right)}^2}}}{{4{\sigma ^8}}} = \frac{{3{\sigma ^4} - {{\left( {{\sigma ^2}} \right)}^2}}}{{4{\sigma ^8}}} = \frac{{2{\sigma ^4}}}{{4{\sigma ^8}}} = \frac{1}{{2{\sigma ^4}}} \text{.}
+  \]
+  Thus, ${I_n}({\sigma ^2}) = n \cdot {I_1}({\sigma ^2}) = \frac{n}{{2{\sigma ^4}}}$.
+
+\end{solution}
+
+
+\part[2] Is the estimator $\widehat{\sigma^2} = \tfrac{1}{n}\sum_{i=1}^{n}X_i^2$ an unbiased estimator of the parameter $\sigma^2$?
+
+\begin{solution}
+  The estimator $\widehat{\sigma^2} = \tfrac{1}{n}\sum_{i=1}^{n}X_i^2$ is unbiased, since
+  \[
+  \E[\widehat{{\sigma ^2}}] = \E\left[ {\tfrac{1}{n}\sum\nolimits_{i = 1}^n {X_i^2} } \right] = \tfrac{1}{n}\sum\nolimits_{i = 1}^n {\E[X_i^2]}  = \tfrac{1}{n}\sum\nolimits_{i = 1}^n {{\sigma ^2}}  = \tfrac{1}{n}n{\sigma ^2} = {\sigma ^2} \text{.}
+  \]
+\end{solution}
+
+
+\part[2] Is the estimator $\widehat{\sigma^2} = \tfrac{1}{n}\sum_{i=1}^{n}X_i^2$ an efficient estimator of the parameter $\sigma^2$?
+
+\begin{solution}
+  The estimator $\widehat{\sigma^2} = \tfrac{1}{n}\sum_{i=1}^{n}X_i^2$ is efficient, as
+  \[
+  \operatorname{D} (\widehat{{\sigma ^2}}) = \operatorname{D} \left( {\tfrac{1}{n}\sum\nolimits_{i = 1}^n {X_i^2} } \right) = \tfrac{1}{{{n^2}}}\sum\nolimits_{i = 1}^n {\operatorname{D} (X_i^2)}  = \tfrac{1}{{{n^2}}}\sum\nolimits_{i = 1}^n {2{\sigma ^4}}  = \tfrac{1}{{{n^2}}}n2{\sigma ^4} = \frac{{2{\sigma ^4}}}{n} \text{,}
+  \]
+  and
+  \[
+  I_n^{ - 1}({\sigma ^2}) = {\left( {\frac{n}{{2{\sigma ^2}}}} \right)^{ - 1}} = \frac{{2{\sigma ^2}}}{n} = \operatorname{D} (\widehat{{\sigma ^2}}) \text{.}
+  \]
+
+\end{solution}
+
+
+
+\part[2] Is the estimator $\widehat{\sigma^2} = \tfrac{1}{n}\sum_{i=1}^{n}X_i^2$ a consistent estimator of the parameter $\sigma^2$?
+
+\begin{solution}
+  As random variables $X_1^2, \ldots, X_n^2, \ldots$ are independent, have the same distribution, and  have finite means, then the we can apply the law of large numbers, according to which we have
+  \[
+  \tfrac{1}{n}\sum\nolimits_{i = 1}^n {X_i^2} \, \mathop  \to \limits^\mathbb{P} \,  \E[X_i^2] = {\sigma ^2} \text{\quad \; as $n \rightarrow \infty$.}
+  \]
+\end{solution}
+
+
+
+\part[2] Find the following probability limit $\mathrm{plim}_{n \rightarrow \infty}\sqrt{\tfrac{1}{n}\sum_{i=1}^{n}X_i^2}$.
+
+\begin{solution}
+  As $\tfrac{1}{n}\sum\nolimits_{i = 1}^n {X_i^2} \mathop  \to \limits^\mathbb{P} \E[X_i^2] = {\sigma ^2}$, and the function $g(x) = \sqrt{x}$ is continuous, by Slutsky's theorem we derive
+  \[
+  \sqrt {\tfrac{1}{n}\sum\nolimits_{i = 1}^n {X_i^2} }  = g\Bigl(\tfrac{1}{n}\sum\nolimits_{i = 1}^n {X_i^2} \Bigr) \, \mathop  \to \limits^\mathbb{P} \,  g({\sigma ^2}) = \sqrt {{\sigma ^2}}  = \sigma \text{\quad \; as $n \rightarrow \infty$.}
+  \]
+\end{solution}
+
+
+
+\end{parts}
+
+
+
+\end{questions}
+
+
+\subsection{olymp 2018}
+
+
+
+\begin{questions}
+
+\question[10] For the function
+
+\[
+f(x,y) = \frac{x^2 y^2}{x^2 y^2 + (x-y)^2}
+\]
+
+If possible find the following limits:
+
+\begin{parts}
+  \part[2] $\Lim{x \rightarrow 0} \left( \Lim{y \rightarrow 0} f(x,y) \right)$;
+
+  \begin{solution}
+Fix some $x_0 \neq 0$ and consider $f(x_0,y)$ as a function of $y$. Then $\Lim{y \rightarrow 0} f(x_0,y) = \frac{0}{x_0^2} = 0$, hence $\Lim{x \rightarrow 0} \left( \Lim{y \rightarrow 0} f(x,y) \right) = \Lim{x \rightarrow 0} 0 = 0$.
+\end{solution}
+  
+\part[2] $\Lim{y \rightarrow 0} \left( \Lim{x \rightarrow 0} f(x,y) \right)$;
+
+\begin{solution}
+Similarly, fixing some $y_0 \neq 0$ and considering $f(x,y_0)$ as a function of $x$, we conclude that $\Lim{y \rightarrow 0} \left( \Lim{x \rightarrow 0} f(x,y) \right) = 0$. 
+\end{solution}
+
+\part[6] $\Lim{\substack{x \rightarrow 0 \\ y \rightarrow 0}} f(x,y)$.
+\begin{solution}
+Now consider a case when $x$ and $y$ tend to zero simultaneously. For example, let $x=y$. In this case $\Lim{\substack{x \rightarrow 0}} f(x,x) = \frac{x^4}{x^4} = 1$ \textbf{(3 points)}. Combining this to the results above, we conclude that $\Lim{\substack{x \rightarrow 0 \\ y \rightarrow 0}} f(x,y)$ does not exist \textbf{(3 points)}.
+\end{solution}
+
+
+
+\end{parts}
+
+
+
+
+
+% q2
+\question[10] Find the discontinuity points of the following function
+
+\[
+f(x) = \frac{\frac{1}{x}-\frac{1}{x+1}}{\frac{1}{x-1}-\frac{1}{x}}
+\]
+
+and find the limits of $f(x)$ as $x$ tends to these discontinuity points.
+
+\begin{solution}
+
+The discontinuity points are 0, 1 and -1, because at least one of the denominators is zero at these points \textbf{(2 points)}. In order to classify them, rewrite the function in the following way:
+
+\[
+f(x) = \frac{\frac{1}{x (x+1)}}{\frac{1}{x (x-1)}} = \frac{x (x-1)}{x (x+1)}
+\]
+
+\noindent \textbf{(2 points)}. From this representation it is clear that 0 and 1 are the points of removable discontinuity, because the limit of $f(x)$ exists as $x$ tends to 0 or 1. Indeed, $\Lim{x \rightarrow 0} f(x) = -1$, which can be found by applying the L'Hôpital's rule \textbf{(2 points)}, and $\Lim{x \rightarrow 1} f(x) = 0$ can be found by direct substitution \textbf{(2 points)}. Finally, -1 is a point of essential discontinuity and $\Lim{x \rightarrow -1} f(x) = \infty$, as the nominator tends to non-zero finite number and denominator tends to zero \textbf{(2 points)}.
+
+\end{solution}
+
+
+
+
+% q3
+\question Matrix $A$ is given by
+\[
+A=\begin{pmatrix}
+  2 & 1 & 3 & 4 \\
+  0 & 2 & 1 & 3 \\
+  2 & 1 & 6 & 5 \\
+  1 & 2 & 4 & 8 \\
+\end{pmatrix}.
+\]
+
+\begin{parts}
+
+\part[6] Find the space $V$ of all eigenvectors of $A$ corresponding to the eigenvalue $\lambda = 1$;
+\begin{solution}
+
+Subtract $\lambda = 1$ from the diagonal and do the Gauss elimination.
+
+After Gaussian elimination we have the matrix
+\[
+\begin{pmatrix}
+  1 & 1 & 3 & 4 \\
+  0 & 1 & 1 & 3 \\
+  \end{pmatrix}
+\]
+
+Fundamental set of solutions is 
+\[
+  V = \Lin\left(
+    \begin{pmatrix}
+      -2 \\
+      -1 \\
+      1 \\
+      0 \\
+    \end{pmatrix},
+    \begin{pmatrix}
+      -1 \\
+      -3 \\
+      0 \\
+      1 \\
+    \end{pmatrix}
+  \right)
+\]
+
+
+Grading: 2 points for the system of linear equations, 2 points for the elimination, 2 points for the answer;
+
+\end{solution}
+
+\part[4] Find one vector that is orthogonal to the space $V$; 
+
+\begin{solution}
+  Any solution to the system
+  \[
+  \begin{pmatrix}
+    -2 & -1 & 1 & 0 \\
+    -1 & -3 & 0 & 1 \\
+  \end{pmatrix}
+  \]
+
+  For example, $a=(0, 1, 1, 3)$ or any row of $A-I$ will do, but many other vector are also ok.
+
+  Grading. Solution with explicit system: 2 points for the system of two linear equations; 2 points for the answer. 
+  Quick solution based on idea that any row of $A-I$ is ok gives 4 points. 
+
+\end{solution}
+
+\end{parts}
+
+
+% q4
+\question The $3\times 3$ matrix $A$ has eigenvalues 0, 1 and 2. If there is enough information find  
+
+
+\begin{parts}
+
+\part[3] The determinant $A^TA$;
+
+
+\begin{solution}
+  The $\det(A)$ is zero, so $\det(A^TA)=\det(A^T)\det(A)=0$;
+\end{solution}
+
+\part[4] The eigenvalues of $A^TA$;
+
+
+\begin{solution}
+  It is not possible to find eigenvalues of $A^TA$. Consider two matrices. The matrix $A_1$ has 0, 1 and 2 on the main diagonal and 0 elsewhere. The matrix $A_2$ has 0, 1 and 2 on the main diagonal, $A_{12}=1$ and 0 elsewhere. The resulting matrices $A_1^TA_1$ and $A_2^TA_2$ will have different eigenvalues.
+
+\end{solution}
+
+
+\part[3] The eigenvalues of $(A^3 - 2I)^{-1}$, where $I$ is the identity matrix;
+
+
+\begin{solution}
+Eigenvalues of $A^3 - 2I$ are $-2$, $-1$ and $6$. So eigenvalues of $(A^3 - 2I)^{-1}$ are $-1$, $-1/2$ and $1/6$.
+\end{solution}
+
+\end{parts}
+
+% q5
+\question[10] 
+Find the point and the value of conditional maximum of the function $F\left(x,\ y\right)=\max\left(2x+3y,3x+2y\right)$ subject to $x^2+y^2=1$.
+\begin{solution}
+Considers the functions $f_1\left(x,y\right)=2x+3y,\ f_2\left(x,y\right)=3x+2y$. Equality $f_1\left(x,y\right)=f_2\left(x,y\right)$ is fulfilled on the line $y=x$. Thus, for example $F\left(x,y\right)=\left\{ \begin{array}{c}
+f_1\left(x,y\right),\ y\ge x \\ 
+f_2\left(x,y\right),\ y<x \end{array}
+\right.$.
+
+One may consider three cases and compare the maximum values:
+
+\begin{enumerate}
+\item  Find conditional maximum of $f_1\left(x,y\right)$, given $x^2+y^2=1$ and $y>x$ .
+
+\item  Find conditional maximum of $f_2\left(x,y\right)$, given $x^2+y^2=1$ and $y<x$.
+
+\item  Find conditional maximum of $f_1\left(x,y\right)$, given $y=x$, $x\in \left[-\frac{\sqrt{2}}{2},\frac{\sqrt{2}}{2}\right]$.
+\end{enumerate}
+
+\textit{Case 1}
+
+It may be done in various ways. Let's use the method of Lagrange multipliers.
+\[L\left(x, y, \lambda\right)=2x+3y+\lambda \left(x^2+y^2-1\right)\] 
+
+Potential extremum is reached at the point $y=-\frac{3}{2\lambda}$, $x=-\frac{1}{\lambda}$, $\lambda =\pm \sqrt{\frac{13}{4}}$
+
+Inequality $y>x$ is fulfilled if $\lambda =-\sqrt{\frac{13}{4}}$.  In this case the bordered Hessian is greater than zero: $\det\left( \begin{array}{ccc}
+0 & 2x & 2y \\ 
+2x & 2\lambda & 0 \\ 
+2y & 0 & 2\lambda \end{array}
+\right)=-8\lambda\left(x^2+y^2\right)$. 
+
+Thus, there is conditional maximum at the point $x=\sqrt{\frac{4}{13}},y=\frac{3}{2}\sqrt{\frac{4}{13}}$, which is equal to $\frac{13}{2}\sqrt{\frac{4}{13}}\approx 3,6$ .
+
+\textit{Case 2}.
+
+\[L\left(x,\ y,\ \lambda\right)=3x+2y+\lambda\left(x^2+y^2-1\right)\] 
+
+Potential extremum is reached at the point $x=-\frac{3}{2\lambda}$, $y=-\frac{1}{\lambda}$, $\lambda=\pm \sqrt{\frac{13}{4}}$. 
+
+Inequality $y<x$ must be met. Thereby, again $\lambda=-\sqrt{\frac{13}{4}}$ and there is conditional maximum at the point $y=\sqrt{\frac{4}{13}},x=\frac{3}{2}\sqrt{\frac{4}{13}}$ which is equal to  $\frac{13}{2}\sqrt{\frac{4}{13}}\approx 3,6$ again.
+
+\textit{Case 3}.
+
+It is obvious that in this case conditional maximum is reached at the point $x=\frac{\sqrt{2}}{2},y=\frac{\sqrt{2}}{2}$, which is equal to $5\frac{\sqrt{2}}{2}\approx 3.5$
+
+Thus, there are two points of conditional maximum $x=\sqrt{\frac{4}{13}},y=\frac{3}{2}\sqrt{\frac{4}{13}}$ and $y=\sqrt{\frac{4}{13}},x=\frac{3}{2}\sqrt{\frac{4}{13}}$, which is equal to $\frac{13}{2}\sqrt{\frac{4}{13}}\approx 3,6$.
+
+
+Grading: decomposition into cases — 3 points, solution of the cases 1 and 2 — 3 points for each, case 3 — 1 point.
+  
+\end{solution}
+
+
+
+% q6
+\question
+\begin{parts}
+  \part[4] Find the general solution of $y'' - 2y' + 10y = 0$,
+  \begin{solution}
+Let us solve the characteristic equation
+\[
+\lambda ^2 - 2\lambda  + 10 = 0 \text{}
+\]
+corresponding to the differential equation (a). We find that $\lambda_1 = 1 + 3i$ and $\lambda_2 = 1 - 3i$ are the solutions of this characteristic equation. Hence, the general solution of the differential equation (a) is
+\[
+y(x) = {C_1}{e^{x}} \cos 3x + {C_2}{e^{x}} \sin 3x \text{, \quad where $C_1, \, C_2 \in \mathbb{R}$.}
+\]
+\end{solution}
+
+\part[2] Find any particular solution of $y'' - 2y' + 10y = \sin 3x$,
+  \begin{solution}
+ We seek the particular solution of the differential equation (b) in the form
+\begin{equation}\label{sjy2ms}
+  y(x) = A_1 \cos 3x + A_2 \sin 3x \text{.}
+\end{equation}
+Substituting expression (\ref{sjy2ms}) into equation (b), we obtain $A_1 = \frac{6}{37}$ and $A_2 = \frac{1}{37}$. Therefore, the particular solution of the differential equation (b) is
+\[
+    y(x) = \frac{6}{37} \cos 3x + \frac{1}{37} \sin 3x \text{.}
+\]
+\end{solution}
+
+\part[2] Find any particular solution of $y'' - 2y' + 10y = e^x$,
+  \begin{solution}  
+ We seek the particular solution of the differential equation (c) in the form
+\begin{equation}\label{vj63s}
+  y(x) = B e^x \text{.}
+\end{equation}
+Substituting expression (\ref{vj63s}) into equation (c), we obtain $B = \frac{1}{9}$. Consequently, the particular solution of the differential equation (c) is
+\[
+    y(x) = \frac{1}{9} e^x \text{.}
+\]
+\end{solution} 
+
+\part[2] Find the general solution of $y'' - 2y' + 10y = \sin 3x + e^x$.
+\begin{solution}
+The particular solution of the differential equation (d) is a sum of particular solutions of equations (b) and (c). Thus, the particular solution of the differential equation (d) is
+\[
+    y(x) = \frac{6}{37} \cos 3x + \frac{1}{37} \sin 3x + \frac{1}{9} e^x \text{.}
+\]
+Therefore, the general solution of equation (d) is
+\[
+    y_b(x) =  {C_1}{e^{x}} \cos 3x + {C_2}{e^{x}} \sin 3x + \frac{6}{37} \cos 3x + \frac{1}{37} \sin 3x + \frac{1}{9} e^x \text{, \quad where $C_1, \, C_2 \in \mathbb{R}$.}
+\]
+\end{solution}
+\end{parts}
+
+
+\newpage
+% q7
+\question
+Time before the first screen break of IPhone 11 is a random variable, $X$, with exponential distribution: $\P(X\leq x)=1-e^{-\lambda x}$. The mean time before break is 10 months. 
+\begin{parts}
+  \part[3] Find the probability that a new IPhone screen will not be broken during the first 15 months. 
+  \begin{solution}
+    $\E(X)=10$, so $\lambda = 1/10$, 
+    $\P(X > 15) = \int_{15}^{\infty}f(x)dx = \exp(-3/2)$
+  \end{solution}
+  \part[3] Find the variance of the time before the first screen break.
+  \begin{solution}
+    \[ 
+      \Var(X) = 1/\lambda^2 = 100
+    \]
+  \end{solution}
+  \part[4] You have an IPhone with screen which was not broken during the first 10 months since purchase. Find the probability that the screen for this IPhone will be ok for at least additional 15 months.  
+  \begin{solution}
+    Using memoryless property of exponential distribution or explicitely calculating conditional probability we obtain the same probability $\exp(-3/2)$.
+  \end{solution}
+\end{parts}
+
+% q8
+\question
+Joint probability density function of random variables X and Y is:
+
+  \[ 
+  f(x,y)= \begin{cases}      
+        c(x^2 + y), \text{ if }  0 \leq x \leq 2, 0 \leq y \leq 1 \\
+	0, \text{ otherwise} \\
+    \end{cases}
+  \]
+
+\begin{parts}
+\part[2] Find $c$
+\begin{solution}
+$\int_0^1 \int_0^2 c(x^2 + y) dx dy = \frac{11}{3} c = 1 $. Hence, $c = \frac{3}{11}$
+\end{solution}
+
+\part[3] Check whether X and Y are independent
+\begin{solution}
+$f_X(x) = \int_0^1 \frac{3}{11} (x^2 + y) dy = \frac{3}{22} (2 x^2 + 1) $, $f_Y(y) = \int_0^2 \frac{3}{11} (x^2 + y) dx = \frac{2}{11} (3y + 4) $. $f_X(x) f_Y(y) \neq f_{X,Y}(x,y)$, hence, variables are not independent. 
+\end{solution}
+
+\part[2] Find $\E(X)$
+\begin{solution}
+$\E(X) = \int_0^2 \frac{3}{22} (2 x^2 + 1) x dx = \frac{15}{11}$
+\end{solution}
+
+\part[3] Find probability $\P(XY>1)$
+\begin{solution}
+$\P(XY>1) = \int_1^2 \int_{1/x}^1 \frac{3}{11} (x^2 + y) dy dx = \frac{13}{44} $
+\end{solution}
+
+\end{parts}
+
+
+% q9
+\question Let $X = (X_1, \, \ldots, \, X_n)$ be a random sample from the distribution with density function
+\[
+    f(x, \, \theta) = \left\{
+                        \begin{array}{ll}
+                          \frac{2x}{\theta^2}, & \hbox{$x \in [0; \, \theta]$,} \\
+                          0, & \hbox{$x \not\in [0; \, \theta]$,}
+                        \end{array}
+                      \right.
+\]
+where $\theta > 0$ is an unknown parameter.
+
+\begin{parts}
+  \part[2] Find the estimator of the parameter $\theta$ using method of moments. Use first initial moment condition.
+  \begin{solution}
+
+The first initial moment condition is $\mu_1 = \widehat{\mu}_1$. Let us find $\mu_1 : = \E[X_i]$. We have
+\[
+{\mu _1} = \E[{X_i}] = \int_{ - \infty }^{ + \infty } {x{f_{{X_i}}}(x)dx}  = \int_0^\theta  {x\frac{{2x}}{{{\theta ^2}}}dx}  = \int_0^\theta  {\frac{{2{x^2}}}{{{\theta ^2}}}dx}  = \frac{{2{\theta ^3}}}{{3{\theta ^2}}} = \frac{2}{3}\theta \text{.}
+\]
+As $\widehat{\mu}_1 = \overline{X}$, the moment condition takes the form $\frac{2}{3}\theta = \overline{X}$. Solving this equation with respect to $\theta$, we find $\theta = \frac{3}{2} \overline{X}$. Hence, the method of moments estimator of the parameter $\theta$ is $\widehat{\theta}_{MM} = \frac{3}{2} \overline{X}$.
+\end{solution} 
+
+
+\part[2] Is the estimator from (a) an unbiased estimator of the parameter $\theta$?
+  \begin{solution}
+As
+\[
+  \E(\hat \theta _{MM}) = \frac{3}{2}\E(\bar X) = \frac{3}{2}\E(X_i) = \frac{3}{2}\frac{2}{3}\theta  = \theta \text{,}
+\]
+the estimator $\widehat{\theta}_{MM} = \frac{3}{2} \overline{X}$ is an unbiased estimator of the parameter $\theta$.
+\end{solution}
+
+\part[2] Is the estimator  from (a) a consistent estimator of the parameter $\theta$?
+  \begin{solution}
+    As random variables $X_1, \ldots, X_n, \ldots$ are independent, have the same distribution, and  have finite means, we can apply the law of large numbers, according to which we have $\overline{X} \mathop  \to \limits^{\P} \E(X_i) = \frac{2}{3}\theta $ as $n \rightarrow \infty$. Hence, $\hat \theta_{MM} = \frac{3}{2}\bar X\mathop  \to \limits^{\P} \frac{3}{2}\frac{2}{3}\theta  = \theta$ as $n \rightarrow \infty$. The last condition means that the estimator $\widehat{\theta}_{MM} = \frac{3}{2} \overline{X}$ is consistent. 
+\end{solution}
+
+\part[2] Find the following probability limit $\plim_{n \rightarrow \infty}e^{\overline{X}}$.
+  \begin{solution}
+    As $\overline{X} \mathop  \to \limits^{\P} \E(X_i) = \frac{2}{3}\theta $, and the function $g(x) = e^x$ is continuous, by Slutsky's theorem we derive $e^{\overline{X}} \mathop  \to \limits^{\P} e^{\frac{2}{3}\theta}$.
+\end{solution}
+
+
+
+\part[2] Find the estimator of the parameter $\theta$ using maximum likelihood method.
+  \begin{solution}
+The likelihood function of a random sample $X$ is
+\[
+\mathcal{L}({x_1},\; \ldots ,\;{x_n};\;\theta ) = {f_{{X_1},\; \ldots ,\;{X_n}}}({x_1},\; \ldots ,\;{x_n};\;\theta ) = 
+\]
+\[ 
+= \prod\nolimits_{i = 1}^n {{f_{{X_i}}}({x_i};\;\theta )}  = \prod\nolimits_{i = 1}^n {\frac{{2{x_i}}}{{{\theta ^2}}}{\mathbb{I}_{[0;\;\theta ]}}({x_i})}  = \frac{{{2^n}\left( {\prod\nolimits_{i = 1}^n {{x_i}} } \right)}}{{{\theta ^{2n}}}}\prod\nolimits_{i = 1}^n {{\mathbb{I}_{[0;\;\theta ]}}({x_i})}  = 
+\]
+\[ 
+  = \frac{{{2^n}\left( {\prod\nolimits_{i = 1}^n {{x_i}} } \right)}}{{{\theta ^{2n}}}}\prod\nolimits_{i = 1}^n {{\mathbb{I}_{[{x_i};\; + \infty )}}(\theta )}  = \frac{{{2^n}\left( {\prod\nolimits_{i = 1}^n {{x_i}} } \right)}}{{{\theta ^{2n}}}}{\mathbb{I}_{[\mathop {\max }\limits_{1 \leq i \leq n} {x_i};\; + \infty )}}(\theta ) \text{.}
+\]
+As likelihood function $\mathcal{L}(\theta )$ vanishes, when $\theta < \max_{1 \leq i \leq n}{x_i}$, and strictly decreases, when $\theta \geq \max_{1 \leq i \leq n}{x_i}$, the point $\theta = \max_{1 \leq i \leq n}{x_i}$ is a maximum point of likelihood function. Hence, ${\widehat\theta _{ML}} = \mathop {\max }\limits_{1 \leq i \leq n} {X_i}$.
+\end{solution}
+
+
+\end{parts}
+
+
+
+\question 
+$X_1, \ldots, X_n$ is independent identically distributed sample from Bernoulli distribution with probability $\theta$. 
+Additionally, it is known, that $1/2 \leq \theta \leq 1$. 
+
+\begin{parts}
+\part[2] Find the method of moments estimator of the parameter $\theta$. 
+\begin{solution}
+$\E(X_i) = \theta$,  $\hat{\theta}_{MM} = \overline{X} $
+\end{solution}
+
+\part[2] Compute mean squared error of $\hat{\theta}_{MM} $
+\begin{solution}
+$MSE(\hat{\theta}_{MM}) = \E((\hat{\theta}_{MM} - \theta)^2) = \E((\overline{X} - \theta)^2) = \Var(\overline{X}) = \frac{ \theta (1 - \theta)}{n}$ (as $\E(\overline{X}) = \theta$). 
+\end{solution}
+
+\part[4] Find maximum likelihood estimator of parameter $\theta$
+\begin{solution}
+Likelihood function $L = \prod_{i=1}^{n} \theta^{x_i} (1 - \theta)^{1-x_i} $ is maximized by $\theta$ that satisfied inequality $1/2 \leq \theta \leq 1$. It can be easily shown that when $ \overline{X} > 1/2$, it is the maximum likelihood estimator of $\theta$. 
+
+When $ \overline{X} < 1/2$, likelihood function is decreasing for $ \theta > \overline{X}$ as the first derivative of log likelihood function is $\frac{\sum x - n \theta}{\theta(1 - \theta)}$ and it is negative when $ \theta > \overline{X}$. Hence, likelihood reaches its maximum at $\theta = 1/2$. 
+
+So, $\hat{\theta}_{ML} = \max(1/2, \overline{X})$
+\end{solution}
+
+\part[2] Compute mean squared error of $\hat{\theta}_{ML} $ at $\theta = 1$
+ 
+\begin{solution}
+With $\theta = 1$, $X_i = 1$ with probability 1. Hence, $\overline{X} = 1, \hat{\theta}_{ML} = 1$ and $MSE(\hat{\theta}_{ML}) = \E( (1 - 1)^2) = 0$.
+\end{solution}
+
+
+
+
+
+\end{parts}
+
+
+\end{questions}
 
 
 \end{document}
